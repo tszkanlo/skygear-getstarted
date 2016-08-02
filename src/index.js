@@ -4,7 +4,7 @@ import './google-fonts-lato-400-700.css';
 import React from 'react';
 import selectPage from './select-guide.js';
 
-
+/* eslint-disable global-require, import/no-unresolved */
 const pages = {
   ios: {
     new: require('./pages/ios-new'),
@@ -19,6 +19,7 @@ const pages = {
     existing: require('./pages/js-existing'),
   },
 };
+/* eslint-enable global-require, import/no-unresolved */
 
 export default class extends React.Component {
   constructor(props) {
@@ -40,10 +41,11 @@ export default class extends React.Component {
 
   render() {
     const { sdk, guide } = this.state;
+    const self = this;
     return React.createElement(this.template, {
       sdk, guide,
-      setSDK: ((sdk) => this.setState({sdk})).bind(this),
-      setGuide: ((guide) => this.setState({guide})).bind(this),
+      setSDK: ((targetSDK) => self.setState({ sdk: targetSDK })),
+      setGuide: ((targetGuide) => self.setState({ guide: targetGuide })),
     });
   }
 }

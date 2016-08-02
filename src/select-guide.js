@@ -10,15 +10,13 @@ import IconTick from './img/icon-tick.svg';
 
 import { SelectGuide, SelectGuideType } from './select-guide.jade';
 
-export default function (props) {
-  const { sdk, guide, setSDK, setGuide } = props;
-
+export default function SelectPage({ sdk, setSDK, setGuide }) {
   function PlatformStyle(targetSDK) {
     const active = (targetSDK === sdk);
     if (!active) this.cursor = 'pointer';
-    const color = active? '#007bd4': '#979797';
+    const color = active ? '#007bd4' : '#979797';
     this.color = this.fill = color;
-    this.border = '1px solid '+ color;
+    this.border = `1px solid ${color}`;
     this.borderRadius = '6px';
     this.marginTop = '16px';
     this.overflow = 'auto';
@@ -34,12 +32,11 @@ export default function (props) {
     borderRadius: '6px',
     position: 'relative',
     cursor: 'pointer',
-  }
+  };
 
   class ShowOnActive {
     constructor(targetSDK) {
-      if (targetSDK !== sdk)
-        this.display = 'none';
+      if (targetSDK !== sdk) this.display = 'none';
     }
   }
   class PlatformTickStyle extends ShowOnActive {
@@ -58,16 +55,19 @@ export default function (props) {
     }
   }
 
-  function SelectGuideTypeProps(sdk) {
-    return {
-      sdk, setGuide, IconNew, IconApp,
-      GuideSelectStyle, guideStyle,
-    };
-  }
-
   return React.createElement(SelectGuide, {
-    PlatformStyle, PlatformTickStyle,
+    setSDK, PlatformStyle, PlatformTickStyle,
     IconAndroid, IconIos, IconWeb, IconTick,
-    setSDK, SelectGuideType, SelectGuideTypeProps,
+    SelectGuideType:
+      (targetSDK) => React.createElement(SelectGuideType, {
+        sdk: targetSDK, setGuide, IconNew, IconApp,
+        GuideSelectStyle, guideStyle,
+      }),
   });
 }
+
+SelectPage.propTypes = {
+  sdk: React.PropTypes.string.isRequired,
+  setSDK: React.PropTypes.func.isRequired,
+  setGuide: React.PropTypes.func.isRequired,
+};

@@ -94,6 +94,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	/* eslint-disable global-require, import/no-unresolved */
 	var pages = {
 	  ios: {
 	    new: __webpack_require__(274),
@@ -108,6 +109,7 @@ module.exports =
 	    existing: __webpack_require__(279)
 	  }
 	};
+	/* eslint-enable global-require, import/no-unresolved */
 
 	var _class = function (_React$Component) {
 	  _inherits(_class, _React$Component);
@@ -130,20 +132,19 @@ module.exports =
 	  _createClass(_class, [{
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
-
 	      var _state = this.state;
 	      var sdk = _state.sdk;
 	      var guide = _state.guide;
 
+	      var self = this;
 	      return _react2.default.createElement(this.template, {
 	        sdk: sdk, guide: guide,
-	        setSDK: function (sdk) {
-	          return _this2.setState({ sdk: sdk });
-	        }.bind(this),
-	        setGuide: function (guide) {
-	          return _this2.setState({ guide: guide });
-	        }.bind(this)
+	        setSDK: function setSDK(targetSDK) {
+	          return self.setState({ sdk: targetSDK });
+	        },
+	        setGuide: function setGuide(targetGuide) {
+	          return self.setState({ guide: targetGuide });
+	        }
 	      });
 	    }
 	  }, {
@@ -527,13 +528,50 @@ module.exports =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = SelectPage;
 
-	exports.default = function (props) {
-	  var sdk = props.sdk;
-	  var guide = props.guide;
-	  var setSDK = props.setSDK;
-	  var setGuide = props.setGuide;
+	var _react = __webpack_require__(5);
 
+	var _react2 = _interopRequireDefault(_react);
+
+	var _iconAndroid = __webpack_require__(7);
+
+	var _iconAndroid2 = _interopRequireDefault(_iconAndroid);
+
+	var _iconIos = __webpack_require__(268);
+
+	var _iconIos2 = _interopRequireDefault(_iconIos);
+
+	var _iconWeb = __webpack_require__(269);
+
+	var _iconWeb2 = _interopRequireDefault(_iconWeb);
+
+	var _iconNew = __webpack_require__(270);
+
+	var _iconNew2 = _interopRequireDefault(_iconNew);
+
+	var _iconApp = __webpack_require__(271);
+
+	var _iconApp2 = _interopRequireDefault(_iconApp);
+
+	var _iconTick = __webpack_require__(272);
+
+	var _iconTick2 = _interopRequireDefault(_iconTick);
+
+	var _selectGuide = __webpack_require__(273);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function SelectPage(_ref) {
+	  var sdk = _ref.sdk;
+	  var setSDK = _ref.setSDK;
+	  var setGuide = _ref.setGuide;
 
 	  function PlatformStyle(targetSDK) {
 	    var active = targetSDK === sdk;
@@ -597,57 +635,23 @@ module.exports =
 	    return GuideSelectStyle;
 	  }(ShowOnActive);
 
-	  function SelectGuideTypeProps(sdk) {
-	    return {
-	      sdk: sdk, setGuide: setGuide, IconNew: _iconNew2.default, IconApp: _iconApp2.default,
-	      GuideSelectStyle: GuideSelectStyle, guideStyle: guideStyle
-	    };
-	  }
-
 	  return _react2.default.createElement(_selectGuide.SelectGuide, {
-	    PlatformStyle: PlatformStyle, PlatformTickStyle: PlatformTickStyle,
+	    setSDK: setSDK, PlatformStyle: PlatformStyle, PlatformTickStyle: PlatformTickStyle,
 	    IconAndroid: _iconAndroid2.default, IconIos: _iconIos2.default, IconWeb: _iconWeb2.default, IconTick: _iconTick2.default,
-	    setSDK: setSDK, SelectGuideType: _selectGuide.SelectGuideType, SelectGuideTypeProps: SelectGuideTypeProps
+	    SelectGuideType: function SelectGuideType(targetSDK) {
+	      return _react2.default.createElement(_selectGuide.SelectGuideType, {
+	        sdk: targetSDK, setGuide: setGuide, IconNew: _iconNew2.default, IconApp: _iconApp2.default,
+	        GuideSelectStyle: GuideSelectStyle, guideStyle: guideStyle
+	      });
+	    }
 	  });
+	}
+
+	SelectPage.propTypes = {
+	  sdk: _react2.default.PropTypes.string.isRequired,
+	  setSDK: _react2.default.PropTypes.func.isRequired,
+	  setGuide: _react2.default.PropTypes.func.isRequired
 	};
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _iconAndroid = __webpack_require__(7);
-
-	var _iconAndroid2 = _interopRequireDefault(_iconAndroid);
-
-	var _iconIos = __webpack_require__(268);
-
-	var _iconIos2 = _interopRequireDefault(_iconIos);
-
-	var _iconWeb = __webpack_require__(269);
-
-	var _iconWeb2 = _interopRequireDefault(_iconWeb);
-
-	var _iconNew = __webpack_require__(270);
-
-	var _iconNew2 = _interopRequireDefault(_iconNew);
-
-	var _iconApp = __webpack_require__(271);
-
-	var _iconApp2 = _interopRequireDefault(_iconApp);
-
-	var _iconTick = __webpack_require__(272);
-
-	var _iconTick2 = _interopRequireDefault(_iconTick);
-
-	var _selectGuide = __webpack_require__(273);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /***/ },
 /* 7 */
@@ -23460,7 +23464,6 @@ module.exports =
 	  var IconTick = "IconTick" in locals ? locals.IconTick : jade_globals_IconTick;
 	  var IconIos = "IconIos" in locals ? locals.IconIos : jade_globals_IconIos;
 	  var SelectGuideType = "SelectGuideType" in locals ? locals.SelectGuideType : jade_globals_SelectGuideType;
-	  var SelectGuideTypeProps = "SelectGuideTypeProps" in locals ? locals.SelectGuideTypeProps : jade_globals_SelectGuideTypeProps;
 	  var IconAndroid = "IconAndroid" in locals ? locals.IconAndroid : jade_globals_IconAndroid;
 	  var IconWeb = "IconWeb" in locals ? locals.IconWeb : jade_globals_IconWeb;
 	  var GuideSelectStyle = "GuideSelectStyle" in locals ? locals.GuideSelectStyle : jade_globals_GuideSelectStyle;
@@ -23471,8 +23474,8 @@ module.exports =
 	  var IconApp = "IconApp" in locals ? locals.IconApp : jade_globals_IconApp;
 	  return function() {
 	    var tags = [];
-	    const r = React.createElement;
 	    // react: SelectGuide
+	    React.createElement;
 	    const platformIcon = {
 	      position: "absolute",
 	      top: "10px",
@@ -23521,11 +23524,11 @@ module.exports =
 	        return [ React.DOM.span.apply(React.DOM, [ {
 	          style: new PlatformTickStyle("ios")
 	        } ].concat(function() {
-	          return [ r(IconTick) ];
+	          return [ React.createElement(IconTick) ];
 	        }.call(this))), React.DOM.span.apply(React.DOM, [ {
 	          style: platformIcon
 	        } ].concat(function() {
-	          return [ r(IconIos) ];
+	          return [ React.createElement(IconIos) ];
 	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
 	          style: platformTitle
 	        } ].concat(function() {
@@ -23534,7 +23537,7 @@ module.exports =
 	          style: platformDesc
 	        } ].concat(function() {
 	          return [ "Build an app for iPhone, iPad and Apple Watch" ];
-	        }.call(this))), r(SelectGuideType, SelectGuideTypeProps("ios")) ];
+	        }.call(this))), SelectGuideType("ios") ];
 	      }.call(this))), React.DOM.div.apply(React.DOM, [ {
 	        style: new PlatformStyle("android"),
 	        onClick: setSDK.bind(null, "android")
@@ -23542,11 +23545,11 @@ module.exports =
 	        return [ React.DOM.span.apply(React.DOM, [ {
 	          style: new PlatformTickStyle("android")
 	        } ].concat(function() {
-	          return [ r(IconTick) ];
+	          return [ React.createElement(IconTick) ];
 	        }.call(this))), React.DOM.span.apply(React.DOM, [ {
 	          style: platformIcon
 	        } ].concat(function() {
-	          return [ r(IconAndroid) ];
+	          return [ React.createElement(IconAndroid) ];
 	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
 	          style: platformTitle
 	        } ].concat(function() {
@@ -23555,7 +23558,7 @@ module.exports =
 	          style: platformDesc
 	        } ].concat(function() {
 	          return [ "Build an app for Android devices" ];
-	        }.call(this))), r(SelectGuideType, SelectGuideTypeProps("android")) ];
+	        }.call(this))), SelectGuideType("android") ];
 	      }.call(this))), React.DOM.div.apply(React.DOM, [ {
 	        style: new PlatformStyle("js"),
 	        onClick: setSDK.bind(null, "js")
@@ -23563,11 +23566,11 @@ module.exports =
 	        return [ React.DOM.span.apply(React.DOM, [ {
 	          style: new PlatformTickStyle("js")
 	        } ].concat(function() {
-	          return [ r(IconTick) ];
+	          return [ React.createElement(IconTick) ];
 	        }.call(this))), React.DOM.span.apply(React.DOM, [ {
 	          style: platformIcon
 	        } ].concat(function() {
-	          return [ r(IconWeb) ];
+	          return [ React.createElement(IconWeb) ];
 	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
 	          style: platformTitle
 	        } ].concat(function() {
@@ -23576,7 +23579,7 @@ module.exports =
 	          style: platformDesc
 	        } ].concat(function() {
 	          return [ "Develop  cross platfrom browser-based app" ];
-	        }.call(this))), r(SelectGuideType, SelectGuideTypeProps("js")) ];
+	        }.call(this))), SelectGuideType("js") ];
 	      }.call(this))) ];
 	    }.call(this))));
 	    // react: SelectGuideType
@@ -23603,7 +23606,7 @@ module.exports =
 	        return [ React.DOM.span.apply(React.DOM, [ {
 	          style: guideIcon
 	        } ].concat(function() {
-	          return [ r(IconNew) ];
+	          return [ React.createElement(IconNew) ];
 	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
 	          style: guideTitle
 	        } ].concat(function() {
@@ -23620,7 +23623,7 @@ module.exports =
 	        return [ React.DOM.span.apply(React.DOM, [ {
 	          style: guideIcon
 	        } ].concat(function() {
-	          return [ r(IconApp) ];
+	          return [ React.createElement(IconApp) ];
 	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
 	          style: guideTitle
 	        } ].concat(function() {
