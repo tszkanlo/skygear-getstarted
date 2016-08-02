@@ -1,26 +1,22 @@
 
-import React from 'react';
+import './google-fonts-lato-400-700.css';
 
-import jadeNav from './nav.jade';
-import jadeIosNew from './ios-new.jade';
-import jadeIosExisting from './ios-existing.jade';
-import jadeAndroidNew from './android-new.jade';
-import jadeAndroidExisting from './android-existing.jade';
-import jadeJsNew from './js-new.jade';
-import jadeJsExisting from './js-existing.jade';
+import React from 'react';
+import selectPage from './select-guide.js';
+
 
 const pages = {
   ios: {
-    new: jadeIosNew,
-    existing: jadeIosExisting,
+    new: require('./pages/ios-new'),
+    existing: require('./pages/ios-existing'),
   },
   android: {
-    new: jadeAndroidNew,
-    existing: jadeAndroidExisting,
+    new: require('./pages/android-new'),
+    existing: require('./pages/android-existing'),
   },
   js: {
-    new: jadeJsNew,
-    existing: jadeJsExisting,
+    new: require('./pages/js-new'),
+    existing: require('./pages/js-existing'),
   },
 };
 
@@ -39,10 +35,15 @@ export default class extends React.Component {
     if (pages[sdk] && pages[sdk][guide]) {
       return pages[sdk][guide];
     }
-    return jadeNav;
+    return selectPage;
   }
 
   render() {
-    return React.createElement(this.template, this.state);
+    const { sdk, guide } = this.state;
+    return React.createElement(this.template, {
+      sdk, guide,
+      setSDK: ((sdk) => this.setState({sdk})).bind(this),
+      setGuide: ((guide) => this.setState({guide})).bind(this),
+    });
   }
 }
