@@ -82,9 +82,9 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectGuide = __webpack_require__(6);
+	var _selectPage = __webpack_require__(6);
 
-	var _selectGuide2 = _interopRequireDefault(_selectGuide);
+	var _selectPage2 = _interopRequireDefault(_selectPage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -120,11 +120,17 @@ module.exports =
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this, props));
 
 	    var sdk = props.sdk;
-	    var guide = props.guide;
+	    var project = props.project;
 
-	    if (!sdk && guide) throw Error('[skygear-getstarted] Error: SDK not specified');
-	    if (sdk && !pages[sdk]) throw Error('[skygear-getstarted] No such SDK: ' + sdk);
-	    if (guide && !pages[sdk][guide]) throw Error('[skygear-getstarted] No such guide: ' + guide);
+	    if (!sdk && project) {
+	      throw Error('[skygear-getstarted] Error: SDK not specified');
+	    }
+	    if (sdk && !pages[sdk]) {
+	      throw Error('[skygear-getstarted] No such SDK: ' + sdk);
+	    }
+	    if (project && !pages[sdk][project]) {
+	      throw Error('[skygear-getstarted] No such project: ' + project);
+	    }
 	    _this.state = props;
 	    return _this;
 	  }
@@ -134,16 +140,16 @@ module.exports =
 	    value: function render() {
 	      var _state = this.state;
 	      var sdk = _state.sdk;
-	      var guide = _state.guide;
+	      var project = _state.project;
 
 	      var self = this;
 	      return _react2.default.createElement(this.template, {
-	        sdk: sdk, guide: guide,
+	        sdk: sdk, project: project,
 	        setSDK: function setSDK(targetSDK) {
 	          return self.setState({ sdk: targetSDK });
 	        },
-	        setGuide: function setGuide(targetGuide) {
-	          return self.setState({ guide: targetGuide });
+	        setProject: function setProject(targetProject) {
+	          return self.setState({ project: targetProject });
 	        }
 	      });
 	    }
@@ -152,12 +158,12 @@ module.exports =
 	    get: function get() {
 	      var _state2 = this.state;
 	      var sdk = _state2.sdk;
-	      var guide = _state2.guide;
+	      var project = _state2.project;
 
-	      if (pages[sdk] && pages[sdk][guide]) {
-	        return pages[sdk][guide];
+	      if (pages[sdk] && pages[sdk][project]) {
+	        return pages[sdk][project];
 	      }
-	      return _selectGuide2.default;
+	      return _selectPage2.default;
 	    }
 	  }]);
 
@@ -562,19 +568,19 @@ module.exports =
 
 	var _iconTick2 = _interopRequireDefault(_iconTick);
 
-	var _selectGuide = __webpack_require__(335);
+	var _selectPage = __webpack_require__(335);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var RadiumSelectPlatform = (0, _radium2.default)(_selectGuide.SelectPlatform);
-	var RadiumSelectProjectType = (0, _radium2.default)(_selectGuide.SelectProjectType);
+	var RadiumSelectPlatform = (0, _radium2.default)(_selectPage.SelectPlatform);
+	var RadiumSelectProjectType = (0, _radium2.default)(_selectPage.SelectProjectType);
 
 	function SelectPage(_ref) {
 	  var sdk = _ref.sdk;
 	  var setSDK = _ref.setSDK;
-	  var setGuide = _ref.setGuide;
+	  var setProject = _ref.setProject;
 
 	  var Style = {
 	    selectPage: { fontFamily: "'Lato', sans-serif", padding: '24px' },
@@ -650,7 +656,7 @@ module.exports =
 	      SelectProjectType: function SelectProjectType(targetSDK) {
 	        return _react2.default.createElement(RadiumSelectProjectType, {
 	          sdk: targetSDK,
-	          setGuide: setGuide,
+	          setProject: setProject,
 	          Style: Style,
 	          IconNew: _iconNew2.default,
 	          IconApp: _iconApp2.default
@@ -663,7 +669,7 @@ module.exports =
 	SelectPage.propTypes = {
 	  sdk: _react2.default.PropTypes.string,
 	  setSDK: _react2.default.PropTypes.func.isRequired,
-	  setGuide: _react2.default.PropTypes.func.isRequired
+	  setProject: _react2.default.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -27698,7 +27704,7 @@ module.exports =
 	  var IconAndroid = "IconAndroid" in locals ? locals.IconAndroid : jade_globals_IconAndroid;
 	  var IconWeb = "IconWeb" in locals ? locals.IconWeb : jade_globals_IconWeb;
 	  var sdk = "sdk" in locals ? locals.sdk : jade_globals_sdk;
-	  var setGuide = "setGuide" in locals ? locals.setGuide : jade_globals_setGuide;
+	  var setProject = "setProject" in locals ? locals.setProject : jade_globals_setProject;
 	  var IconNew = "IconNew" in locals ? locals.IconNew : jade_globals_IconNew;
 	  var IconApp = "IconApp" in locals ? locals.IconApp : jade_globals_IconApp;
 	  return function() {
@@ -27797,7 +27803,7 @@ module.exports =
 	      } ].concat(function() {
 	        return [ React.DOM.div.apply(React.DOM, [ {
 	          style: [ Style.project.item ],
-	          onClick: setGuide.bind(null, "new")
+	          onClick: setProject.bind(null, "new")
 	        } ].concat(function() {
 	          return [ React.DOM.span.apply(React.DOM, [ {
 	            style: [ Style.project.icon ]
@@ -27818,7 +27824,7 @@ module.exports =
 	      } ].concat(function() {
 	        return [ React.DOM.div.apply(React.DOM, [ {
 	          style: [ Style.project.item ],
-	          onClick: setGuide.bind(null, "existing")
+	          onClick: setProject.bind(null, "existing")
 	        } ].concat(function() {
 	          return [ React.DOM.span.apply(React.DOM, [ {
 	            style: [ Style.project.icon ]
@@ -27848,11 +27854,11 @@ module.exports =
 
 	var React = __webpack_require__(5);
 	module.exports= function (locals) {  var sdk = "sdk" in locals ? locals.sdk : jade_globals_sdk;
-	  var guide = "guide" in locals ? locals.guide : jade_globals_guide;
+	  var project = "project" in locals ? locals.project : jade_globals_project;
 	  return function() {
 	    var tags = [];
 	    tags.push(React.DOM.h2.apply(React.DOM, [ {} ].concat(function() {
-	      return [ "Guide for " + sdk + ": " + guide + " project." ];
+	      return [ "Guide for " + sdk + ": " + project + " project." ];
 	    }.call(this))));
 	    if (1 === tags.length) return tags.pop();
 	    tags.unshift({});

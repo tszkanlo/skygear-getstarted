@@ -61,7 +61,7 @@ div(style=[ Style.project.row, new Style.ShowOnActive(sdk) ])
 
   // project: new
   div(style=[ Style.project.column ])
-    div(style=[ Style.project.item ], onClick=setGuide('new'))
+    div(style=[ Style.project.item ], onClick=setProject('new'))
       span(style=[ Style.project.icon ])
         = React.createElement(IconNew)
       h3(style=[ Style.project.title ]) New App
@@ -69,7 +69,7 @@ div(style=[ Style.project.row, new Style.ShowOnActive(sdk) ])
 
   // project: existing
   div(style=[ Style.project.column ])
-    div(style=[ Style.project.item ], onClick=setGuide('existing'))
+    div(style=[ Style.project.item ], onClick=setProject('existing'))
       span(style=[ Style.project.icon ])
         = React.createElement(IconApp)
       h3(style=[ Style.project.title ]) Exisiting App

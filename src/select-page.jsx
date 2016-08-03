@@ -9,11 +9,11 @@ import IconNew from './img/icon-new.svg';
 import IconApp from './img/icon-app.svg';
 import IconTick from './img/icon-tick.svg';
 
-import { SelectPlatform, SelectProjectType } from './select-guide.jade';
+import { SelectPlatform, SelectProjectType } from './select-page.jade';
 const RadiumSelectPlatform = radium(SelectPlatform);
 const RadiumSelectProjectType = radium(SelectProjectType);
 
-export default function SelectPage({ sdk, setSDK, setGuide }) {
+export default function SelectPage({ sdk, setSDK, setProject }) {
   const Style = {
     selectPage: { fontFamily: "'Lato', sans-serif", padding: '24px' },
     header: {
@@ -87,7 +87,7 @@ export default function SelectPage({ sdk, setSDK, setGuide }) {
         SelectProjectType={(targetSDK) =>
           (<RadiumSelectProjectType
             sdk={targetSDK}
-            setGuide={setGuide}
+            setProject={setProject}
             Style={Style}
             IconNew={IconNew}
             IconApp={IconApp}
@@ -101,5 +101,5 @@ export default function SelectPage({ sdk, setSDK, setGuide }) {
 SelectPage.propTypes = {
   sdk: React.PropTypes.string,
   setSDK: React.PropTypes.func.isRequired,
-  setGuide: React.PropTypes.func.isRequired,
+  setProject: React.PropTypes.func.isRequired,
 };
