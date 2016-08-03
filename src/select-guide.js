@@ -8,66 +8,72 @@ import IconNew from './img/icon-new.svg';
 import IconApp from './img/icon-app.svg';
 import IconTick from './img/icon-tick.svg';
 
-import { SelectGuide, SelectGuideType } from './select-guide.jade';
+import { SelectPlatform, SelectProjectType } from './select-guide.jade';
 
 export default function SelectPage({ sdk, setSDK, setGuide }) {
-  function PlatformStyle(targetSDK) {
-    const active = (targetSDK === sdk);
-    if (!active) this.cursor = 'pointer';
-    const color = active ? '#007bd4' : '#979797';
-    this.color = this.fill = color;
-    this.border = `1px solid ${color}`;
-    this.borderRadius = '6px';
-    this.marginTop = '16px';
-    this.overflow = 'auto';
-    this.position = 'relative';
-  }
-
-  const guideStyle = {
-    color: '#fff',
-    background: '#007bd4',
-    marginRight: '8px',
-    width: '48%',
-    display: 'inline-block',
-    borderRadius: '6px',
-    position: 'relative',
-    cursor: 'pointer',
+  const Style = {
+    selectPage: { fontFamily: "'Lato', sans-serif", padding: '24px' },
+    header: {
+      tagline: { color: '#4a4a4a', fontSize: '13px', margin: '0px' },
+      title: { fontSize: '31px', margin: '17px 0px 13px' },
+      subtitle: { fontSize: '16px', margin: '0px 0px 19px' },
+    },
+    ShowOnActive: class {
+      constructor(targetSDK) {
+        if (targetSDK !== sdk) this.display = 'none';
+      }
+    },
+    platform: {
+      Item: class {
+        constructor(targetSDK) {
+          const active = (targetSDK === sdk);
+          if (!active) this.cursor = 'pointer';
+          const color = active ? '#007bd4' : '#979797';
+          this.color = this.fill = color;
+          this.border = `1px solid ${color}`;
+          this.borderRadius = '6px';
+          this.marginTop = '16px';
+          this.overflow = 'auto';
+          this.position = 'relative';
+        }
+      },
+      tick: { position: 'absolute', right: '18px', top: '24px' },
+      icon: { position: 'absolute', top: '10px', left: '31px' },
+      title: { fontSize: '16px', margin: '16px 0px 0px 101px' },
+      desc: { fontSize: '12px', margin: '0px 0px 18px 101px' },
+    },
+    project: {
+      row: { margin: '0px 0px 20px 101px' },
+      column: { display: 'inline-block', width: '50%' },
+      item: {
+        color: '#fff',
+        background: '#007bd4',
+        width: '98%',
+        display: 'inline-block',
+        borderRadius: '6px',
+        position: 'relative',
+        cursor: 'pointer',
+      },
+      icon: { position: 'absolute', top: '12px', left: '17px' },
+      title: { fontSize: '16px', margin: '11px 0px 0px 66px' },
+      desc: { fontSize: '12px', margin: '0px 0px 14px 66px' },
+    },
   };
-
-  class ShowOnActive {
-    constructor(targetSDK) {
-      if (targetSDK !== sdk) this.display = 'none';
-    }
-  }
-  class PlatformTickStyle extends ShowOnActive {
-    constructor(targetSDK) {
-      super(targetSDK);
-      this.position = 'absolute';
-      this.top = '24px';
-      this.right = '18px';
-    }
-  }
-  class GuideSelectStyle extends ShowOnActive {
-    constructor(targetSDK) {
-      super(targetSDK);
-      this.clear = 'both';
-      this.margin = '0px 0px 20px 101px';
-    }
-  }
-
-  return React.createElement(SelectGuide, {
-    setSDK, PlatformStyle, PlatformTickStyle,
-    IconAndroid, IconIos, IconWeb, IconTick,
-    SelectGuideType:
-      (targetSDK) => React.createElement(SelectGuideType, {
-        sdk: targetSDK, setGuide, IconNew, IconApp,
-        GuideSelectStyle, guideStyle,
-      }),
+  return React.createElement(SelectPlatform, {
+    setSDK, Style, IconTick,
+    IconAndroid, IconIos, IconWeb,
+    SelectProjectType:
+      (targetSDK) => React.createElement(
+        SelectProjectType, {
+          sdk: targetSDK, setGuide,
+          IconNew, IconApp, Style,
+        }
+      ),
   });
 }
 
 SelectPage.propTypes = {
-  sdk: React.PropTypes.string.isRequired,
+  sdk: React.PropTypes.string,
   setSDK: React.PropTypes.func.isRequired,
   setGuide: React.PropTypes.func.isRequired,
 };

@@ -562,10 +562,6 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function SelectPage(_ref) {
@@ -573,82 +569,68 @@ module.exports =
 	  var setSDK = _ref.setSDK;
 	  var setGuide = _ref.setGuide;
 
-	  function PlatformStyle(targetSDK) {
-	    var active = targetSDK === sdk;
-	    if (!active) this.cursor = 'pointer';
-	    var color = active ? '#007bd4' : '#979797';
-	    this.color = this.fill = color;
-	    this.border = '1px solid ' + color;
-	    this.borderRadius = '6px';
-	    this.marginTop = '16px';
-	    this.overflow = 'auto';
-	    this.position = 'relative';
-	  }
+	  var Style = {
+	    selectPage: { fontFamily: "'Lato', sans-serif", padding: '24px' },
+	    header: {
+	      tagline: { color: '#4a4a4a', fontSize: '13px', margin: '0px' },
+	      title: { fontSize: '31px', margin: '17px 0px 13px' },
+	      subtitle: { fontSize: '16px', margin: '0px 0px 19px' }
+	    },
+	    ShowOnActive: function ShowOnActive(targetSDK) {
+	      _classCallCheck(this, ShowOnActive);
 
-	  var guideStyle = {
-	    color: '#fff',
-	    background: '#007bd4',
-	    marginRight: '8px',
-	    width: '48%',
-	    display: 'inline-block',
-	    borderRadius: '6px',
-	    position: 'relative',
-	    cursor: 'pointer'
-	  };
+	      if (targetSDK !== sdk) this.display = 'none';
+	    },
+	    platform: {
+	      Item: function Item(targetSDK) {
+	        _classCallCheck(this, Item);
 
-	  var ShowOnActive = function ShowOnActive(targetSDK) {
-	    _classCallCheck(this, ShowOnActive);
-
-	    if (targetSDK !== sdk) this.display = 'none';
-	  };
-
-	  var PlatformTickStyle = function (_ShowOnActive) {
-	    _inherits(PlatformTickStyle, _ShowOnActive);
-
-	    function PlatformTickStyle(targetSDK) {
-	      _classCallCheck(this, PlatformTickStyle);
-
-	      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlatformTickStyle).call(this, targetSDK));
-
-	      _this.position = 'absolute';
-	      _this.top = '24px';
-	      _this.right = '18px';
-	      return _this;
+	        var active = targetSDK === sdk;
+	        if (!active) this.cursor = 'pointer';
+	        var color = active ? '#007bd4' : '#979797';
+	        this.color = this.fill = color;
+	        this.border = '1px solid ' + color;
+	        this.borderRadius = '6px';
+	        this.marginTop = '16px';
+	        this.overflow = 'auto';
+	        this.position = 'relative';
+	      },
+	      tick: { position: 'absolute', right: '18px', top: '24px' },
+	      icon: { position: 'absolute', top: '10px', left: '31px' },
+	      title: { fontSize: '16px', margin: '16px 0px 0px 101px' },
+	      desc: { fontSize: '12px', margin: '0px 0px 18px 101px' }
+	    },
+	    project: {
+	      row: { margin: '0px 0px 20px 101px' },
+	      column: { display: 'inline-block', width: '50%' },
+	      item: {
+	        color: '#fff',
+	        background: '#007bd4',
+	        width: '98%',
+	        display: 'inline-block',
+	        borderRadius: '6px',
+	        position: 'relative',
+	        cursor: 'pointer'
+	      },
+	      icon: { position: 'absolute', top: '12px', left: '17px' },
+	      title: { fontSize: '16px', margin: '11px 0px 0px 66px' },
+	      desc: { fontSize: '12px', margin: '0px 0px 14px 66px' }
 	    }
-
-	    return PlatformTickStyle;
-	  }(ShowOnActive);
-
-	  var GuideSelectStyle = function (_ShowOnActive2) {
-	    _inherits(GuideSelectStyle, _ShowOnActive2);
-
-	    function GuideSelectStyle(targetSDK) {
-	      _classCallCheck(this, GuideSelectStyle);
-
-	      var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(GuideSelectStyle).call(this, targetSDK));
-
-	      _this2.clear = 'both';
-	      _this2.margin = '0px 0px 20px 101px';
-	      return _this2;
-	    }
-
-	    return GuideSelectStyle;
-	  }(ShowOnActive);
-
-	  return _react2.default.createElement(_selectGuide.SelectGuide, {
-	    setSDK: setSDK, PlatformStyle: PlatformStyle, PlatformTickStyle: PlatformTickStyle,
-	    IconAndroid: _iconAndroid2.default, IconIos: _iconIos2.default, IconWeb: _iconWeb2.default, IconTick: _iconTick2.default,
-	    SelectGuideType: function SelectGuideType(targetSDK) {
-	      return _react2.default.createElement(_selectGuide.SelectGuideType, {
-	        sdk: targetSDK, setGuide: setGuide, IconNew: _iconNew2.default, IconApp: _iconApp2.default,
-	        GuideSelectStyle: GuideSelectStyle, guideStyle: guideStyle
+	  };
+	  return _react2.default.createElement(_selectGuide.SelectPlatform, {
+	    setSDK: setSDK, Style: Style, IconTick: _iconTick2.default,
+	    IconAndroid: _iconAndroid2.default, IconIos: _iconIos2.default, IconWeb: _iconWeb2.default,
+	    SelectProjectType: function SelectProjectType(targetSDK) {
+	      return _react2.default.createElement(_selectGuide.SelectProjectType, {
+	        sdk: targetSDK, setGuide: setGuide,
+	        IconNew: _iconNew2.default, IconApp: _iconApp2.default, Style: Style
 	      });
 	    }
 	  });
 	}
 
 	SelectPage.propTypes = {
-	  sdk: _react2.default.PropTypes.string.isRequired,
+	  sdk: _react2.default.PropTypes.string,
 	  setSDK: _react2.default.PropTypes.func.isRequired,
 	  setGuide: _react2.default.PropTypes.func.isRequired
 	};
@@ -3045,6 +3027,7 @@ module.exports =
 	    }
 	  }
 	  stack['delete'](array);
+	  stack['delete'](other);
 	  return result;
 	}
 
@@ -3433,6 +3416,7 @@ module.exports =
 	    }
 	  }
 	  stack['delete'](object);
+	  stack['delete'](other);
 	  return result;
 	}
 
@@ -3730,10 +3714,10 @@ module.exports =
 	var freeGlobal = __webpack_require__(60);
 
 	/** Detect free variable `exports`. */
-	var freeExports = freeGlobal && ( false ? 'undefined' : _typeof(exports)) == 'object' && exports;
+	var freeExports = ( false ? 'undefined' : _typeof(exports)) == 'object' && exports && !exports.nodeType && exports;
 
 	/** Detect free variable `module`. */
-	var freeModule = freeExports && ( false ? 'undefined' : _typeof(module)) == 'object' && module;
+	var freeModule = freeExports && ( false ? 'undefined' : _typeof(module)) == 'object' && module && !module.nodeType && module;
 
 	/** Detect the popular CommonJS extension `module.exports`. */
 	var moduleExports = freeModule && freeModule.exports === freeExports;
@@ -3989,7 +3973,8 @@ module.exports =
 	    toString = __webpack_require__(111);
 
 	/** Used to match property names within property paths. */
-	var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(\.|\[\])(?:\4|$))/g;
+	var reLeadingDot = /^\./,
+	    rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
 
 	/** Used to match backslashes in property paths. */
 	var reEscapeChar = /\\(\\)?/g;
@@ -4002,8 +3987,13 @@ module.exports =
 	 * @returns {Array} Returns the property path array.
 	 */
 	var stringToPath = memoize(function (string) {
+	  string = toString(string);
+
 	  var result = [];
-	  toString(string).replace(rePropName, function (match, number, quote, string) {
+	  if (reLeadingDot.test(string)) {
+	    result.push('');
+	  }
+	  string.replace(rePropName, function (match, number, quote, string) {
 	    result.push(quote ? string.replace(reEscapeChar, '$1') : number || match);
 	  });
 	  return result;
@@ -4585,7 +4575,6 @@ module.exports =
 	'use strict';
 
 	// shim for using process in browser
-
 	var process = module.exports = {};
 
 	// cached from whatever global is present so that test runners that stub it
@@ -4612,6 +4601,20 @@ module.exports =
 	        };
 	    }
 	})();
+	function runTimeout(fun) {
+	    if (cachedSetTimeout === setTimeout) {
+	        return setTimeout(fun, 0);
+	    } else {
+	        return cachedSetTimeout.call(null, fun, 0);
+	    }
+	}
+	function runClearTimeout(marker) {
+	    if (cachedClearTimeout === clearTimeout) {
+	        clearTimeout(marker);
+	    } else {
+	        cachedClearTimeout.call(null, marker);
+	    }
+	}
 	var queue = [];
 	var draining = false;
 	var currentQueue;
@@ -4636,7 +4639,7 @@ module.exports =
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = cachedSetTimeout.call(null, cleanUpNextTick);
+	    var timeout = runTimeout(cleanUpNextTick);
 	    draining = true;
 
 	    var len = queue.length;
@@ -4653,7 +4656,7 @@ module.exports =
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    cachedClearTimeout.call(null, timeout);
+	    runClearTimeout(timeout);
 	}
 
 	process.nextTick = function (fun) {
@@ -4665,7 +4668,7 @@ module.exports =
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        cachedSetTimeout.call(null, drainQueue, 0);
+	        runTimeout(drainQueue);
 	    }
 	};
 
@@ -23458,180 +23461,146 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(5);
-	module.exports= function (locals) {  var PlatformStyle = "PlatformStyle" in locals ? locals.PlatformStyle : jade_globals_PlatformStyle;
+	module.exports= function (locals) {  var Style = "Style" in locals ? locals.Style : jade_globals_Style;
 	  var setSDK = "setSDK" in locals ? locals.setSDK : jade_globals_setSDK;
-	  var PlatformTickStyle = "PlatformTickStyle" in locals ? locals.PlatformTickStyle : jade_globals_PlatformTickStyle;
 	  var IconTick = "IconTick" in locals ? locals.IconTick : jade_globals_IconTick;
 	  var IconIos = "IconIos" in locals ? locals.IconIos : jade_globals_IconIos;
-	  var SelectGuideType = "SelectGuideType" in locals ? locals.SelectGuideType : jade_globals_SelectGuideType;
+	  var SelectProjectType = "SelectProjectType" in locals ? locals.SelectProjectType : jade_globals_SelectProjectType;
 	  var IconAndroid = "IconAndroid" in locals ? locals.IconAndroid : jade_globals_IconAndroid;
 	  var IconWeb = "IconWeb" in locals ? locals.IconWeb : jade_globals_IconWeb;
-	  var GuideSelectStyle = "GuideSelectStyle" in locals ? locals.GuideSelectStyle : jade_globals_GuideSelectStyle;
-	  var sdk = "sdk" in locals ? locals.sdk : jade_globals_sdk;
-	  var guideStyle = "guideStyle" in locals ? locals.guideStyle : jade_globals_guideStyle;
 	  var setGuide = "setGuide" in locals ? locals.setGuide : jade_globals_setGuide;
 	  var IconNew = "IconNew" in locals ? locals.IconNew : jade_globals_IconNew;
 	  var IconApp = "IconApp" in locals ? locals.IconApp : jade_globals_IconApp;
 	  return function() {
 	    var tags = [];
-	    // react: SelectGuide
-	    React.createElement;
-	    const platformIcon = {
-	      position: "absolute",
-	      top: "10px",
-	      left: "31px"
-	    };
-	    const platformTitle = {
-	      fontSize: "16px",
-	      margin: "16px 0px 0px 101px"
-	    };
-	    const platformDesc = {
-	      fontSize: "12px",
-	      margin: "0px 0px 18px 101px"
-	    };
-	    tags.push(React.DOM.div.apply(React.DOM, [ {
-	      style: {
-	        fontFamily: "'Lato', sans-serif",
-	        padding: "24px"
-	      }
+	    // react: SelectPlatform
+	    tags.push(React.DOM.main.apply(React.DOM, [ {
+	      style: Style.selectPage
 	    } ].concat(function() {
-	      return [ React.DOM.h4.apply(React.DOM, [ {
-	        style: {
-	          color: "#4a4a4a",
-	          fontSize: "13px",
-	          margin: "0px"
-	        }
-	      } ].concat(function() {
-	        return [ "GET STARTED NOW!" ];
-	      }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	        style: {
-	          fontSize: "31px",
-	          margin: "17px 0px 13px"
-	        }
-	      } ].concat(function() {
-	        return [ "Which platform are you getting to start with?" ];
-	      }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	        style: {
-	          fontSize: "16px",
-	          margin: "0px 0px 19px"
-	        }
-	      } ].concat(function() {
-	        return [ "Choose your platform for developing your app with Skygear." ];
-	      }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	        style: new PlatformStyle("ios"),
+	      return [ React.DOM.header.apply(React.DOM, [ {} ].concat(function() {
+	        return [ React.DOM.h4.apply(React.DOM, [ {
+	          style: Style.header.tagline
+	        } ].concat(function() {
+	          return [ "GET STARTED NOW!" ];
+	        }.call(this))), React.DOM.p.apply(React.DOM, [ {
+	          style: Style.header.title
+	        } ].concat(function() {
+	          return [ "Which platform are you getting to start with?" ];
+	        }.call(this))), React.DOM.p.apply(React.DOM, [ {
+	          style: Style.header.subtitle
+	        } ].concat(function() {
+	          return [ "Choose your platform for developing your app with Skygear." ];
+	        }.call(this))) ];
+	      }.call(this))), React.DOM.section.apply(React.DOM, [ {
+	        style: new Style.platform.Item("ios"),
 	        onClick: setSDK.bind(null, "ios")
 	      } ].concat(function() {
 	        return [ React.DOM.span.apply(React.DOM, [ {
-	          style: new PlatformTickStyle("ios")
+	          style: Style.platform.tick
 	        } ].concat(function() {
 	          return [ React.createElement(IconTick) ];
 	        }.call(this))), React.DOM.span.apply(React.DOM, [ {
-	          style: platformIcon
+	          style: Style.platform.icon
 	        } ].concat(function() {
 	          return [ React.createElement(IconIos) ];
 	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
-	          style: platformTitle
+	          style: Style.platform.title
 	        } ].concat(function() {
 	          return [ "iOS" ];
 	        }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	          style: platformDesc
+	          style: Style.platform.desc
 	        } ].concat(function() {
 	          return [ "Build an app for iPhone, iPad and Apple Watch" ];
-	        }.call(this))), SelectGuideType("ios") ];
-	      }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	        style: new PlatformStyle("android"),
+	        }.call(this))), SelectProjectType("ios") ];
+	      }.call(this))), React.DOM.section.apply(React.DOM, [ {
+	        style: new Style.platform.Item("android"),
 	        onClick: setSDK.bind(null, "android")
 	      } ].concat(function() {
 	        return [ React.DOM.span.apply(React.DOM, [ {
-	          style: new PlatformTickStyle("android")
+	          style: Style.platform.tick
 	        } ].concat(function() {
 	          return [ React.createElement(IconTick) ];
 	        }.call(this))), React.DOM.span.apply(React.DOM, [ {
-	          style: platformIcon
+	          style: Style.platform.icon
 	        } ].concat(function() {
 	          return [ React.createElement(IconAndroid) ];
 	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
-	          style: platformTitle
+	          style: Style.platform.title
 	        } ].concat(function() {
 	          return [ "Android" ];
 	        }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	          style: platformDesc
+	          style: Style.platform.desc
 	        } ].concat(function() {
 	          return [ "Build an app for Android devices" ];
-	        }.call(this))), SelectGuideType("android") ];
-	      }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	        style: new PlatformStyle("js"),
+	        }.call(this))), SelectProjectType("android") ];
+	      }.call(this))), React.DOM.section.apply(React.DOM, [ {
+	        style: new Style.platform.Item("js"),
 	        onClick: setSDK.bind(null, "js")
 	      } ].concat(function() {
 	        return [ React.DOM.span.apply(React.DOM, [ {
-	          style: new PlatformTickStyle("js")
+	          style: Style.platform.tick
 	        } ].concat(function() {
 	          return [ React.createElement(IconTick) ];
 	        }.call(this))), React.DOM.span.apply(React.DOM, [ {
-	          style: platformIcon
+	          style: Style.platform.icon
 	        } ].concat(function() {
 	          return [ React.createElement(IconWeb) ];
 	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
-	          style: platformTitle
+	          style: Style.platform.title
 	        } ].concat(function() {
 	          return [ "Web" ];
 	        }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	          style: platformDesc
+	          style: Style.platform.desc
 	        } ].concat(function() {
-	          return [ "Develop  cross platfrom browser-based app" ];
-	        }.call(this))), SelectGuideType("js") ];
+	          return [ "Develop cross platfrom browser-based app" ];
+	        }.call(this))), SelectProjectType("js") ];
 	      }.call(this))) ];
 	    }.call(this))));
-	    // react: SelectGuideType
-	    const guideIcon = {
-	      position: "absolute",
-	      top: "12px",
-	      left: "17px"
-	    };
-	    const guideTitle = {
-	      fontSize: "16px",
-	      margin: "11px 0px 0px 66px"
-	    };
-	    const guideDesc = {
-	      fontSize: "12px",
-	      margin: "0px 0px 14px 66px"
-	    };
+	    // react: SelectProjectType
 	    tags.push(React.DOM.div.apply(React.DOM, [ {
-	      style: new GuideSelectStyle(sdk)
+	      style: Style.project.row
 	    } ].concat(function() {
 	      return [ React.DOM.div.apply(React.DOM, [ {
-	        style: guideStyle,
-	        onClick: setGuide.bind(null, "new")
+	        style: Style.project.column
 	      } ].concat(function() {
-	        return [ React.DOM.span.apply(React.DOM, [ {
-	          style: guideIcon
+	        return [ React.DOM.div.apply(React.DOM, [ {
+	          style: Style.project.item,
+	          onClick: setGuide.bind(null, "new")
 	        } ].concat(function() {
-	          return [ React.createElement(IconNew) ];
-	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
-	          style: guideTitle
-	        } ].concat(function() {
-	          return [ "New App" ];
-	        }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	          style: guideDesc
-	        } ].concat(function() {
-	          return [ "Building a new app from scratch" ];
+	          return [ React.DOM.span.apply(React.DOM, [ {
+	            style: Style.project.icon
+	          } ].concat(function() {
+	            return [ React.createElement(IconNew) ];
+	          }.call(this))), React.DOM.h3.apply(React.DOM, [ {
+	            style: Style.project.title
+	          } ].concat(function() {
+	            return [ "New App" ];
+	          }.call(this))), React.DOM.p.apply(React.DOM, [ {
+	            style: Style.project.desc
+	          } ].concat(function() {
+	            return [ "Building a new app from scratch" ];
+	          }.call(this))) ];
 	        }.call(this))) ];
 	      }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	        style: guideStyle,
-	        onClick: setGuide.bind(null, "existing")
+	        style: Style.project.column
 	      } ].concat(function() {
-	        return [ React.DOM.span.apply(React.DOM, [ {
-	          style: guideIcon
+	        return [ React.DOM.div.apply(React.DOM, [ {
+	          style: Style.project.item,
+	          onClick: setGuide.bind(null, "existing")
 	        } ].concat(function() {
-	          return [ React.createElement(IconApp) ];
-	        }.call(this))), React.DOM.h3.apply(React.DOM, [ {
-	          style: guideTitle
-	        } ].concat(function() {
-	          return [ "Exisiting App" ];
-	        }.call(this))), React.DOM.p.apply(React.DOM, [ {
-	          style: guideDesc
-	        } ].concat(function() {
-	          return [ "Integrate Skygear into exisitng app" ];
+	          return [ React.DOM.span.apply(React.DOM, [ {
+	            style: Style.project.icon
+	          } ].concat(function() {
+	            return [ React.createElement(IconApp) ];
+	          }.call(this))), React.DOM.h3.apply(React.DOM, [ {
+	            style: Style.project.title
+	          } ].concat(function() {
+	            return [ "Exisiting App" ];
+	          }.call(this))), React.DOM.p.apply(React.DOM, [ {
+	            style: Style.project.desc
+	          } ].concat(function() {
+	            return [ "Integrate Skygear into exisitng app" ];
+	          }.call(this))) ];
 	        }.call(this))) ];
 	      }.call(this))) ];
 	    }.call(this))));

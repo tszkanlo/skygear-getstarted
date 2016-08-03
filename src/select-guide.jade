@@ -1,62 +1,55 @@
 
-// react: SelectGuide
+// react: SelectPlatform
 
-- const r = React.createElement;
-- const platformIcon = {position: 'absolute', top: '10px', left: '31px'};
-- const platformTitle = {fontSize: '16px', margin: '16px 0px 0px 101px'};
-- const platformDesc = {fontSize: '12px', margin: '0px 0px 18px 101px'};
+main(style= Style.selectPage)
 
-div(style={fontFamily: "'Lato', sans-serif", padding: '24px'})
+  header
+    h4(style= Style.header.tagline) GET STARTED NOW!
+    p(style= Style.header.title)
+      | Which platform are you getting to start with?
+    p(style= Style.header.subtitle)
+      | Choose your platform for developing your app with Skygear.
 
-  h4(style={color:'#4a4a4a', fontSize: '13px', margin: '0px'}) GET STARTED NOW!
-
-  p(style={fontSize: '31px', margin: '17px 0px 13px'})
-    | Which platform are you getting to start with?
-
-  p(style={fontSize: '16px', margin: '0px 0px 19px'})
-    | Choose your platform for developing your app with Skygear.
-
-  div(style= new PlatformStyle('ios'), onClick=setSDK('ios'))
-    span(style= new PlatformTickStyle('ios'))
+  section(style= new Style.platform.Item('ios'), onClick=setSDK('ios'))
+    span(style= Style.platform.tick)
       = React.createElement(IconTick)
-    span(style=platformIcon)
+    span(style= Style.platform.icon)
       = React.createElement(IconIos)
-    h3(style=platformTitle) iOS
-    p(style=platformDesc) Build an app for iPhone, iPad and Apple Watch
-    = SelectGuideType('ios')
+    h3(style= Style.platform.title) iOS
+    p(style= Style.platform.desc) Build an app for iPhone, iPad and Apple Watch
+    = SelectProjectType('ios')
 
-  div(style= new PlatformStyle('android'), onClick=setSDK('android'))
-    span(style= new PlatformTickStyle('android'))
+  section(style= new Style.platform.Item('android'), onClick=setSDK('android'))
+    span(style= Style.platform.tick)
       = React.createElement(IconTick)
-    span(style=platformIcon)
+    span(style= Style.platform.icon)
       = React.createElement(IconAndroid)
-    h3(style=platformTitle) Android
-    p(style=platformDesc) Build an app for Android devices
-    = SelectGuideType('android')
+    h3(style= Style.platform.title) Android
+    p(style= Style.platform.desc) Build an app for Android devices
+    = SelectProjectType('android')
 
-  div(style= new PlatformStyle('js'), onClick=setSDK('js'))
-    span(style= new PlatformTickStyle('js'))
+  section(style= new Style.platform.Item('js'), onClick=setSDK('js'))
+    span(style= Style.platform.tick)
       = React.createElement(IconTick)
-    span(style=platformIcon)
+    span(style= Style.platform.icon)
       = React.createElement(IconWeb)
-    h3(style=platformTitle) Web
-    p(style=platformDesc) Develop  cross platfrom browser-based app
-    = SelectGuideType('js')
+    h3(style= Style.platform.title) Web
+    p(style= Style.platform.desc) Develop cross platfrom browser-based app
+    = SelectProjectType('js')
 
-// react: SelectGuideType
 
-- const guideIcon = {position: 'absolute', top: '12px', left: '17px'};
-- const guideTitle = {fontSize: '16px', margin: '11px 0px 0px 66px'};
-- const guideDesc = {fontSize: '12px', margin: '0px 0px 14px 66px'};
+// react: SelectProjectType
 
-div(style= new GuideSelectStyle(sdk))
-  div(style=guideStyle, onClick=setGuide('new'))
-    span(style=guideIcon)
-      = React.createElement(IconNew)
-    h3(style=guideTitle) New App
-    p(style=guideDesc) Building a new app from scratch
-  div(style=guideStyle, onClick=setGuide('existing'))
-    span(style=guideIcon)
-      = React.createElement(IconApp)
-    h3(style=guideTitle) Exisiting App
-    p(style=guideDesc) Integrate Skygear into exisitng app
+div(style= Style.project.row)
+  div(style= Style.project.column)
+    div(style= Style.project.item, onClick=setGuide('new'))
+      span(style= Style.project.icon)
+        = React.createElement(IconNew)
+      h3(style= Style.project.title) New App
+      p(style= Style.project.desc) Building a new app from scratch
+  div(style= Style.project.column)
+    div(style= Style.project.item, onClick=setGuide('existing'))
+      span(style= Style.project.icon)
+        = React.createElement(IconApp)
+      h3(style= Style.project.title) Exisiting App
+      p(style= Style.project.desc) Integrate Skygear into exisitng app
