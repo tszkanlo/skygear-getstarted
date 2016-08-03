@@ -2,7 +2,7 @@
 import './google-fonts-lato-400-700.css';
 
 import React from 'react';
-import selectPage from './select-guide.js';
+import selectPage from './select-guide.jsx';
 
 /* eslint-disable global-require, import/no-unresolved */
 const pages = {
