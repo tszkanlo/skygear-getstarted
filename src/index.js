@@ -2,7 +2,7 @@
 import './google-fonts-lato-400-700.css';
 
 import React from 'react';
-import selectPage from './select-page.jsx';
+import SelectPage from './component/SelectPage';
 
 /* eslint-disable global-require, import/no-unresolved */
 const pages = {
@@ -42,7 +42,7 @@ export default class extends React.Component {
     if (pages[sdk] && pages[sdk][project]) {
       return pages[sdk][project];
     }
-    return selectPage;
+    return SelectPage;
   }
 
   render() {

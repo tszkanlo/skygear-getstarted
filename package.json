@@ -23,7 +23,7 @@
     "radium": "^0.18.1",
     "react": "0.14.x",
     "react-dom": "^0.14.8",
-    "react-jade": "^0.2.0",
+    "react-jade": "2.5.0",
     "react-jade-loader": "^0.1.0",
     "style-loader": "^0.13.1",
     "svg-react-loader": "^0.3.7",

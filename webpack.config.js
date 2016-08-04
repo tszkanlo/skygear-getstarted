@@ -24,7 +24,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ["", ".js", ".jade"],
+    extensions: ["", ".js", ".jsx", ".jade"],
   },
 
   plugins: [
