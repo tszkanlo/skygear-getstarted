@@ -21,7 +21,7 @@ const pages = {
 };
 /* eslint-enable global-require, import/no-unresolved */
 
-export default class extends React.Component {
+export default class GetStarted extends React.Component {
   constructor(props) {
     super(props);
     const { sdk, project } = props;
@@ -55,3 +55,8 @@ export default class extends React.Component {
     });
   }
 }
+
+GetStarted.propTypes = {
+  sdk: React.PropTypes.string,
+  project: React.PropTypes.string,
+};
