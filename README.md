@@ -11,15 +11,15 @@
 ```jsx
 import SkygearGetStarted from 'skygear-getstarted';
 
-<!-- Usage: -->
-<SkygearGetStarted />                        --> select SDK page
-<SkygearGetStarted sdk="ios" />              --> select project type page
-<SkygearGetStarted sdk="ios" guide="new" />  --> guide page
+// Usage:
+<SkygearGetStarted />                           // select SDK page
+<SkygearGetStarted sdk="ios" />                 // select project type page
+<SkygearGetStarted sdk="ios" project="new" />   // project page
 
-<!-- Throws Error: -->
-<SkygearGetStarted sdk="none" />
-<SkygearGetStarted sdk="ios" guide="none" />
-<SkygearGetStarted guide="new" />
+// Throws Error:
+<SkygearGetStarted sdk="none" />                // non-existent SDK
+<SkygearGetStarted sdk="ios" project="none" />  // non-existent project type
+<SkygearGetStarted project="new" />             // SDK not defined
 
 ```
 
@@ -36,6 +36,10 @@ import SkygearGetStarted from 'skygear-getstarted';
 
 **IMPORTANT NOTE:**
 
-**This repo contains a pre-commit hook (`pre-commit.sh`) that will build and add
-`dist/skygear-getstarted.js` automatically. You need to update this hook if the artifact is moved / renamed.**
+This repo contains a pre-commit hook (`pre-commit.sh`) that will:
 
+* run eslint
+* build artifact (`dist/skygear-getstarted.js`)
+* add artifact to the commit
+
+This is to ensure that the artifact is in-sync with the source code. Errors in the linting and building steps will abort the commit.

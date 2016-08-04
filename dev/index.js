@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SkygearGetstarted from '../src/main.js'
+import SkygearGetstarted from '../src'
 
 ReactDOM.render(
   React.createElement(SkygearGetstarted, {}),

@@ -1,0 +1,13 @@
+
+main(style=[ Style.selectPage ])
+
+  header
+    h4(style=[ Style.header.tagline ]) GET STARTED NOW!
+    p(style=[ Style.header.title ])
+      | Which platform are you getting to start with?
+    p(style=[ Style.header.subtitle ])
+      | Choose your platform for developing your app with Skygear.
+
+  each child in children
+    = child
+
