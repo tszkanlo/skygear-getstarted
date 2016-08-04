@@ -36,9 +36,9 @@ import SkygearGetStarted from 'skygear-getstarted';
 
 **IMPORTANT NOTE:**
 
-This repo contains a pre-commit hook (`pre-commit.sh`) that will:
+This repository contains a pre-commit hook (`pre-commit.sh`) that will:
 
-* run eslint
+* run `eslint`
 * build artifact (`dist/skygear-getstarted.js`)
 * add artifact to the commit
 
