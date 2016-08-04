@@ -7,6 +7,13 @@ rc=$?; if [[ $rc != 0 ]]; then
   exit $rc
 fi
 
+echo '[git pre-commit] Checking Spelling...'
+npm run spell-check
+rc=$?; if [[ $rc != 0 ]]; then
+  echo '[git pre-commit] Spell Check Failed, Abort.'
+  exit $rc
+fi
+
 echo '[git pre-commit] Building Artifact...'
 npm run build
 rc=$?; if [[ $rc != 0 ]]; then
