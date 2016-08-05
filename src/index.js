@@ -1,16 +1,17 @@
 
 import './google-fonts-lato-400-700.css';
+import 'prism-themes/themes/prism-ghcolors.css';
 
 import React from 'react';
 import SelectPage from './component/SelectPage';
 import GuidePage from './component/GuidePage';
 
-import PageIosNew from './pages/ios-new.jade';
-import PageIosExisting from './pages/ios-existing.jade';
-import PageAndroidNew from './pages/android-new.jade';
-import PageAndroidExisting from './pages/android-existing.jade';
-import PageJsNew from './pages/js-new.jade';
-import PageJsExisting from './pages/js-existing.jade';
+import PageIosNew from './pages/ios-new.md';
+import PageIosExisting from './pages/ios-existing.md';
+import PageAndroidNew from './pages/android-new.md';
+import PageAndroidExisting from './pages/android-existing.md';
+import PageJsNew from './pages/js-new.md';
+import PageJsExisting from './pages/js-existing.md';
 const Page = {
   ios: {
     new: PageIosNew,
@@ -45,10 +46,10 @@ export default class GetStarted extends React.Component {
   render() {
     const self = this;
     const { sdk, project } = this.state;
-    const GuideContent = Page[sdk] && Page[sdk][project];
-    const template = (GuideContent) ? GuidePage : SelectPage;
+    const guideContent = Page[sdk] && Page[sdk][project];
+    const template = (guideContent) ? GuidePage : SelectPage;
     return React.createElement(template, {
-      sdk, project, GuideContent,
+      sdk, project, guideContent,
       setSDK: ((targetSDK) => self.setState({ sdk: targetSDK })),
       setProject: ((targetProject) => self.setState({ project: targetProject })),
     });

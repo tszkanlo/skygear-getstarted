@@ -33,7 +33,7 @@ export default {
     Active: { borderBottom: '5px solid #007BD4', cursor: 'auto' },
     icon: {
       position: 'absolute',
-      top: '5px',
+      top: '8px',
       left: '7px',
       overflow: 'auto',
       width: '21px',
