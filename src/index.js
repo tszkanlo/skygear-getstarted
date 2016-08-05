@@ -37,7 +37,7 @@ export default class extends React.Component {
     this.state = props;
   }
 
-  get template() {
+  getTemplate() {
     const { sdk, project } = this.state;
     if (pages[sdk] && pages[sdk][project]) {
       return pages[sdk][project];
@@ -48,7 +48,7 @@ export default class extends React.Component {
   render() {
     const { sdk, project } = this.state;
     const self = this;
-    return React.createElement(this.template, {
+    return React.createElement(this.getTemplate(), {
       sdk, project,
       setSDK: ((targetSDK) => self.setState({ sdk: targetSDK })),
       setProject: ((targetProject) => self.setState({ project: targetProject })),

@@ -136,14 +136,26 @@ module.exports =
 	  }
 
 	  _createClass(_class, [{
-	    key: 'render',
-	    value: function render() {
+	    key: 'getTemplate',
+	    value: function getTemplate() {
 	      var _state = this.state;
 	      var sdk = _state.sdk;
 	      var project = _state.project;
 
+	      if (pages[sdk] && pages[sdk][project]) {
+	        return pages[sdk][project];
+	      }
+	      return _SelectPage2.default;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _state2 = this.state;
+	      var sdk = _state2.sdk;
+	      var project = _state2.project;
+
 	      var self = this;
-	      return _react2.default.createElement(this.template, {
+	      return _react2.default.createElement(this.getTemplate(), {
 	        sdk: sdk, project: project,
 	        setSDK: function setSDK(targetSDK) {
 	          return self.setState({ sdk: targetSDK });
@@ -152,18 +164,6 @@ module.exports =
 	          return self.setState({ project: targetProject });
 	        }
 	      });
-	    }
-	  }, {
-	    key: 'template',
-	    get: function get() {
-	      var _state2 = this.state;
-	      var sdk = _state2.sdk;
-	      var project = _state2.project;
-
-	      if (pages[sdk] && pages[sdk][project]) {
-	        return pages[sdk][project];
-	      }
-	      return _SelectPage2.default;
 	    }
 	  }]);
 
