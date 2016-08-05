@@ -20,6 +20,7 @@
     "eslint-plugin-import": "^1.12.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.2.2",
+    "markdown-spellcheck": "^0.11.0",
     "radium": "^0.18.1",
     "react": "0.14.x",
     "react-dom": "^0.14.8",
@@ -33,6 +34,7 @@
   "scripts": {
     "lint": "eslint --ext .js --ext .jsx src",
     "build": "webpack",
-    "dev": "webpack-dev-server --config webpack.config.dev.js"
+    "dev": "webpack-dev-server --config webpack.config.dev.js",
+    "spell-check": "mdspell -r --en-us -n '**/*.md' '!**/node_modules/**/*.md'"
   }
 }
