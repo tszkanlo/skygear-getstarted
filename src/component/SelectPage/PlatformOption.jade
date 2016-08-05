@@ -1,15 +1,13 @@
 
+- const r = React.createElement;
 - const showWhenActive = (sdk !== targetSDK)? Style.Hide: {};
 - const highlightWhenActive = (sdk === targetSDK)? Style.platform.Active: {};
 
 section(style=[ Style.platform.item, highlightWhenActive ], onClick=setSDK(targetSDK))
 
-  span(style=[ Style.platform.tick, showWhenActive ])
-    = React.createElement(Icon.tick)
+  span(style=[ Style.platform.tick, showWhenActive ])= r(Icon.tick)
 
-  span(style=[ Style.platform.icon ])
-    = React.createElement(Icon[targetSDK])
-
+  span(style=[ Style.platform.icon ])= r(Icon[targetSDK])
   h3(style=[ Style.platform.title ])= title
   p(style=[ Style.platform.desc ])= desc
 
