@@ -1,57 +1,62 @@
 
 import './google-fonts-lato-400-700.css';
+import 'prism-themes/themes/prism-ghcolors.css';
 
 import React from 'react';
 import SelectPage from './component/SelectPage';
+import GuidePage from './component/GuidePage';
 
-/* eslint-disable global-require, import/no-unresolved */
-const pages = {
+import PageIosNew from './pages/ios-new.md';
+import PageIosExisting from './pages/ios-existing.md';
+import PageAndroidNew from './pages/android-new.md';
+import PageAndroidExisting from './pages/android-existing.md';
+import PageJsNew from './pages/js-new.md';
+import PageJsExisting from './pages/js-existing.md';
+const Page = {
   ios: {
-    new: require('./pages/ios-new'),
-    existing: require('./pages/ios-existing'),
+    new: PageIosNew,
+    existing: PageIosExisting,
   },
   android: {
-    new: require('./pages/android-new'),
-    existing: require('./pages/android-existing'),
+    new: PageAndroidNew,
+    existing: PageAndroidExisting,
   },
   js: {
-    new: require('./pages/js-new'),
-    existing: require('./pages/js-existing'),
+    new: PageJsNew,
+    existing: PageJsExisting,
   },
 };
-/* eslint-enable global-require, import/no-unresolved */
 
-export default class extends React.Component {
+export default class GetStarted extends React.Component {
   constructor(props) {
     super(props);
     const { sdk, project } = props;
     if (!sdk && project) {
       throw Error('[skygear-getstarted] Error: SDK not specified');
     }
-    if (sdk && !pages[sdk]) {
+    if (sdk && !Page[sdk]) {
       throw Error(`[skygear-getstarted] No such SDK: ${sdk}`);
     }
-    if (project && !pages[sdk][project]) {
+    if (project && !Page[sdk][project]) {
       throw Error(`[skygear-getstarted] No such project: ${project}`);
     }
     this.state = props;
   }
 
-  getTemplate() {
-    const { sdk, project } = this.state;
-    if (pages[sdk] && pages[sdk][project]) {
-      return pages[sdk][project];
-    }
-    return SelectPage;
-  }
-
   render() {
-    const { sdk, project } = this.state;
     const self = this;
-    return React.createElement(this.getTemplate(), {
-      sdk, project,
+    const { sdk, project } = this.state;
+    const guideContent = Page[sdk] && Page[sdk][project];
+    const template = (guideContent) ? GuidePage : SelectPage;
+    return React.createElement(template, {
+      sdk, project, guideContent,
       setSDK: ((targetSDK) => self.setState({ sdk: targetSDK })),
       setProject: ((targetProject) => self.setState({ project: targetProject })),
     });
   }
 }
+
+GetStarted.propTypes = {
+  sdk: React.PropTypes.string,
+  project: React.PropTypes.string,
+};

@@ -1,0 +1,6 @@
+
+- const highlightWhenActive = (current === target)? Style.tab.Active: {};
+
+div(style=[ Style.tab.item, highlightWhenActive ], onClick=update(target))
+  span(style=[ Style.tab.icon ], dangerouslySetInnerHTML={__html:Icon[target]})
+  p(style=[ Style.tab.name ])= name

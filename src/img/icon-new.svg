@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="36px" height="39px" viewBox="0 0 36 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox="0 0 36 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
     <title>icon-new</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Dev-portal-1.0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Get-Started---Step-2" transform="translate(-408.000000, -309.000000)" fill="#FFFFFF">
+    <g id="Dev-portal-1.0" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="Get-Started---Step-2" transform="translate(-408.000000, -309.000000)">
             <g id="icon-new" transform="translate(408.000000, 309.000000)">
                 <path d="M16.32,1.68017459 C16.32,0.751985444 17.0697929,0 18,0 C18.9275178,0 19.68,0.755151627 19.68,1.68017459 L19.68,9.56982541 C19.68,10.4980146 18.9302071,11.25 18,11.25 C17.0724822,11.25 16.32,10.4948484 16.32,9.56982541 L16.32,1.68017459 Z" id="Rectangle"></path>
                 <path d="M16.32,29.4301746 C16.32,28.5019854 17.0697929,27.75 18,27.75 C18.9275178,27.75 19.68,28.5051516 19.68,29.4301746 L19.68,37.3198254 C19.68,38.2480146 18.9302071,39 18,39 C17.0724822,39 16.32,38.2448484 16.32,37.3198254 L16.32,29.4301746 Z" id="Rectangle"></path>

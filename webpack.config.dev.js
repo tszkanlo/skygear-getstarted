@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var markdownRenderer = require('./markdown-renderer.js');
 
 module.exports = {
   devtool: 'source-map',
@@ -9,12 +10,17 @@ module.exports = {
 
   module: {
     loaders: [
+      { test: /\.md$/, loader: 'html!markdown' },
       { test: /\.jade$/, loader: 'react-jade?split=true' },
-      { test: /\.svg$/, loader: 'babel?presets[]=es2015,presets[]=react!svg-react' },
+      { test: /\.svg$/, loader: 'raw' },
       { test: /\.js$/, loader: 'babel?presets[]=es2015'},
       { test: /\.jsx$/, loader: 'babel?presets[]=es2015,presets[]=react'},
       { test: /\.css$/, loader: "style!css" },
     ]
+  },
+
+  markdownLoader: {
+    renderer: markdownRenderer,
   },
 
   output: {
