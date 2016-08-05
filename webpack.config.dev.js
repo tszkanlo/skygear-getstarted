@@ -12,7 +12,7 @@ module.exports = {
     loaders: [
       { test: /\.md$/, loader: 'html!markdown' },
       { test: /\.jade$/, loader: 'react-jade?split=true' },
-      { test: /\.svg$/, loader: 'babel?presets[]=es2015,presets[]=react!svg-react' },
+      { test: /\.svg$/, loader: 'raw' },
       { test: /\.js$/, loader: 'babel?presets[]=es2015'},
       { test: /\.jsx$/, loader: 'babel?presets[]=es2015,presets[]=react'},
       { test: /\.css$/, loader: "style!css" },
