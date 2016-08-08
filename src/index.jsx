@@ -3,6 +3,7 @@ import './google-fonts-lato-400-700.css';
 import 'prism-themes/themes/prism-ghcolors.css';
 
 import React from 'react';
+import { StyleRoot } from 'radium';
 import SelectPage from './component/SelectPage';
 import GuidePage from './component/GuidePage';
 
@@ -47,12 +48,18 @@ export default class GetStarted extends React.Component {
     const self = this;
     const { sdk, project } = this.state;
     const guideContent = Page[sdk] && Page[sdk][project];
-    const template = (guideContent) ? GuidePage : SelectPage;
-    return React.createElement(template, {
-      sdk, project, guideContent,
-      setSDK: ((targetSDK) => self.setState({ sdk: targetSDK })),
-      setProject: ((targetProject) => self.setState({ project: targetProject })),
-    });
+    const Template = (guideContent) ? GuidePage : SelectPage;
+    return (
+      <StyleRoot>
+        <Template
+          sdk={sdk}
+          project={project}
+          guideContent={guideContent}
+          setSDK={(targetSDK) => self.setState({ sdk: targetSDK })}
+          setProject={(targetProject) => self.setState({ project: targetProject })}
+        />
+      </StyleRoot>
+    );
   }
 }
 

@@ -1,6 +1,10 @@
 
 export default {
-  guidePage: { fontFamily: "'Lato', sans-serif" },
+  guidePage: {
+    fontFamily: "'Lato', sans-serif",
+    minWidth: '295px',
+  },
+  content: { padding: '24px', overflowX: 'hidden' },
   tagline: {
     margin: '20px 0px',
     textAlign: 'center',
@@ -16,7 +20,13 @@ export default {
     },
   },
   project: {
-    row: { width: '100%', position: 'relative' },
+    row: {
+      width: '100%',
+      position: 'relative',
+      '@media (max-width: 544px)': {
+        marginBottom: '78px',
+      },
+    },
     item: { display: 'inline-block' },
   },
   tab: {
@@ -29,6 +39,10 @@ export default {
       fontSize: '18px',
       textAlign: 'left',
       margin: '9px 12px 0px 12px',
+      '@media (max-width: 544px)': {
+        margin: '9px 6px 0px 6px',
+        fontSize: '16px',
+      },
     },
     Active: { borderBottom: '5px solid #007BD4', cursor: 'auto' },
     icon: {
@@ -50,5 +64,10 @@ export default {
     top: '19px',
     right: '41px',
     textDecoration: 'none',
+    textAlign: 'center',
+    '@media (max-width: 544px)': {
+      top: '78px',
+      left: '41px',
+    },
   },
 };

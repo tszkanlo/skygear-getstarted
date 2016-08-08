@@ -1,6 +1,8 @@
 
 import React from 'react';
-import radium, { StyleRoot } from 'radium';
+import radium from 'radium';
+
+import './Markdown.css';
 
 import Style from './style.js';
 import IconIos from '../../img/icon-ios.svg';
@@ -26,7 +28,7 @@ export default function GuidePage({ sdk, project, guideContent, setSDK, setProje
   const projectTabProps = { Style, Icon, current: project, update: setProject };
   const docLink = `https://docs.skygear.io/${sdk}/guide`;
   return (
-    <StyleRoot>
+    <div style={Style.guidePage}>
       <RadiumGuideHeader Style={Style} docLink={docLink} window={window} >
         <RadiumTabItem {...sdkTabProps} target="ios" name="iOS" />
         <RadiumTabItem {...sdkTabProps} target="android" name="Android" />
@@ -35,11 +37,11 @@ export default function GuidePage({ sdk, project, guideContent, setSDK, setProje
         <RadiumTabItem {...projectTabProps} target="existing" name="Existing App" />
       </RadiumGuideHeader>
       <article
-        style={Style.guidePage}
+        style={Style.content}
         className="Markdown"
         dangerouslySetInnerHTML={{ __html: guideContent }}
       />
-    </StyleRoot>
+    </div>
   );
 }
 

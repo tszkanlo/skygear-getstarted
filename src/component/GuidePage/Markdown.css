@@ -1,0 +1,63 @@
+/**
+ * React Static Boilerplate
+ * https://github.com/koistya/react-static-boilerplate
+ * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
+ */
+/*
+ * Scaffolding
+ * -------------------------------------------------------------------------- */
+/*
+ * Typography
+ * -------------------------------------------------------------------------- */
+/*
+ * Media queries breakpoints
+ * -------------------------------------------------------------------------- */
+.Markdown {
+  color: #4A4A4A;
+  font-family: "Lato"; }
+  .Markdown h1, .Markdown h2, .Markdown h3, .Markdown h4, .Markdown h5 {
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 1.25rem; }
+  .Markdown h2 {
+    font-weight: 600;
+    font-size: 1.8rem; }
+  .Markdown p, .Markdown ol, .Markdown ul, .Markdown pre, .Markdown table {
+    margin-top: 0;
+    margin-bottom: 1.5rem; }
+  .Markdown ol, .Markdown ul {
+    padding-left: 20px;
+    list-style-position: outside; }
+    .Markdown ol p, .Markdown ul p {
+      display: inline-block; }
+  .Markdown code {
+    box-sizing: border-box;
+    padding: .25rem .375rem 0 .375rem;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: #EFEFEF;
+    color: #000000;
+    font-size: .875rem;
+    font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace; }
+  .Markdown pre > code {
+    display: inline-block;
+    padding: .75rem .625rem;
+    overflow: auto;
+    width: 100%; }
+  .Markdown img {
+    max-width: 100%; }
+  .Markdown th, .Markdown td {
+    padding: 15px;
+    text-align: left; }
+  .Markdown tbody > tr:nth-child(odd) {
+    background-color: #f2f2f2; }
+  .Markdown p, .Markdown li {
+    line-height: 2rem; }
+  .Markdown li {
+    margin-top: 0;
+    margin-bottom: 0.5rem; }
+    .Markdown li ol, .Markdown li ul {
+      margin-top: 0.5rem;
+      margin-bottom: 0; }
+
+/*# sourceMappingURL=Markdown.css.map */

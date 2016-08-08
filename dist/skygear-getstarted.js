@@ -84,7 +84,9 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SelectPage = __webpack_require__(8);
+	var _radium = __webpack_require__(8);
+
+	var _SelectPage = __webpack_require__(71);
 
 	var _SelectPage2 = _interopRequireDefault(_SelectPage);
 
@@ -92,27 +94,27 @@ module.exports =
 
 	var _GuidePage2 = _interopRequireDefault(_GuidePage);
 
-	var _iosNew = __webpack_require__(85);
+	var _iosNew = __webpack_require__(87);
 
 	var _iosNew2 = _interopRequireDefault(_iosNew);
 
-	var _iosExisting = __webpack_require__(86);
+	var _iosExisting = __webpack_require__(88);
 
 	var _iosExisting2 = _interopRequireDefault(_iosExisting);
 
-	var _androidNew = __webpack_require__(87);
+	var _androidNew = __webpack_require__(89);
 
 	var _androidNew2 = _interopRequireDefault(_androidNew);
 
-	var _androidExisting = __webpack_require__(88);
+	var _androidExisting = __webpack_require__(90);
 
 	var _androidExisting2 = _interopRequireDefault(_androidExisting);
 
-	var _jsNew = __webpack_require__(89);
+	var _jsNew = __webpack_require__(91);
 
 	var _jsNew2 = _interopRequireDefault(_jsNew);
 
-	var _jsExisting = __webpack_require__(90);
+	var _jsExisting = __webpack_require__(92);
 
 	var _jsExisting2 = _interopRequireDefault(_jsExisting);
 
@@ -172,16 +174,22 @@ module.exports =
 	      var project = _state.project;
 
 	      var guideContent = Page[sdk] && Page[sdk][project];
-	      var template = guideContent ? _GuidePage2.default : _SelectPage2.default;
-	      return _react2.default.createElement(template, {
-	        sdk: sdk, project: project, guideContent: guideContent,
-	        setSDK: function setSDK(targetSDK) {
-	          return self.setState({ sdk: targetSDK });
-	        },
-	        setProject: function setProject(targetProject) {
-	          return self.setState({ project: targetProject });
-	        }
-	      });
+	      var Template = guideContent ? _GuidePage2.default : _SelectPage2.default;
+	      return _react2.default.createElement(
+	        _radium.StyleRoot,
+	        null,
+	        _react2.default.createElement(Template, {
+	          sdk: sdk,
+	          project: project,
+	          guideContent: guideContent,
+	          setSDK: function setSDK(targetSDK) {
+	            return self.setState({ sdk: targetSDK });
+	          },
+	          setProject: function setProject(targetProject) {
+	            return self.setState({ project: targetProject });
+	          }
+	        })
+	      );
 	    }
 	  }]);
 
@@ -593,146 +601,37 @@ module.exports =
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = SelectPage;
-
-	var _react = __webpack_require__(7);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _radium = __webpack_require__(9);
-
-	var _radium2 = _interopRequireDefault(_radium);
-
-	var _style = __webpack_require__(72);
-
-	var _style2 = _interopRequireDefault(_style);
-
-	var _iconIos = __webpack_require__(73);
-
-	var _iconIos2 = _interopRequireDefault(_iconIos);
-
-	var _iconAndroid = __webpack_require__(74);
-
-	var _iconAndroid2 = _interopRequireDefault(_iconAndroid);
-
-	var _iconWeb = __webpack_require__(75);
-
-	var _iconWeb2 = _interopRequireDefault(_iconWeb);
-
-	var _iconNew = __webpack_require__(76);
-
-	var _iconNew2 = _interopRequireDefault(_iconNew);
-
-	var _iconApp = __webpack_require__(77);
-
-	var _iconApp2 = _interopRequireDefault(_iconApp);
-
-	var _iconTick = __webpack_require__(78);
-
-	var _iconTick2 = _interopRequireDefault(_iconTick);
-
-	var _SelectPlatform = __webpack_require__(79);
-
-	var _SelectPlatform2 = _interopRequireDefault(_SelectPlatform);
-
-	var _PlatformOption = __webpack_require__(80);
-
-	var _PlatformOption2 = _interopRequireDefault(_PlatformOption);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Icon = {
-	  ios: _iconIos2.default,
-	  android: _iconAndroid2.default,
-	  js: _iconWeb2.default,
-	  new: _iconNew2.default,
-	  app: _iconApp2.default,
-	  tick: _iconTick2.default
-	};
-
-	var RadiumSelectPlatform = (0, _radium2.default)(_SelectPlatform2.default);
-	var RadiumPlatformOption = (0, _radium2.default)(_PlatformOption2.default);
-
-	function SelectPage(_ref) {
-	  var sdk = _ref.sdk;
-	  var setSDK = _ref.setSDK;
-	  var setProject = _ref.setProject;
-
-	  var platformProps = { Style: _style2.default, Icon: Icon, sdk: sdk, setSDK: setSDK, setProject: setProject };
-	  return _react2.default.createElement(
-	    _radium.StyleRoot,
-	    null,
-	    _react2.default.createElement(
-	      RadiumSelectPlatform,
-	      { Style: _style2.default },
-	      _react2.default.createElement(RadiumPlatformOption, _extends({}, platformProps, {
-	        targetSDK: 'ios',
-	        title: 'iOS',
-	        desc: 'Build an app for iPhone, iPad and Apple Watch'
-	      })),
-	      _react2.default.createElement(RadiumPlatformOption, _extends({}, platformProps, {
-	        targetSDK: 'android',
-	        title: 'Android',
-	        desc: 'Build an app for Android devices'
-	      })),
-	      _react2.default.createElement(RadiumPlatformOption, _extends({}, platformProps, {
-	        targetSDK: 'js',
-	        title: 'Web',
-	        desc: 'Develop cross platfrom browser-based app'
-	      }))
-	    )
-	  );
-	}
-
-	SelectPage.propTypes = {
-	  sdk: _react2.default.PropTypes.string,
-	  setSDK: _react2.default.PropTypes.func.isRequired,
-	  setProject: _react2.default.PropTypes.func.isRequired
-	};
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _enhancer = __webpack_require__(11);
+	var _enhancer = __webpack_require__(10);
 
 	var _enhancer2 = _interopRequireDefault(_enhancer);
 
-	var _plugins = __webpack_require__(56);
+	var _plugins = __webpack_require__(55);
 
 	var _plugins2 = _interopRequireDefault(_plugins);
 
-	var _style = __webpack_require__(68);
+	var _style = __webpack_require__(67);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _styleRoot = __webpack_require__(69);
+	var _styleRoot = __webpack_require__(68);
 
 	var _styleRoot2 = _interopRequireDefault(_styleRoot);
 
-	var _getState = __webpack_require__(52);
+	var _getState = __webpack_require__(51);
 
 	var _getState2 = _interopRequireDefault(_getState);
 
-	var _keyframes = __webpack_require__(71);
+	var _keyframes = __webpack_require__(70);
 
 	var _keyframes2 = _interopRequireDefault(_keyframes);
 
-	var _resolveStyles = __webpack_require__(13);
+	var _resolveStyles = __webpack_require__(12);
 
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
@@ -758,10 +657,10 @@ module.exports =
 
 	exports.default = Radium;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -904,7 +803,7 @@ module.exports =
 	};
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -935,11 +834,11 @@ module.exports =
 
 	var _react = __webpack_require__(7);
 
-	var _styleKeeper = __webpack_require__(12);
+	var _styleKeeper = __webpack_require__(11);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
-	var _resolveStyles = __webpack_require__(13);
+	var _resolveStyles = __webpack_require__(12);
 
 	var _resolveStyles2 = _interopRequireDefault(_resolveStyles);
 
@@ -1118,10 +1017,10 @@ module.exports =
 	  return RadiumEnhancer;
 	}
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1197,7 +1096,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -1224,33 +1123,33 @@ module.exports =
 	  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
 	};
 
-	var _appendImportantToEachValue = __webpack_require__(14);
+	var _appendImportantToEachValue = __webpack_require__(13);
 
 	var _appendImportantToEachValue2 = _interopRequireDefault(_appendImportantToEachValue);
 
-	var _cssRuleSetToString = __webpack_require__(17);
+	var _cssRuleSetToString = __webpack_require__(16);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
-	var _getState = __webpack_require__(52);
+	var _getState = __webpack_require__(51);
 
 	var _getState2 = _interopRequireDefault(_getState);
 
-	var _getStateKey = __webpack_require__(53);
+	var _getStateKey = __webpack_require__(52);
 
 	var _getStateKey2 = _interopRequireDefault(_getStateKey);
 
-	var _hash = __webpack_require__(54);
+	var _hash = __webpack_require__(53);
 
 	var _hash2 = _interopRequireDefault(_hash);
 
-	var _mergeStyles = __webpack_require__(55);
+	var _mergeStyles = __webpack_require__(54);
 
-	var _plugins = __webpack_require__(56);
+	var _plugins = __webpack_require__(55);
 
 	var _plugins2 = _interopRequireDefault(_plugins);
 
-	var _exenv = __webpack_require__(66);
+	var _exenv = __webpack_require__(65);
 
 	var _exenv2 = _interopRequireDefault(_exenv);
 
@@ -1572,10 +1471,10 @@ module.exports =
 
 	exports.default = resolveStyles;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1585,11 +1484,11 @@ module.exports =
 	});
 	exports.default = appendImportantToEachValue;
 
-	var _appendPxIfNeeded = __webpack_require__(15);
+	var _appendPxIfNeeded = __webpack_require__(14);
 
 	var _appendPxIfNeeded2 = _interopRequireDefault(_appendPxIfNeeded);
 
-	var _mapObject = __webpack_require__(16);
+	var _mapObject = __webpack_require__(15);
 
 	var _mapObject2 = _interopRequireDefault(_mapObject);
 
@@ -1605,7 +1504,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1658,7 +1557,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1676,7 +1575,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1686,19 +1585,19 @@ module.exports =
 	});
 	exports.default = cssRuleSetToString;
 
-	var _appendPxIfNeeded = __webpack_require__(15);
+	var _appendPxIfNeeded = __webpack_require__(14);
 
 	var _appendPxIfNeeded2 = _interopRequireDefault(_appendPxIfNeeded);
 
-	var _camelCasePropsToDashCase = __webpack_require__(18);
+	var _camelCasePropsToDashCase = __webpack_require__(17);
 
 	var _camelCasePropsToDashCase2 = _interopRequireDefault(_camelCasePropsToDashCase);
 
-	var _mapObject = __webpack_require__(16);
+	var _mapObject = __webpack_require__(15);
 
 	var _mapObject2 = _interopRequireDefault(_mapObject);
 
-	var _prefixer = __webpack_require__(19);
+	var _prefixer = __webpack_require__(18);
 
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
@@ -1727,7 +1626,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1766,7 +1665,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {'use strict';
@@ -1791,7 +1690,7 @@ module.exports =
 	exports.getPrefixedKeyframes = getPrefixedKeyframes;
 	exports.getPrefixedStyle = getPrefixedStyle;
 
-	var _inlineStylePrefixer = __webpack_require__(20);
+	var _inlineStylePrefixer = __webpack_require__(19);
 
 	var _inlineStylePrefixer2 = _interopRequireDefault(_inlineStylePrefixer);
 
@@ -1855,10 +1754,10 @@ module.exports =
 	  var prefixedStyle = prefixer.prefix(styleWithFallbacks);
 	  return prefixedStyle;
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(10)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(9)))
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1887,61 +1786,61 @@ module.exports =
 	  }
 	}
 
-	var _inlineStylePrefixAll = __webpack_require__(21);
+	var _inlineStylePrefixAll = __webpack_require__(20);
 
 	var _inlineStylePrefixAll2 = _interopRequireDefault(_inlineStylePrefixAll);
 
-	var _utilsGetBrowserInformation = __webpack_require__(36);
+	var _utilsGetBrowserInformation = __webpack_require__(35);
 
 	var _utilsGetBrowserInformation2 = _interopRequireDefault(_utilsGetBrowserInformation);
 
-	var _utilsGetPrefixedKeyframes = __webpack_require__(38);
+	var _utilsGetPrefixedKeyframes = __webpack_require__(37);
 
 	var _utilsGetPrefixedKeyframes2 = _interopRequireDefault(_utilsGetPrefixedKeyframes);
 
-	var _utilsCapitalizeString = __webpack_require__(39);
+	var _utilsCapitalizeString = __webpack_require__(38);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsAssign = __webpack_require__(40);
+	var _utilsAssign = __webpack_require__(39);
 
 	var _utilsAssign2 = _interopRequireDefault(_utilsAssign);
 
-	var _prefixProps = __webpack_require__(41);
+	var _prefixProps = __webpack_require__(40);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _pluginsCalc = __webpack_require__(42);
+	var _pluginsCalc = __webpack_require__(41);
 
 	var _pluginsCalc2 = _interopRequireDefault(_pluginsCalc);
 
-	var _pluginsCursor = __webpack_require__(44);
+	var _pluginsCursor = __webpack_require__(43);
 
 	var _pluginsCursor2 = _interopRequireDefault(_pluginsCursor);
 
-	var _pluginsFlex = __webpack_require__(45);
+	var _pluginsFlex = __webpack_require__(44);
 
 	var _pluginsFlex2 = _interopRequireDefault(_pluginsFlex);
 
-	var _pluginsSizing = __webpack_require__(46);
+	var _pluginsSizing = __webpack_require__(45);
 
 	var _pluginsSizing2 = _interopRequireDefault(_pluginsSizing);
 
-	var _pluginsGradient = __webpack_require__(47);
+	var _pluginsGradient = __webpack_require__(46);
 
 	var _pluginsGradient2 = _interopRequireDefault(_pluginsGradient);
 
-	var _pluginsTransition = __webpack_require__(48);
+	var _pluginsTransition = __webpack_require__(47);
 
 	var _pluginsTransition2 = _interopRequireDefault(_pluginsTransition);
 
 	// special flexbox specifications
 
-	var _pluginsFlexboxIE = __webpack_require__(50);
+	var _pluginsFlexboxIE = __webpack_require__(49);
 
 	var _pluginsFlexboxIE2 = _interopRequireDefault(_pluginsFlexboxIE);
 
-	var _pluginsFlexboxOld = __webpack_require__(51);
+	var _pluginsFlexboxOld = __webpack_require__(50);
 
 	var _pluginsFlexboxOld2 = _interopRequireDefault(_pluginsFlexboxOld);
 
@@ -2075,7 +1974,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2089,49 +1988,49 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _prefixProps = __webpack_require__(22);
+	var _prefixProps = __webpack_require__(21);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _utilsCapitalizeString = __webpack_require__(23);
+	var _utilsCapitalizeString = __webpack_require__(22);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsAssign = __webpack_require__(24);
+	var _utilsAssign = __webpack_require__(23);
 
 	var _utilsAssign2 = _interopRequireDefault(_utilsAssign);
 
-	var _pluginsCalc = __webpack_require__(25);
+	var _pluginsCalc = __webpack_require__(24);
 
 	var _pluginsCalc2 = _interopRequireDefault(_pluginsCalc);
 
-	var _pluginsCursor = __webpack_require__(29);
+	var _pluginsCursor = __webpack_require__(28);
 
 	var _pluginsCursor2 = _interopRequireDefault(_pluginsCursor);
 
-	var _pluginsFlex = __webpack_require__(30);
+	var _pluginsFlex = __webpack_require__(29);
 
 	var _pluginsFlex2 = _interopRequireDefault(_pluginsFlex);
 
-	var _pluginsSizing = __webpack_require__(31);
+	var _pluginsSizing = __webpack_require__(30);
 
 	var _pluginsSizing2 = _interopRequireDefault(_pluginsSizing);
 
-	var _pluginsGradient = __webpack_require__(32);
+	var _pluginsGradient = __webpack_require__(31);
 
 	var _pluginsGradient2 = _interopRequireDefault(_pluginsGradient);
 
-	var _pluginsTransition = __webpack_require__(33);
+	var _pluginsTransition = __webpack_require__(32);
 
 	var _pluginsTransition2 = _interopRequireDefault(_pluginsTransition);
 
 	// special flexbox specifications
 
-	var _pluginsFlexboxIE = __webpack_require__(34);
+	var _pluginsFlexboxIE = __webpack_require__(33);
 
 	var _pluginsFlexboxIE2 = _interopRequireDefault(_pluginsFlexboxIE);
 
-	var _pluginsFlexboxOld = __webpack_require__(35);
+	var _pluginsFlexboxOld = __webpack_require__(34);
 
 	var _pluginsFlexboxOld2 = _interopRequireDefault(_pluginsFlexboxOld);
 
@@ -2171,7 +2070,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2183,7 +2082,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports) {
 
 	// helper to capitalize strings
@@ -2200,7 +2099,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
 
 	// leight polyfill for Object.assign
@@ -2221,7 +2120,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2235,11 +2134,11 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsJoinPrefixedRules = __webpack_require__(26);
+	var _utilsJoinPrefixedRules = __webpack_require__(25);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
-	var _utilsIsPrefixedValue = __webpack_require__(28);
+	var _utilsIsPrefixedValue = __webpack_require__(27);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
@@ -2256,7 +2155,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2277,7 +2176,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _camelToDashCase = __webpack_require__(27);
+	var _camelToDashCase = __webpack_require__(26);
 
 	var _camelToDashCase2 = _interopRequireDefault(_camelToDashCase);
 
@@ -2297,7 +2196,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports) {
 
 	/**
@@ -2319,7 +2218,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2337,7 +2236,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2351,7 +2250,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsJoinPrefixedRules = __webpack_require__(26);
+	var _utilsJoinPrefixedRules = __webpack_require__(25);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
@@ -2371,7 +2270,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2385,7 +2284,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(27);
+	var _utilsCamelToDashCase = __webpack_require__(26);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -2402,7 +2301,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2416,7 +2315,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsJoinPrefixedRules = __webpack_require__(26);
+	var _utilsJoinPrefixedRules = __webpack_require__(25);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
@@ -2446,7 +2345,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2460,11 +2359,11 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsJoinPrefixedRules = __webpack_require__(26);
+	var _utilsJoinPrefixedRules = __webpack_require__(25);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
-	var _utilsIsPrefixedValue = __webpack_require__(28);
+	var _utilsIsPrefixedValue = __webpack_require__(27);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
@@ -2481,7 +2380,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 33 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2503,19 +2402,19 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(27);
+	var _utilsCamelToDashCase = __webpack_require__(26);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
-	var _utilsCapitalizeString = __webpack_require__(23);
+	var _utilsCapitalizeString = __webpack_require__(22);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsIsPrefixedValue = __webpack_require__(28);
+	var _utilsIsPrefixedValue = __webpack_require__(27);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
-	var _prefixProps = __webpack_require__(22);
+	var _prefixProps = __webpack_require__(21);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
@@ -2576,7 +2475,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 34 */
+/* 33 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2620,7 +2519,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 35 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2642,7 +2541,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(27);
+	var _utilsCamelToDashCase = __webpack_require__(26);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -2676,7 +2575,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2689,7 +2588,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _bowser = __webpack_require__(37);
+	var _bowser = __webpack_require__(36);
 
 	var _bowser2 = _interopRequireDefault(_bowser);
 
@@ -2776,7 +2675,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 37 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -3275,7 +3174,7 @@ module.exports =
 	});
 
 /***/ },
-/* 38 */
+/* 37 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3300,9 +3199,9 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
+/* 38 */
+22,
 /* 39 */
-23,
-/* 40 */
 /***/ function(module, exports) {
 
 	// leight polyfill for Object.assign
@@ -3324,7 +3223,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 41 */
+/* 40 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3336,7 +3235,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 42 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3358,7 +3257,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(43);
+	var _utilsCamelToDashCase = __webpack_require__(42);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3379,9 +3278,9 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
+/* 42 */
+26,
 /* 43 */
-27,
-/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3395,7 +3294,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(43);
+	var _utilsCamelToDashCase = __webpack_require__(42);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3425,7 +3324,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 45 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3439,7 +3338,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(43);
+	var _utilsCamelToDashCase = __webpack_require__(42);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3467,7 +3366,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 46 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3489,7 +3388,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(43);
+	var _utilsCamelToDashCase = __webpack_require__(42);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3526,7 +3425,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 47 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3548,7 +3447,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(43);
+	var _utilsCamelToDashCase = __webpack_require__(42);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3571,7 +3470,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 48 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3595,15 +3494,15 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(43);
+	var _utilsCamelToDashCase = __webpack_require__(42);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
-	var _utilsCapitalizeString = __webpack_require__(39);
+	var _utilsCapitalizeString = __webpack_require__(38);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsUnprefixProperty = __webpack_require__(49);
+	var _utilsUnprefixProperty = __webpack_require__(48);
 
 	var _utilsUnprefixProperty2 = _interopRequireDefault(_utilsUnprefixProperty);
 
@@ -3647,7 +3546,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 49 */
+/* 48 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3664,7 +3563,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 50 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3686,7 +3585,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(43);
+	var _utilsCamelToDashCase = __webpack_require__(42);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3742,7 +3641,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 51 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3764,7 +3663,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(43);
+	var _utilsCamelToDashCase = __webpack_require__(42);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3826,7 +3725,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 52 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3835,7 +3734,7 @@ module.exports =
 	  value: true
 	});
 
-	var _getStateKey = __webpack_require__(53);
+	var _getStateKey = __webpack_require__(52);
 
 	var _getStateKey2 = _interopRequireDefault(_getStateKey);
 
@@ -3853,7 +3752,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 53 */
+/* 52 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3870,7 +3769,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 54 */
+/* 53 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3901,7 +3800,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 55 */
+/* 54 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3971,7 +3870,7 @@ module.exports =
 	}
 
 /***/ },
-/* 56 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3980,35 +3879,35 @@ module.exports =
 	  value: true
 	});
 
-	var _checkPropsPlugin = __webpack_require__(57);
+	var _checkPropsPlugin = __webpack_require__(56);
 
 	var _checkPropsPlugin2 = _interopRequireDefault(_checkPropsPlugin);
 
-	var _keyframesPlugin = __webpack_require__(58);
+	var _keyframesPlugin = __webpack_require__(57);
 
 	var _keyframesPlugin2 = _interopRequireDefault(_keyframesPlugin);
 
-	var _mergeStyleArrayPlugin = __webpack_require__(59);
+	var _mergeStyleArrayPlugin = __webpack_require__(58);
 
 	var _mergeStyleArrayPlugin2 = _interopRequireDefault(_mergeStyleArrayPlugin);
 
-	var _prefixPlugin = __webpack_require__(60);
+	var _prefixPlugin = __webpack_require__(59);
 
 	var _prefixPlugin2 = _interopRequireDefault(_prefixPlugin);
 
-	var _removeNestedStylesPlugin = __webpack_require__(61);
+	var _removeNestedStylesPlugin = __webpack_require__(60);
 
 	var _removeNestedStylesPlugin2 = _interopRequireDefault(_removeNestedStylesPlugin);
 
-	var _resolveInteractionStylesPlugin = __webpack_require__(62);
+	var _resolveInteractionStylesPlugin = __webpack_require__(61);
 
 	var _resolveInteractionStylesPlugin2 = _interopRequireDefault(_resolveInteractionStylesPlugin);
 
-	var _resolveMediaQueriesPlugin = __webpack_require__(64);
+	var _resolveMediaQueriesPlugin = __webpack_require__(63);
 
 	var _resolveMediaQueriesPlugin2 = _interopRequireDefault(_resolveMediaQueriesPlugin);
 
-	var _visitedPlugin = __webpack_require__(65);
+	var _visitedPlugin = __webpack_require__(64);
 
 	var _visitedPlugin2 = _interopRequireDefault(_visitedPlugin);
 
@@ -4031,7 +3930,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 57 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -4109,10 +4008,10 @@ module.exports =
 
 	exports.default = _checkProps;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 58 */
+/* 57 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4149,7 +4048,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4172,7 +4071,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 60 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4182,7 +4081,7 @@ module.exports =
 	});
 	exports.default = prefixPlugin;
 
-	var _prefixer = __webpack_require__(19);
+	var _prefixer = __webpack_require__(18);
 
 	function prefixPlugin(_ref // eslint-disable-line no-shadow
 	) {
@@ -4195,7 +4094,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 61 */
+/* 60 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4223,7 +4122,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 62 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4232,7 +4131,7 @@ module.exports =
 	  value: true
 	});
 
-	var _mouseUpListener = __webpack_require__(63);
+	var _mouseUpListener = __webpack_require__(62);
 
 	var _mouseUpListener2 = _interopRequireDefault(_mouseUpListener);
 
@@ -4357,7 +4256,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 63 */
+/* 62 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4405,7 +4304,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 64 */
+/* 63 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4593,7 +4492,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 65 */
+/* 64 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4638,7 +4537,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 66 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -4669,7 +4568,7 @@ module.exports =
 
 		};
 
-		if ("function" === 'function' && _typeof(__webpack_require__(67)) === 'object' && __webpack_require__(67)) {
+		if ("function" === 'function' && _typeof(__webpack_require__(66)) === 'object' && __webpack_require__(66)) {
 			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 				return ExecutionEnvironment;
 			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -4681,7 +4580,7 @@ module.exports =
 	})();
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -4689,7 +4588,7 @@ module.exports =
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 68 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4706,7 +4605,7 @@ module.exports =
 	  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
 	};
 
-	var _cssRuleSetToString = __webpack_require__(17);
+	var _cssRuleSetToString = __webpack_require__(16);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
@@ -4794,7 +4693,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 69 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4809,15 +4708,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _enhancer = __webpack_require__(11);
+	var _enhancer = __webpack_require__(10);
 
 	var _enhancer2 = _interopRequireDefault(_enhancer);
 
-	var _styleKeeper = __webpack_require__(12);
+	var _styleKeeper = __webpack_require__(11);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
-	var _styleSheet = __webpack_require__(70);
+	var _styleSheet = __webpack_require__(69);
 
 	var _styleSheet2 = _interopRequireDefault(_styleSheet);
 
@@ -4904,7 +4803,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 70 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4922,7 +4821,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _styleKeeper = __webpack_require__(12);
+	var _styleKeeper = __webpack_require__(11);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
@@ -4999,7 +4898,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 71 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5009,15 +4908,15 @@ module.exports =
 	});
 	exports.default = keyframes;
 
-	var _cssRuleSetToString = __webpack_require__(17);
+	var _cssRuleSetToString = __webpack_require__(16);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
-	var _hash = __webpack_require__(54);
+	var _hash = __webpack_require__(53);
 
 	var _hash2 = _interopRequireDefault(_hash);
 
-	var _prefixer = __webpack_require__(19);
+	var _prefixer = __webpack_require__(18);
 
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
@@ -5038,6 +4937,111 @@ module.exports =
 	  };
 	}
 	module.exports = exports['default'];
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = SelectPage;
+
+	var _react = __webpack_require__(7);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _radium = __webpack_require__(8);
+
+	var _radium2 = _interopRequireDefault(_radium);
+
+	var _style = __webpack_require__(72);
+
+	var _style2 = _interopRequireDefault(_style);
+
+	var _iconIos = __webpack_require__(73);
+
+	var _iconIos2 = _interopRequireDefault(_iconIos);
+
+	var _iconAndroid = __webpack_require__(74);
+
+	var _iconAndroid2 = _interopRequireDefault(_iconAndroid);
+
+	var _iconWeb = __webpack_require__(75);
+
+	var _iconWeb2 = _interopRequireDefault(_iconWeb);
+
+	var _iconNew = __webpack_require__(76);
+
+	var _iconNew2 = _interopRequireDefault(_iconNew);
+
+	var _iconApp = __webpack_require__(77);
+
+	var _iconApp2 = _interopRequireDefault(_iconApp);
+
+	var _iconTick = __webpack_require__(78);
+
+	var _iconTick2 = _interopRequireDefault(_iconTick);
+
+	var _SelectPlatform = __webpack_require__(79);
+
+	var _SelectPlatform2 = _interopRequireDefault(_SelectPlatform);
+
+	var _PlatformOption = __webpack_require__(80);
+
+	var _PlatformOption2 = _interopRequireDefault(_PlatformOption);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Icon = {
+	  ios: _iconIos2.default,
+	  android: _iconAndroid2.default,
+	  js: _iconWeb2.default,
+	  new: _iconNew2.default,
+	  app: _iconApp2.default,
+	  tick: _iconTick2.default
+	};
+
+	var RadiumSelectPlatform = (0, _radium2.default)(_SelectPlatform2.default);
+	var RadiumPlatformOption = (0, _radium2.default)(_PlatformOption2.default);
+
+	function SelectPage(_ref) {
+	  var sdk = _ref.sdk;
+	  var setSDK = _ref.setSDK;
+	  var setProject = _ref.setProject;
+
+	  var platformProps = { Style: _style2.default, Icon: Icon, sdk: sdk, setSDK: setSDK, setProject: setProject };
+	  return _react2.default.createElement(
+	    RadiumSelectPlatform,
+	    { Style: _style2.default },
+	    _react2.default.createElement(RadiumPlatformOption, _extends({}, platformProps, {
+	      targetSDK: 'ios',
+	      title: 'iOS',
+	      desc: 'Build an app for iPhone, iPad and Apple Watch'
+	    })),
+	    _react2.default.createElement(RadiumPlatformOption, _extends({}, platformProps, {
+	      targetSDK: 'android',
+	      title: 'Android',
+	      desc: 'Build an app for Android devices'
+	    })),
+	    _react2.default.createElement(RadiumPlatformOption, _extends({}, platformProps, {
+	      targetSDK: 'js',
+	      title: 'Web',
+	      desc: 'Develop cross platfrom browser-based app'
+	    }))
+	  );
+	}
+
+	SelectPage.propTypes = {
+	  sdk: _react2.default.PropTypes.string,
+	  setSDK: _react2.default.PropTypes.func.isRequired,
+	  setProject: _react2.default.PropTypes.func.isRequired
+	};
 
 /***/ },
 /* 72 */
@@ -5308,11 +5312,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _radium = __webpack_require__(9);
+	var _radium = __webpack_require__(8);
 
 	var _radium2 = _interopRequireDefault(_radium);
 
-	var _style = __webpack_require__(82);
+	__webpack_require__(82);
+
+	var _style = __webpack_require__(84);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -5336,11 +5342,11 @@ module.exports =
 
 	var _iconApp2 = _interopRequireDefault(_iconApp);
 
-	var _TabItem = __webpack_require__(83);
+	var _TabItem = __webpack_require__(85);
 
 	var _TabItem2 = _interopRequireDefault(_TabItem);
 
-	var _GuideHeader = __webpack_require__(84);
+	var _GuideHeader = __webpack_require__(86);
 
 	var _GuideHeader2 = _interopRequireDefault(_GuideHeader);
 
@@ -5368,8 +5374,8 @@ module.exports =
 	  var projectTabProps = { Style: _style2.default, Icon: Icon, current: project, update: setProject };
 	  var docLink = 'https://docs.skygear.io/' + sdk + '/guide';
 	  return _react2.default.createElement(
-	    _radium.StyleRoot,
-	    null,
+	    'div',
+	    { style: _style2.default.guidePage },
 	    _react2.default.createElement(
 	      RadiumGuideHeader,
 	      { Style: _style2.default, docLink: docLink, window: window },
@@ -5380,7 +5386,7 @@ module.exports =
 	      _react2.default.createElement(RadiumTabItem, _extends({}, projectTabProps, { target: 'existing', name: 'Existing App' }))
 	    ),
 	    _react2.default.createElement('article', {
-	      style: _style2.default.guidePage,
+	      style: _style2.default.content,
 	      className: 'Markdown',
 	      dangerouslySetInnerHTML: { __html: guideContent }
 	    })
@@ -5397,6 +5403,46 @@ module.exports =
 
 /***/ },
 /* 82 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(83);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./Markdown.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./Markdown.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/**\n * React Static Boilerplate\n * https://github.com/koistya/react-static-boilerplate\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\n */\n/*\n * Scaffolding\n * -------------------------------------------------------------------------- */\n/*\n * Typography\n * -------------------------------------------------------------------------- */\n/*\n * Media queries breakpoints\n * -------------------------------------------------------------------------- */\n.Markdown {\n  color: #4A4A4A;\n  font-family: \"Lato\"; }\n  .Markdown h1, .Markdown h2, .Markdown h3, .Markdown h4, .Markdown h5 {\n    color: #000000;\n    margin-top: 0;\n    margin-bottom: 1.25rem; }\n  .Markdown h2 {\n    font-weight: 600;\n    font-size: 1.8rem; }\n  .Markdown p, .Markdown ol, .Markdown ul, .Markdown pre, .Markdown table {\n    margin-top: 0;\n    margin-bottom: 1.5rem; }\n  .Markdown ol, .Markdown ul {\n    padding-left: 20px;\n    list-style-position: outside; }\n    .Markdown ol p, .Markdown ul p {\n      display: inline-block; }\n  .Markdown code {\n    box-sizing: border-box;\n    padding: .25rem .375rem 0 .375rem;\n    max-width: 100%;\n    max-height: 100%;\n    background-color: #EFEFEF;\n    color: #000000;\n    font-size: .875rem;\n    font-family: \"Consolas\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace; }\n  .Markdown pre > code {\n    display: inline-block;\n    padding: .75rem .625rem;\n    overflow: auto;\n    width: 100%; }\n  .Markdown img {\n    max-width: 100%; }\n  .Markdown th, .Markdown td {\n    padding: 15px;\n    text-align: left; }\n  .Markdown tbody > tr:nth-child(odd) {\n    background-color: #f2f2f2; }\n  .Markdown p, .Markdown li {\n    line-height: 2rem; }\n  .Markdown li {\n    margin-top: 0;\n    margin-bottom: 0.5rem; }\n    .Markdown li ol, .Markdown li ul {\n      margin-top: 0.5rem;\n      margin-bottom: 0; }\n\n/*# sourceMappingURL=Markdown.css.map */\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 84 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5405,7 +5451,11 @@ module.exports =
 	  value: true
 	});
 	exports.default = {
-	  guidePage: { fontFamily: "'Lato', sans-serif" },
+	  guidePage: {
+	    fontFamily: "'Lato', sans-serif",
+	    minWidth: '295px'
+	  },
+	  content: { padding: '24px', overflowX: 'hidden' },
 	  tagline: {
 	    margin: '20px 0px',
 	    textAlign: 'center',
@@ -5421,7 +5471,13 @@ module.exports =
 	    }
 	  },
 	  project: {
-	    row: { width: '100%', position: 'relative' },
+	    row: {
+	      width: '100%',
+	      position: 'relative',
+	      '@media (max-width: 544px)': {
+	        marginBottom: '78px'
+	      }
+	    },
 	    item: { display: 'inline-block' }
 	  },
 	  tab: {
@@ -5433,7 +5489,11 @@ module.exports =
 	      fill: '#1A1A1A',
 	      fontSize: '18px',
 	      textAlign: 'left',
-	      margin: '9px 12px 0px 12px'
+	      margin: '9px 12px 0px 12px',
+	      '@media (max-width: 544px)': {
+	        margin: '9px 6px 0px 6px',
+	        fontSize: '16px'
+	      }
 	    },
 	    Active: { borderBottom: '5px solid #007BD4', cursor: 'auto' },
 	    icon: {
@@ -5454,12 +5514,17 @@ module.exports =
 	    position: 'absolute',
 	    top: '19px',
 	    right: '41px',
-	    textDecoration: 'none'
+	    textDecoration: 'none',
+	    textAlign: 'center',
+	    '@media (max-width: 544px)': {
+	      top: '78px',
+	      left: '41px'
+	    }
 	  }
 	};
 
 /***/ },
-/* 83 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(7);
@@ -5494,7 +5559,7 @@ module.exports =
 	}
 
 /***/ },
-/* 84 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(7);
@@ -5505,9 +5570,7 @@ module.exports =
 	  return function() {
 	    var tags = [];
 	    "docs.skygear.io" === window.location.hostname ? Style.Hide : {};
-	    tags.push(React.DOM.header.apply(React.DOM, [ {
-	      style: [ Style.guidePage ]
-	    } ].concat(function() {
+	    tags.push(React.DOM.header.apply(React.DOM, [ {} ].concat(function() {
 	      return [ React.DOM.h4.apply(React.DOM, [ {
 	        style: [ Style.tagline ]
 	      } ].concat(function() {
@@ -5554,37 +5617,37 @@ module.exports =
 	}
 
 /***/ },
-/* 85 */
+/* 87 */
 /***/ function(module, exports) {
 
 	module.exports = "<p><a name=\"sdk-new\"></a></p>\n<h2 id=\"for-new-project\">For New Project</h2>\n<h3 id=\"step-1-install-xcode\">Step 1: Install Xcode</h3>\n<p>Download the latest version of Xcode from the Mac App Store <a href=\"https://itunes.apple.com/en/app/xcode/id497799835?mt=12\">here</a>.</p>\n<h3 id=\"step-2-install-cocoapods\">Step 2: Install CocoaPods</h3>\n<p>CocoaPods manages library dependencies for your Xcode projects.</p>\n<p>The dependencies for your projects are specified in a single text file called a Podfile.\nCocoaPods will resolve dependencies between libraries, fetch the resulting source code, then link it together in an Xcode workspace to build your project.</p>\n<p>You can read more about CocoaPods <a href=\"https://guides.cocoapods.org/using/getting-started.html\">here</a>.</p>\n<p>Installing CocoaPods is very simple:</p>\n<ol>\n<li>Open terminal.</li>\n<li>Run this command <code>$ sudo gem install cocoapods</code>.</li>\n<li>Wait for it to complete the process. It should take a few minutes.</li>\n</ol>\n<h3 id=\"step-3-create-new-project\">Step 3: Create new project</h3>\n<ol>\n<li>Open terminal and run this command <code>pod lib create --silent --template-url=https://github.com/SkygearIO/skygear-Scaffolding-iOS.git &quot;YourProjectName&quot;</code>. Change <code>&quot;YourProjectName&quot;</code> to something you like.</li>\n<li><p>You will then be prompted a few questions, please make sure that you answer these questions correctly:</p>\n</li>\n<li><p>What is your skygear endpoint?</p>\n</li>\n<li>What is your skygear API key?</li>\n<li>What language do you want to use?</li>\n</ol>\n<h3 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h3>\n<p>Congratulations, you have your first Skygear iOS project set up! The SDK is automatically included for you. Your project will be automatically launched.</p>\n";
 
 /***/ },
-/* 86 */
+/* 88 */
 /***/ function(module, exports) {
 
 	module.exports = "<p><a name=\"sdk-existing\"></a></p>\n<h2 id=\"for-existing-project\">For existing project</h2>\n<p>The installation requires Xcode and <a href=\"https://cocoapods.org/\">CocoaPods</a>.\nIf you haven&#39;t installed them already, please head to <a href=\"#new-project\">this section</a> to read about how to create a new project with configured SDK.</p>\n<h3 id=\"step-1-install-sdk-using-cocoapods\">Step 1: Install SDK using CocoaPods</h3>\n<p>To install the Skygear iOS SDK as your iOS application dependency:</p>\n<ol>\n<li>You need to close Xcode.</li>\n<li>Open Terminal and navigate to the directory that contains your iOS\nproject by using the cd command: <code>cd ~/Path/To/Your/App</code>.\nYou can just drag the file icon to Terminal and the path will be\nautomatically typed for you.</li>\n<li>Run this command in Terminal <code>pod init</code> to create a <a href=\"https://guides.cocoapods.org/using/the-podfile.html\">Podfile</a>.</li>\n<li>Run this command in Terminal <code>open -a Xcode Podfile</code> to edit the Podfile using Xcode. You should avoid using TextEdit to edit the Podfile because it may mess up the format and confuse CocoaPods.</li>\n</ol>\n<h3 id=\"step-2-edit-the-podfile\">Step 2: Edit the Podfile</h3>\n<ol>\n<li><p>Open and edit the <code>Podfile</code> file. Your <code>Podfile</code> file should look like this:</p>\n<pre><code> use_frameworks!\n platform :ios, &#39;8.0&#39;\n\n target &#39;YourProjectName&#39; do\n     pod &#39;SKYKit&#39;\n end\n</code></pre><p> Replace <code>&#39;YourProjectName&#39;</code> with your actual project name.</p>\n<p> CocoaPods 0.36 and above introduces the <code>use_frameworks!</code> instruction, so\n the Objective-C bridging header is no longer needed if you&#39;re using Swift in\n your project.</p>\n</li>\n<li><p>Run <code>pod install</code> in your terminal.</p>\n</li>\n<li>You would see that an Xcode Workspace file is created. Open the file and go to the project.</li>\n<li>It&#39;s done! You have installed Skygear SDK in your app. If you&#39;re using Swift, just import the SDK in each Swift file to call the SDK.</li>\n</ol>\n<h3 id=\"step-3-configure-end-point-and-api-key\">Step 3: Configure end point and API key</h3>\n<p>Now, you are going to setup the server endpoint and API key for your app. Read more about <a href=\"#skycontainer\">SKYContainer</a>.</p>\n<p>In <code>AppDelegate.m</code>, include <code>SKYKit</code>:</p>\n<pre><code class=\"language-obj-c\">import <span class=\"token operator\" >&lt;</span>SKYKit<span class=\"token operator\" >/</span>SKYKit<span class=\"token punctuation\" >.</span>h<span class=\"token operator\" >></span></code></pre><p>Then add these lines in the <code>application:didFinishLaunchingWithOptions:</code> method:</p>\n<pre><code class=\"language-obj-c\">SKYContainer <span class=\"token operator\" >*</span>container <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>SKYContainer defaultContainer<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >[</span>container configAddress<span class=\"token punctuation\" >:</span><span class=\"token string\" >@\"https://your-endpoint.skygeario.com/\"</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">//Your server endpoint</span>\n<span class=\"token punctuation\" >[</span>container configureWithAPIKey<span class=\"token punctuation\" >:</span><span class=\"token string\" >@\"SKYGEAR_API_KEY\"</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">//Your Skygear API Key</span></code></pre><p>Replace <code>your-endpoint.skygeario.com</code> with your Server Endpoint and <code>SKYGEAR_API_KEY</code> with your API Key.</p>\n";
 
 /***/ },
-/* 87 */
+/* 89 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3 id=\"step-1-installing-android-studio\">Step 1: Installing Android Studio</h3>\n<p>We recommend developing Android apps with Skygear Android SDK using\n<a href=\"https://developer.android.com/studio/index.html\">Android Studio</a>.</p>\n<h3 id=\"step-2-downloading-scaffolding-project\">Step 2: Downloading scaffolding project</h3>\n<p>Download the repository on GitHub\n<a href=\"https://github.com/SkygearIO/skygear-Scaffolding-Android\">SkygearIO/skygear-Scaffolding-Android</a>.\nAfter you have done so, launch Android Studio,\nselect <strong>Open an existing Android Studio project</strong> and find the scaffolding\nproject you have just downloaded. Follow any recommendations Android Studio\nshows (such as installing the required SDKs) and then you are good to go.</p>\n<h3 id=\"step-3-configure-container\">Step 3: Configure container</h3>\n<p>Have your <code>Server EndPoint</code> and <code>API Key</code> ready, open <code>Terminal</code> (which can\nbe found at the bottom of Android Studio), and run the following:</p>\n<pre><code class=\"language-bash\">./gradlew updateAppSettings</code></pre><p>And you should see the following:</p>\n<pre><code>&gt; Building 0% &gt; :updateAppSettings\nWhat is your skygear endpoint (You can find it in portal)?\nExample: https://myapp.skygeario.com/\n&gt; https://&lt;your-app-name&gt;.skygeario.com/\n\nWhat is your skygear API key (You can find it in portal)?\nExample: dc0903fa85924776baa77df813901efc\n&gt; &lt;your-api-key&gt;\n:updateAppSettings\n\nBUILD SUCCESSFUL\n\nTotal time: 21.326 secs\n</code></pre><p>The script is just modifying <code>MyApplication.java</code> file, so you\ncan manually change the configurations as well.</p>\n<h3 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h3>\n<p>Congratulations, you have your first skygear Android project set up! You\ncan now launch your App on the emulator and it should look like the following:</p>\n<p><a href=\"https://docs.skygear.io/assets/android/android-app-preview.png\"><img src=\"https://docs.skygear.io/assets/android/android-app-preview.png\" alt=\"Screenshot: android scaffolding app preview\"></a></p>\n";
 
 /***/ },
-/* 88 */
+/* 90 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3 id=\"step-1-installing-sdk\">Step 1: Installing SDK</h3>\n<p>Make sure jcenter repository is included in <code>build.gradle</code> of your project</p>\n<pre><code class=\"language-gradle\">allprojects <span class=\"token punctuation\" >{</span>\n    repositories <span class=\"token punctuation\" >{</span>\n        <span class=\"token function\" >jcenter</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><p>Add skygear as dependency in <code>build.gradle</code> of your application</p>\n<pre><code class=\"language-gradle\">dependencies <span class=\"token punctuation\" >{</span>\n    <span class=\"token comment\" spellcheck=\"true\">// other dependencies</span>\n    compile <span class=\"token string\" >'io.skygear:skygear:+'</span>\n<span class=\"token punctuation\" >}</span></code></pre><h3 id=\"step-2-configuring-container\">Step 2: Configuring container</h3>\n<p>After you have installed the SDK, you must configure\nyour skygear container with the <code>Server EndPoint</code> and <code>API Key</code> you get on\nSkygear Developer Portal <strong>BEFORE</strong> you make any API calls.</p>\n<h4 id=\"option-1-using-skygearapplication-as-custom-application\">Option 1: Using <code>SkygearApplication</code> as custom application</h4>\n<p>Create custom class extends <code>SkygearApplication</code></p>\n<pre><code class=\"language-java\"><span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>SkygearApplication<span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >public</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >MyApplication</span> <span class=\"token keyword\" >extends</span> <span class=\"token class-name\" >SkygearApplication</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> String <span class=\"token function\" >getSkygearEndpoint</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >return</span> <span class=\"token string\" >\"https://&lt;your-app-name>.skygeario.com/\"</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> String <span class=\"token function\" >getApiKey</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >return</span> <span class=\"token string\" >\"&lt;your-api-key>\"</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><p>Update <code>AndroidManifest.xml</code></p>\n<ul>\n<li>add <code>android:name</code> attribute to <code>application</code> tag</li>\n<li>add <code>android.permission.INTERNET</code> permission</li>\n</ul>\n<pre><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>uses-permission</span> <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>name</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>android.permission.INTERNET<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>application</span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>name</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>.MyApplication<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>allowBackup</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>true<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>icon</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>@mipmap/ic_launcher<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>label</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>@string/app_name<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>supportsRtl</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>true<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>theme</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>@style/AppTheme<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token comment\" spellcheck=\"true\">&lt;!-- different activities ... --></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>application</span><span class=\"token punctuation\" >></span></span></code></pre><h4 id=\"option-2-setting-up-when-your-application-starts\">Option 2: Setting up when your application starts</h4>\n<p>If you have your own custom application class, you can set up skygear\nwhen your application starts.</p>\n<pre><code class=\"language-java\"><span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>Container<span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>Configuration<span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >public</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >MyApplication</span> <span class=\"token keyword\" >extends</span> <span class=\"token class-name\" >Application</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >void</span> <span class=\"token function\" >onCreate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >super</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >onCreate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        Configuration config <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Configuration<span class=\"token punctuation\" >.</span>Builder</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >endPoint</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >\"https://&lt;your-app-name>.skygeario.com/\"</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >apiKey</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >\"&lt;your-api-key>\"</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >build</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        Container<span class=\"token punctuation\" >.</span><span class=\"token function\" >defaultContainer</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >configure</span><span class=\"token punctuation\" >(</span>config<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        <span class=\"token comment\" spellcheck=\"true\">// your code...</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><p>Also, you need to make sure your application has grant\n<code>android.permission.INTERNET</code> permission in <code>AndroidManifest.xml</code>.</p>\n<pre><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>uses-permission</span> <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>name</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>android.permission.INTERNET<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span></code></pre>";
 
 /***/ },
-/* 89 */
+/* 91 */
 /***/ function(module, exports) {
 
 	module.exports = "<p>Following the steps below will help you set up a new scaffolding project with\nSkygear JS SDK. React.js, Babel 6 and Webpack are also automatically\nincluded and configured.</p>\n<h3 id=\"step-1-installing-node-js\">Step 1: Installing Node.js</h3>\n<p>We recommend setting up the build system using <a href=\"https://nodejs.org\">Node.js</a>.\nTo install <code>node</code> and package manager <code>npm</code>, simply do:</p>\n<pre><code class=\"language-bash\"><span class=\"token comment\" spellcheck=\"true\"># for MacOS</span>\nbrew <span class=\"token function\" >install</span> node\n\n<span class=\"token comment\" spellcheck=\"true\"># for Debian/Ubuntu</span>\ncurl -sL https://deb.nodesource.com/setup_6.x <span class=\"token operator\" >|</span> <span class=\"token function\" >sudo</span> -E <span class=\"token function\" >bash</span> -\n<span class=\"token function\" >sudo</span> <span class=\"token function\" >apt-get</span> <span class=\"token function\" >install</span> -y nodejs</code></pre><p>If you are using a different operating system, please see this\n<a href=\"https://nodejs.org/en/download\">page</a> for installing Node.js.\nIf bash shell is not available on your machine (such as Windows),\nwe recommend using <a href=\"https://git-scm.com/downloads\">GitBash</a>.</p>\n<h3 id=\"step-2-installing-and-running-yeoman-generator\">Step 2: Installing and running yeoman generator</h3>\n<p>After Node.js is installed, we suggest using <a href=\"http://yeoman.io/\">Yeoman</a> to\ndynamically generate your project. Make use you have your Skygear\n<code>Server EndPoint</code> and <code>API Key</code> ready before you proceed.</p>\n<pre><code class=\"language-bash\"><span class=\"token comment\" spellcheck=\"true\"># install yeoman and skygear generator globally</span>\nnpm <span class=\"token function\" >install</span> -g yo\nnpm <span class=\"token function\" >install</span> -g generator-skygear\n\n<span class=\"token comment\" spellcheck=\"true\"># create your project folder</span>\n<span class=\"token function\" >mkdir</span> new-skygear-project\n<span class=\"token function\" >cd</span> new-skygear-project\n\n<span class=\"token comment\" spellcheck=\"true\"># generate your project</span>\nyo skygear</code></pre><h3 id=\"step-3-answering-the-questions-for-generator\">Step 3: Answering the questions for generator</h3>\n<p>You will then be prompted a few questions, please make sure that you\nanswer these questions correctly:</p>\n<ul>\n<li>What is your skygear endpoint?</li>\n<li>What is your skygear API key?</li>\n<li>Please choose your application name?</li>\n<li>Overwrite <code>&lt;some-path&gt;/&lt;some-file&gt;.js</code>? (confirm to overwrite)</li>\n</ul>\n<h3 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h3>\n<p>Congratulations, you have your first skygear web project set up!\n<a href=\"https://facebook.github.io/react/\">React.js</a>, <a href=\"https://babeljs.io/\">Babel</a>\nand <a href=\"https://webpack.github.io/\">Webpack</a> are automatically included for you.\nTo launch your first application, simply do <code>npm start</code>.</p>\n<p><a name=\"whats-next\"></a></p>\n<h2 id=\"what-s-next\">What&#39;s Next</h2>\n<p>Now you&#39;ve learned how to start developing with Skygear, check out the SDK docs to learn some of the concepts behind Skygear:</p>\n<ul>\n<li>Learn to make <a href=\"/js/guide/users\">Authentication</a></li>\n<li>Learn to CRUD <a href=\"/js/guide/record\">Records</a></li>\n<li>Learn to make <a href=\"/js/guide/query\">Queries</a></li>\n<li>Take a <a href=\"/js/guide/quick-glance\">Quick Glance</a> at SDK</li>\n</ul>\n";
 
 /***/ },
-/* 90 */
+/* 92 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3 id=\"step-1-installing-sdk\">Step 1: Installing SDK</h3>\n<h4 id=\"scenario-1-html5-project\">Scenario 1: HTML5 project</h4>\n<pre><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span> <span class=\"token attr-name\" >src</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>//code.skygear.io/js/polyfill/latest/polyfill.min.js<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" ></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span> <span class=\"token attr-name\" >src</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>//code.skygear.io/js/skygear/latest/skygear.min.js<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" ></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" > console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span>skygear<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">// it's here! </span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span></code></pre><h4 id=\"scenario-2-node-js-project\">Scenario 2: Node.js project</h4>\n<p>Skygear JS SDK can be directly used in Node.js environment. Simply install it\nvia <a href=\"https://www.npmjs.com\">npm</a> and require it in your project.</p>\n<pre><code class=\"language-bash\">npm <span class=\"token function\" >install</span> skygear --save</code></pre><p>Using <a href=\"https://babeljs.io/\">Babel</a> with ES6 syntax is recommended (but not\nrequired).</p>\n<pre><code class=\"language-javascript\"><span class=\"token keyword\" >import</span> skygear <span class=\"token keyword\" >from</span> <span class=\"token string\" >'skygear'</span><span class=\"token punctuation\" >;</span></code></pre><p>If you are using Node.js v0.12 or before, please make sure that\nyou require <a href=\"https://babeljs.io/docs/usage/polyfill/\">Babel Polyfill</a>.</p>\n<pre><code class=\"language-javascript\"><span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'babel-polyfill'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >var</span> skygear <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'skygear'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span></code></pre><h4 id=\"scenario-3-for-webpack-project\">Scenario 3: For webpack project</h4>\n<p>If you wish to use <a href=\"https://webpack.github.io/\">webpack</a> to bundle up your\nfront end JavaScript code together with Skygear JS SDK, simply modify your\nwebpack configuration file (by default <code>webpack.config.js</code>) to include the\nfollowing:</p>\n<pre><code class=\"language-javascript\">module<span class=\"token punctuation\" >.</span>exports <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token comment\" spellcheck=\"true\">/* your own configurations */</span>\n  externals<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token string\" >'react-native'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'undefined'</span><span class=\"token punctuation\" >,</span>  <span class=\"token comment\" spellcheck=\"true\">// don't include react-native</span>\n    <span class=\"token string\" >'websocket'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'undefined'</span>      <span class=\"token comment\" spellcheck=\"true\">// don't include node.js websocket</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><p>Then you can <code>require(&#39;skygear&#39;)</code> in your front end code. You are also welcomed\nto use bundler of your choice, but bear in mind that you need to &quot;exclude&quot;\nReact Native and Node.js Websocket. Also, Skygear JS SDK needs\n<a href=\"https://babeljs.io/docs/usage/polyfill/\">Babel Polyfill</a>.</p>\n<h4 id=\"scenario-4-for-react-native-project\">Scenario 4: For React Native project</h4>\n<p>The SDK works with <a href=\"https://facebook.github.io/react-native/\">React Native</a>\nwell. Simply do <code>npm install --save skygear</code> and then you can\n<code>import skygear from &#39;skygear&#39;</code> in your <code>index.ios.js</code> and <code>index.android.js</code>.</p>\n<p><a name=\"set-up-app\"></a></p>\n<h3 id=\"step-2-configuring-container\">Step 2: Configuring container</h3>\n<p>In all usage scenario after you have installed the SDK, you must configure your\nskygear container (<code>skygear</code>) with the <code>Server EndPoint</code> and <code>API Key</code> you get\non Skygear Developer Portal <strong>BEFORE</strong> you make any API calls.</p>\n<pre><code class=\"language-javascript\">skygear<span class=\"token punctuation\" >.</span><span class=\"token function\" >config</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  <span class=\"token string\" >'endPoint'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'https://&lt;your-app-name>.skygeario.com/'</span><span class=\"token punctuation\" >,</span> <span class=\"token comment\" spellcheck=\"true\">// trailing slash is required</span>\n  <span class=\"token string\" >'apiKey'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'&lt;your-api-key>'</span><span class=\"token punctuation\" >,</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >then</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n  console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'skygear container is now ready'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >(</span>error<span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n  console<span class=\"token punctuation\" >.</span><span class=\"token function\" >error</span><span class=\"token punctuation\" >(</span>error<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span></code></pre>";

@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var markdownRenderer = require('./markdown-renderer.js');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
 
   module: {
     loaders: [

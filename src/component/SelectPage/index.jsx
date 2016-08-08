@@ -1,6 +1,6 @@
 
 import React from 'react';
-import radium, { StyleRoot } from 'radium';
+import radium from 'radium';
 
 import Style from './style.js';
 import IconIos from '../../img/icon-ios.svg';
@@ -26,28 +26,26 @@ const RadiumPlatformOption = radium(PlatformOption);
 export default function SelectPage({ sdk, setSDK, setProject }) {
   const platformProps = { Style, Icon, sdk, setSDK, setProject };
   return (
-    <StyleRoot>
-      <RadiumSelectPlatform Style={Style} >
-        <RadiumPlatformOption
-          {...platformProps}
-          targetSDK="ios"
-          title="iOS"
-          desc="Build an app for iPhone, iPad and Apple Watch"
-        />
-        <RadiumPlatformOption
-          {...platformProps}
-          targetSDK="android"
-          title="Android"
-          desc="Build an app for Android devices"
-        />
-        <RadiumPlatformOption
-          {...platformProps}
-          targetSDK="js"
-          title="Web"
-          desc="Develop cross platfrom browser-based app"
-        />
-      </RadiumSelectPlatform>
-    </StyleRoot>
+    <RadiumSelectPlatform Style={Style} >
+      <RadiumPlatformOption
+        {...platformProps}
+        targetSDK="ios"
+        title="iOS"
+        desc="Build an app for iPhone, iPad and Apple Watch"
+      />
+      <RadiumPlatformOption
+        {...platformProps}
+        targetSDK="android"
+        title="Android"
+        desc="Build an app for Android devices"
+      />
+      <RadiumPlatformOption
+        {...platformProps}
+        targetSDK="js"
+        title="Web"
+        desc="Develop cross platfrom browser-based app"
+      />
+    </RadiumSelectPlatform>
   );
 }
 
