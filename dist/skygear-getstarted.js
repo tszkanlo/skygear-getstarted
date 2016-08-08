@@ -243,10 +243,10 @@ module.exports =
 
 	exports = module.exports = __webpack_require__(3)();
 	// imports
-
+	exports.push([module.id, "@import url(//fonts.googleapis.com/css?family=Lato:400,700);", ""]);
 
 	// module
-	exports.push([module.id, "@font-face {\n  font-family: 'Lato';\n  font-style: normal;\n  font-weight: 400;\n  src: local('Lato Regular'), local('Lato-Regular'), url(http://fonts.gstatic.com/s/lato/v11/v0SdcGFAl2aezM9Vq_aFTQ.ttf) format('truetype');\n}\n@font-face {\n  font-family: 'Lato';\n  font-style: normal;\n  font-weight: 700;\n  src: local('Lato Bold'), local('Lato-Bold'), url(http://fonts.gstatic.com/s/lato/v11/DvlFBScY1r-FMtZSYIYoYw.ttf) format('truetype');\n}\n", ""]);
+	exports.push([module.id, "\n", ""]);
 
 	// exports
 
@@ -5622,7 +5622,8 @@ module.exports =
 	          return [ children[4] ];
 	        }.call(this))), React.DOM.a.apply(React.DOM, [ {
 	          style: [ Style.docLink ],
-	          href: docLink
+	          href: docLink,
+	          target: "_blank"
 	        } ].concat(function() {
 	          return [ "Read our Doc" ];
 	        }.call(this))) ];
