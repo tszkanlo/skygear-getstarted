@@ -23,13 +23,20 @@ import GuideHeader from './GuideHeader.jade';
 const RadiumTabItem = radium(TabItem);
 const RadiumGuideHeader = radium(GuideHeader);
 
-export default function GuidePage({ sdk, project, guideContent, setSDK, setProject }) {
+export default function GuidePage({
+  sdk, project, hideSDKTabs, guideContent, setSDK, setProject,
+}) {
   const sdkTabProps = { Style, Icon, current: sdk, update: setSDK };
   const projectTabProps = { Style, Icon, current: project, update: setProject };
   const docLink = `https://docs.skygear.io/${sdk}/guide`;
   return (
     <div style={Style.guidePage}>
-      <RadiumGuideHeader Style={Style} docLink={docLink} window={window} >
+      <RadiumGuideHeader
+        Style={Style}
+        docLink={docLink}
+        window={window}
+        hideSDKTabs={hideSDKTabs}
+      >
         <RadiumTabItem {...sdkTabProps} target="ios" name="iOS" />
         <RadiumTabItem {...sdkTabProps} target="android" name="Android" />
         <RadiumTabItem {...sdkTabProps} target="js" name="Web" />
@@ -51,4 +58,5 @@ GuidePage.propTypes = {
   guideContent: React.PropTypes.string.isRequired,
   setSDK: React.PropTypes.func.isRequired,
   setProject: React.PropTypes.func.isRequired,
+  hideSDKTabs: React.PropTypes.bool,
 };

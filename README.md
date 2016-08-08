@@ -12,9 +12,11 @@
 import SkygearGetStarted from 'skygear-getstarted';
 
 // Usage:
-<SkygearGetStarted />                           // select SDK page
-<SkygearGetStarted sdk="ios" />                 // select project type page
-<SkygearGetStarted sdk="ios" project="new" />   // project page
+<SkygearGetStarted />                                       // selection page
+<SkygearGetStarted sdk="ios" />                             // guide page (project: 'new')
+<SkygearGetStarted sdk="ios" project="new" />               // guide page
+<SkygearGetStarted sdk="ios" project="new" hideSDKTabs />   // guide page (hidden SDK tabs)
+
 
 // Throws Error:
 <SkygearGetStarted sdk="none" />                // non-existent SDK

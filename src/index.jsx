@@ -31,7 +31,8 @@ const Page = {
 export default class GetStarted extends React.Component {
   constructor(props) {
     super(props);
-    const { sdk, project } = props;
+    const { sdk, hideSDKTabs } = props;
+    let { project } = props;
     if (!sdk && project) {
       throw Error('[skygear-getstarted] Error: SDK not specified');
     }
@@ -41,12 +42,15 @@ export default class GetStarted extends React.Component {
     if (project && !Page[sdk][project]) {
       throw Error(`[skygear-getstarted] No such project: ${project}`);
     }
-    this.state = props;
+    if (sdk && !project) {
+      project = 'new';
+    }
+    this.state = { sdk, project, hideSDKTabs };
   }
 
   render() {
     const self = this;
-    const { sdk, project } = this.state;
+    const { sdk, project, hideSDKTabs } = this.state;
     const guideContent = Page[sdk] && Page[sdk][project];
     const Template = (guideContent) ? GuidePage : SelectPage;
     return (
@@ -54,6 +58,7 @@ export default class GetStarted extends React.Component {
         <Template
           sdk={sdk}
           project={project}
+          hideSDKTabs={hideSDKTabs}
           guideContent={guideContent}
           setSDK={(targetSDK) => self.setState({ sdk: targetSDK })}
           setProject={(targetProject) => self.setState({ project: targetProject })}
@@ -66,4 +71,5 @@ export default class GetStarted extends React.Component {
 GetStarted.propTypes = {
   sdk: React.PropTypes.string,
   project: React.PropTypes.string,
+  hideSDKTabs: React.PropTypes.bool,
 };

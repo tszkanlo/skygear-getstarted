@@ -150,6 +150,7 @@ module.exports =
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GetStarted).call(this, props));
 
 	    var sdk = props.sdk;
+	    var hideSDKTabs = props.hideSDKTabs;
 	    var project = props.project;
 
 	    if (!sdk && project) {
@@ -161,7 +162,10 @@ module.exports =
 	    if (project && !Page[sdk][project]) {
 	      throw Error('[skygear-getstarted] No such project: ' + project);
 	    }
-	    _this.state = props;
+	    if (sdk && !project) {
+	      project = 'new';
+	    }
+	    _this.state = { sdk: sdk, project: project, hideSDKTabs: hideSDKTabs };
 	    return _this;
 	  }
 
@@ -172,6 +176,7 @@ module.exports =
 	      var _state = this.state;
 	      var sdk = _state.sdk;
 	      var project = _state.project;
+	      var hideSDKTabs = _state.hideSDKTabs;
 
 	      var guideContent = Page[sdk] && Page[sdk][project];
 	      var Template = guideContent ? _GuidePage2.default : _SelectPage2.default;
@@ -181,6 +186,7 @@ module.exports =
 	        _react2.default.createElement(Template, {
 	          sdk: sdk,
 	          project: project,
+	          hideSDKTabs: hideSDKTabs,
 	          guideContent: guideContent,
 	          setSDK: function setSDK(targetSDK) {
 	            return self.setState({ sdk: targetSDK });
@@ -201,7 +207,8 @@ module.exports =
 
 	GetStarted.propTypes = {
 	  sdk: _react2.default.PropTypes.string,
-	  project: _react2.default.PropTypes.string
+	  project: _react2.default.PropTypes.string,
+	  hideSDKTabs: _react2.default.PropTypes.bool
 	};
 
 /***/ },
@@ -5366,6 +5373,7 @@ module.exports =
 	function GuidePage(_ref) {
 	  var sdk = _ref.sdk;
 	  var project = _ref.project;
+	  var hideSDKTabs = _ref.hideSDKTabs;
 	  var guideContent = _ref.guideContent;
 	  var setSDK = _ref.setSDK;
 	  var setProject = _ref.setProject;
@@ -5378,7 +5386,12 @@ module.exports =
 	    { style: _style2.default.guidePage },
 	    _react2.default.createElement(
 	      RadiumGuideHeader,
-	      { Style: _style2.default, docLink: docLink, window: window },
+	      {
+	        Style: _style2.default,
+	        docLink: docLink,
+	        window: window,
+	        hideSDKTabs: hideSDKTabs
+	      },
 	      _react2.default.createElement(RadiumTabItem, _extends({}, sdkTabProps, { target: 'ios', name: 'iOS' })),
 	      _react2.default.createElement(RadiumTabItem, _extends({}, sdkTabProps, { target: 'android', name: 'Android' })),
 	      _react2.default.createElement(RadiumTabItem, _extends({}, sdkTabProps, { target: 'js', name: 'Web' })),
@@ -5398,7 +5411,8 @@ module.exports =
 	  project: _react2.default.PropTypes.string.isRequired,
 	  guideContent: _react2.default.PropTypes.string.isRequired,
 	  setSDK: _react2.default.PropTypes.func.isRequired,
-	  setProject: _react2.default.PropTypes.func.isRequired
+	  setProject: _react2.default.PropTypes.func.isRequired,
+	  hideSDKTabs: _react2.default.PropTypes.bool
 	};
 
 /***/ },
@@ -5565,17 +5579,20 @@ module.exports =
 	var React = __webpack_require__(7);
 	module.exports= function (locals) {  var window = "window" in locals ? locals.window : jade_globals_window;
 	  var Style = "Style" in locals ? locals.Style : jade_globals_Style;
+	  var hideSDKTabs = "hideSDKTabs" in locals ? locals.hideSDKTabs : jade_globals_hideSDKTabs;
 	  var children = "children" in locals ? locals.children : jade_globals_children;
 	  var docLink = "docLink" in locals ? locals.docLink : jade_globals_docLink;
 	  return function() {
 	    var tags = [];
 	    "docs.skygear.io" === window.location.hostname ? Style.Hide : {};
 	    tags.push(React.DOM.header.apply(React.DOM, [ {} ].concat(function() {
-	      return [ React.DOM.h4.apply(React.DOM, [ {
+	      var tags = [];
+	      tags.push(React.DOM.h4.apply(React.DOM, [ {
 	        style: [ Style.tagline ]
 	      } ].concat(function() {
 	        return [ "GET STARTED" ];
-	      }.call(this))), React.DOM.nav.apply(React.DOM, [ {
+	      }.call(this))));
+	      hideSDKTabs || tags.push(React.DOM.nav.apply(React.DOM, [ {
 	        style: [ Style.platform.row ]
 	      } ].concat(function() {
 	        return [ React.DOM.div.apply(React.DOM, [ {
@@ -5591,7 +5608,8 @@ module.exports =
 	        } ].concat(function() {
 	          return [ children[2] ];
 	        }.call(this))) ];
-	      }.call(this))), React.DOM.nav.apply(React.DOM, [ {
+	      }.call(this))));
+	      tags.push(React.DOM.nav.apply(React.DOM, [ {
 	        style: [ Style.project.row ]
 	      } ].concat(function() {
 	        return [ React.DOM.div.apply(React.DOM, [ {
@@ -5608,7 +5626,8 @@ module.exports =
 	        } ].concat(function() {
 	          return [ "Read our Doc" ];
 	        }.call(this))) ];
-	      }.call(this))) ];
+	      }.call(this))));
+	      return tags;
 	    }.call(this))));
 	    if (1 === tags.length) return tags.pop();
 	    tags.unshift({});
