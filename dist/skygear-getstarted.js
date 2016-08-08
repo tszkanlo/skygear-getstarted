@@ -5584,7 +5584,7 @@ module.exports =
 	  var docLink = "docLink" in locals ? locals.docLink : jade_globals_docLink;
 	  return function() {
 	    var tags = [];
-	    "docs.skygear.io" === window.location.hostname ? Style.Hide : {};
+	    window && "docs.skygear.io" !== window.location.hostname ? {} : Style.Hide;
 	    tags.push(React.DOM.header.apply(React.DOM, [ {} ].concat(function() {
 	      var tags = [];
 	      tags.push(React.DOM.h4.apply(React.DOM, [ {
