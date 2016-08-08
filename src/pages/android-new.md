@@ -47,4 +47,4 @@ can manually change the configurations as well.
 Congratulations, you have your first skygear Android project set up! You
 can now launch your App on the emulator and it should look like the following:
 
-[![Screenshot: android scaffolding app preview](/assets/android/android-app-preview.png)](/assets/android/android-app-preview.png)
+[![Screenshot: android scaffolding app preview](https://docs.skygear.io/assets/android/android-app-preview.png)](https://docs.skygear.io/assets/android/android-app-preview.png)
