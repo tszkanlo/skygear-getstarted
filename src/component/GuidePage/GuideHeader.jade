@@ -1,5 +1,5 @@
 
-- const HideOnDocSite = (window.location.hostname === 'docs.skygear.io')? Style.Hide: {};
+- const HideOnDocSite = ( !window || window.location.hostname === 'docs.skygear.io')? Style.Hide: {};
 
 header
   h4(style=[ Style.tagline ]) GET STARTED
