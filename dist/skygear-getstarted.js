@@ -5249,28 +5249,30 @@ module.exports =
 	    const HideOnDocSite = "" === docLink ? Style.Hide : {};
 	    tags.push(React.DOM.header.apply(React.DOM, [ {} ].concat(function() {
 	      var tags = [];
-	      tags.push(React.DOM.h4.apply(React.DOM, [ {
-	        style: [ Style.tagline ]
-	      } ].concat(function() {
-	        return [ "GET STARTED" ];
-	      }.call(this))));
-	      hideSDKTabs || tags.push(React.DOM.nav.apply(React.DOM, [ {
-	        style: [ Style.platform.row ]
-	      } ].concat(function() {
-	        return [ React.DOM.div.apply(React.DOM, [ {
-	          style: [ Style.platform.item ]
+	      if (!hideSDKTabs) {
+	        tags.push(React.DOM.h4.apply(React.DOM, [ {
+	          style: [ Style.tagline ]
 	        } ].concat(function() {
-	          return [ children[0] ];
-	        }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	          style: [ Style.platform.item ]
+	          return [ "GET STARTED" ];
+	        }.call(this))));
+	        tags.push(React.DOM.nav.apply(React.DOM, [ {
+	          style: [ Style.platform.row ]
 	        } ].concat(function() {
-	          return [ children[1] ];
-	        }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	          style: [ Style.platform.item ]
-	        } ].concat(function() {
-	          return [ children[2] ];
-	        }.call(this))) ];
-	      }.call(this))));
+	          return [ React.DOM.div.apply(React.DOM, [ {
+	            style: [ Style.platform.item ]
+	          } ].concat(function() {
+	            return [ children[0] ];
+	          }.call(this))), React.DOM.div.apply(React.DOM, [ {
+	            style: [ Style.platform.item ]
+	          } ].concat(function() {
+	            return [ children[1] ];
+	          }.call(this))), React.DOM.div.apply(React.DOM, [ {
+	            style: [ Style.platform.item ]
+	          } ].concat(function() {
+	            return [ children[2] ];
+	          }.call(this))) ];
+	        }.call(this))));
+	      }
 	      tags.push(React.DOM.nav.apply(React.DOM, [ {
 	        style: [ Style.project.row ]
 	      } ].concat(function() {

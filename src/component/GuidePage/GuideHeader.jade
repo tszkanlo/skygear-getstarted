@@ -2,8 +2,8 @@
 - const HideOnDocSite = (docLink === '')? Style.Hide: {};
 
 header
-  h4(style=[ Style.tagline ]) GET STARTED
   if !hideSDKTabs
+    h4(style=[ Style.tagline ]) GET STARTED
     nav(style=[ Style.platform.row ])
       div(style=[ Style.platform.item ])= children[0]
       div(style=[ Style.platform.item ])= children[1]
