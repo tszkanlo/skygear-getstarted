@@ -76,45 +76,41 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(1);
-
-	__webpack_require__(5);
-
-	var _react = __webpack_require__(7);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _radium = __webpack_require__(8);
+	var _radium = __webpack_require__(2);
 
-	var _SelectPage = __webpack_require__(71);
+	var _SelectPage = __webpack_require__(65);
 
 	var _SelectPage2 = _interopRequireDefault(_SelectPage);
 
-	var _GuidePage = __webpack_require__(81);
+	var _GuidePage = __webpack_require__(75);
 
 	var _GuidePage2 = _interopRequireDefault(_GuidePage);
 
-	var _iosNew = __webpack_require__(87);
+	var _iosNew = __webpack_require__(82);
 
 	var _iosNew2 = _interopRequireDefault(_iosNew);
 
-	var _iosExisting = __webpack_require__(88);
+	var _iosExisting = __webpack_require__(83);
 
 	var _iosExisting2 = _interopRequireDefault(_iosExisting);
 
-	var _androidNew = __webpack_require__(89);
+	var _androidNew = __webpack_require__(84);
 
 	var _androidNew2 = _interopRequireDefault(_androidNew);
 
-	var _androidExisting = __webpack_require__(90);
+	var _androidExisting = __webpack_require__(85);
 
 	var _androidExisting2 = _interopRequireDefault(_androidExisting);
 
-	var _jsNew = __webpack_require__(91);
+	var _jsNew = __webpack_require__(86);
 
 	var _jsNew2 = _interopRequireDefault(_jsNew);
 
-	var _jsExisting = __webpack_require__(92);
+	var _jsExisting = __webpack_require__(87);
 
 	var _jsExisting2 = _interopRequireDefault(_jsExisting);
 
@@ -178,11 +174,13 @@ module.exports =
 	      var project = _state.project;
 	      var hideSDKTabs = _state.hideSDKTabs;
 
+	      var fontCSS = '@import url("//fonts.googleapis.com/css?family=Lato:400,700");';
 	      var guideContent = Page[sdk] && Page[sdk][project];
 	      var Template = guideContent ? _GuidePage2.default : _SelectPage2.default;
 	      return _react2.default.createElement(
 	        _radium.StyleRoot,
 	        null,
+	        _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: fontCSS } }),
 	        _react2.default.createElement(Template, {
 	          sdk: sdk,
 	          project: project,
@@ -213,399 +211,12 @@ module.exports =
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(2);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./google-fonts-lato-400-700.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./google-fonts-lato-400-700.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-	exports.push([module.id, "@import url(//fonts.googleapis.com/css?family=Lato:400,700);", ""]);
-
-	// module
-	exports.push([module.id, "\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function () {
-		var list = [];
-
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for (var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if (item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-
-		// import a list of modules into the list
-		list.i = function (modules, mediaQuery) {
-			if (typeof modules === "string") modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for (var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if (typeof id === "number") alreadyImportedModules[id] = true;
-			}
-			for (i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if (mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if (mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	var stylesInDom = {},
-		memoize = function(fn) {
-			var memo;
-			return function () {
-				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-				return memo;
-			};
-		},
-		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-		}),
-		getHeadElement = memoize(function () {
-			return document.head || document.getElementsByTagName("head")[0];
-		}),
-		singletonElement = null,
-		singletonCounter = 0,
-		styleElementsInsertedAtTop = [];
-
-	module.exports = function(list, options) {
-		if(false) {
-			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-		}
-
-		options = options || {};
-		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-		// tags it will allow on a page
-		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-		// By default, add <style> tags to the bottom of <head>.
-		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-		var styles = listToStyles(list);
-		addStylesToDom(styles, options);
-
-		return function update(newList) {
-			var mayRemove = [];
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				domStyle.refs--;
-				mayRemove.push(domStyle);
-			}
-			if(newList) {
-				var newStyles = listToStyles(newList);
-				addStylesToDom(newStyles, options);
-			}
-			for(var i = 0; i < mayRemove.length; i++) {
-				var domStyle = mayRemove[i];
-				if(domStyle.refs === 0) {
-					for(var j = 0; j < domStyle.parts.length; j++)
-						domStyle.parts[j]();
-					delete stylesInDom[domStyle.id];
-				}
-			}
-		};
-	}
-
-	function addStylesToDom(styles, options) {
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			if(domStyle) {
-				domStyle.refs++;
-				for(var j = 0; j < domStyle.parts.length; j++) {
-					domStyle.parts[j](item.parts[j]);
-				}
-				for(; j < item.parts.length; j++) {
-					domStyle.parts.push(addStyle(item.parts[j], options));
-				}
-			} else {
-				var parts = [];
-				for(var j = 0; j < item.parts.length; j++) {
-					parts.push(addStyle(item.parts[j], options));
-				}
-				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-			}
-		}
-	}
-
-	function listToStyles(list) {
-		var styles = [];
-		var newStyles = {};
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i];
-			var id = item[0];
-			var css = item[1];
-			var media = item[2];
-			var sourceMap = item[3];
-			var part = {css: css, media: media, sourceMap: sourceMap};
-			if(!newStyles[id])
-				styles.push(newStyles[id] = {id: id, parts: [part]});
-			else
-				newStyles[id].parts.push(part);
-		}
-		return styles;
-	}
-
-	function insertStyleElement(options, styleElement) {
-		var head = getHeadElement();
-		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-		if (options.insertAt === "top") {
-			if(!lastStyleElementInsertedAtTop) {
-				head.insertBefore(styleElement, head.firstChild);
-			} else if(lastStyleElementInsertedAtTop.nextSibling) {
-				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-			} else {
-				head.appendChild(styleElement);
-			}
-			styleElementsInsertedAtTop.push(styleElement);
-		} else if (options.insertAt === "bottom") {
-			head.appendChild(styleElement);
-		} else {
-			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-		}
-	}
-
-	function removeStyleElement(styleElement) {
-		styleElement.parentNode.removeChild(styleElement);
-		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-		if(idx >= 0) {
-			styleElementsInsertedAtTop.splice(idx, 1);
-		}
-	}
-
-	function createStyleElement(options) {
-		var styleElement = document.createElement("style");
-		styleElement.type = "text/css";
-		insertStyleElement(options, styleElement);
-		return styleElement;
-	}
-
-	function createLinkElement(options) {
-		var linkElement = document.createElement("link");
-		linkElement.rel = "stylesheet";
-		insertStyleElement(options, linkElement);
-		return linkElement;
-	}
-
-	function addStyle(obj, options) {
-		var styleElement, update, remove;
-
-		if (options.singleton) {
-			var styleIndex = singletonCounter++;
-			styleElement = singletonElement || (singletonElement = createStyleElement(options));
-			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement(options);
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
-		} else {
-			styleElement = createStyleElement(options);
-			update = applyToTag.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-			};
-		}
-
-		update(obj);
-
-		return function updateStyle(newObj) {
-			if(newObj) {
-				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-					return;
-				update(obj = newObj);
-			} else {
-				remove();
-			}
-		};
-	}
-
-	var replaceText = (function () {
-		var textStore = [];
-
-		return function (index, replacement) {
-			textStore[index] = replacement;
-			return textStore.filter(Boolean).join('\n');
-		};
-	})();
-
-	function applyToSingletonTag(styleElement, index, remove, obj) {
-		var css = remove ? "" : obj.css;
-
-		if (styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = replaceText(index, css);
-		} else {
-			var cssNode = document.createTextNode(css);
-			var childNodes = styleElement.childNodes;
-			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-			if (childNodes.length) {
-				styleElement.insertBefore(cssNode, childNodes[index]);
-			} else {
-				styleElement.appendChild(cssNode);
-			}
-		}
-	}
-
-	function applyToTag(styleElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-
-		if(media) {
-			styleElement.setAttribute("media", media)
-		}
-
-		if(styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = css;
-		} else {
-			while(styleElement.firstChild) {
-				styleElement.removeChild(styleElement.firstChild);
-			}
-			styleElement.appendChild(document.createTextNode(css));
-		}
-	}
-
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var sourceMap = obj.sourceMap;
-
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-		}
-
-		var blob = new Blob([css], { type: "text/css" });
-
-		var oldSrc = linkElement.href;
-
-		linkElement.href = URL.createObjectURL(blob);
-
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
-	}
-
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(6);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../css-loader/index.js!./prism-ghcolors.css", function() {
-				var newContent = require("!!./../../css-loader/index.js!./prism-ghcolors.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "/**\n * GHColors theme by Avi Aryan (http://aviaryan.in)\n * Inspired by Github syntax coloring\n */\n\ncode[class*=\"language-\"],\npre[class*=\"language-\"] {\n    color: #393A34;\n    font-family: \"Consolas\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n    direction: ltr;\n    text-align: left;\n    white-space: pre;\n    word-spacing: normal;\n    word-break: normal;\n    font-size: 0.95em;\n    line-height: 1.2em;\n\n    -moz-tab-size: 4;\n    -o-tab-size: 4;\n    tab-size: 4;\n\n    -webkit-hyphens: none;\n    -moz-hyphens: none;\n    -ms-hyphens: none;\n    hyphens: none;\n}\n\npre[class*=\"language-\"]::-moz-selection, pre[class*=\"language-\"] ::-moz-selection,\ncode[class*=\"language-\"]::-moz-selection, code[class*=\"language-\"] ::-moz-selection {\n    background: #b3d4fc;\n}\n\npre[class*=\"language-\"]::selection, pre[class*=\"language-\"] ::selection,\ncode[class*=\"language-\"]::selection, code[class*=\"language-\"] ::selection {\n    background: #b3d4fc;\n}\n\n/* Code blocks */\npre[class*=\"language-\"] {\n    padding: 1em;\n    margin: .5em 0;\n    overflow: auto;\n    border: 1px solid #dddddd;\n    background-color: white;\n}\n\n:not(pre) > code[class*=\"language-\"],\npre[class*=\"language-\"] {\n}\n\n/* Inline code */\n:not(pre) > code[class*=\"language-\"] {\n    padding: .2em;\n    padding-top: 1px; padding-bottom: 1px;\n    background: #f8f8f8;\n    border: 1px solid #dddddd;\n}\n\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n    color: #999988; font-style: italic;\n}\n\n.token.namespace {\n    opacity: .7;\n}\n\n.token.string,\n.token.attr-value {\n    color: #e3116c;\n}\n.token.punctuation,\n.token.operator {\n    color: #393A34; /* no highlight */\n}\n\n.token.entity,\n.token.url,\n.token.symbol,\n.token.number,\n.token.boolean,\n.token.variable,\n.token.constant,\n.token.property,\n.token.regex,\n.token.inserted {\n    color: #36acaa;\n}\n\n.token.atrule,\n.token.keyword,\n.token.attr-name,\n.language-autohotkey .token.selector {\n    color: #00a4db;\n}\n\n.token.function,\n.token.deleted,\n.language-autohotkey .token.tag {\n    color: #9a050f;\n}\n\n.token.tag,\n.token.selector,\n.language-autohotkey .token.keyword {\n    color: #00009f;\n}\n\n.token.important,\n.token.function,\n.token.bold {\n    font-weight: bold;\n}\n\n.token.italic {\n    font-style: italic;\n}", ""]);
-
-	// exports
-
-
-/***/ },
-/* 7 */
 /***/ function(module, exports) {
 
 	module.exports = require("react");
 
 /***/ },
-/* 8 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -614,31 +225,31 @@ module.exports =
 	  value: true
 	});
 
-	var _enhancer = __webpack_require__(10);
+	var _enhancer = __webpack_require__(4);
 
 	var _enhancer2 = _interopRequireDefault(_enhancer);
 
-	var _plugins = __webpack_require__(55);
+	var _plugins = __webpack_require__(49);
 
 	var _plugins2 = _interopRequireDefault(_plugins);
 
-	var _style = __webpack_require__(67);
+	var _style = __webpack_require__(61);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _styleRoot = __webpack_require__(68);
+	var _styleRoot = __webpack_require__(62);
 
 	var _styleRoot2 = _interopRequireDefault(_styleRoot);
 
-	var _getState = __webpack_require__(51);
+	var _getState = __webpack_require__(45);
 
 	var _getState2 = _interopRequireDefault(_getState);
 
-	var _keyframes = __webpack_require__(70);
+	var _keyframes = __webpack_require__(64);
 
 	var _keyframes2 = _interopRequireDefault(_keyframes);
 
-	var _resolveStyles = __webpack_require__(12);
+	var _resolveStyles = __webpack_require__(6);
 
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
@@ -664,10 +275,10 @@ module.exports =
 
 	exports.default = Radium;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 9 */
+/* 3 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -810,7 +421,7 @@ module.exports =
 	};
 
 /***/ },
-/* 10 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -839,13 +450,13 @@ module.exports =
 
 	exports.default = enhanceWithRadium;
 
-	var _react = __webpack_require__(7);
+	var _react = __webpack_require__(1);
 
-	var _styleKeeper = __webpack_require__(11);
+	var _styleKeeper = __webpack_require__(5);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
-	var _resolveStyles = __webpack_require__(12);
+	var _resolveStyles = __webpack_require__(6);
 
 	var _resolveStyles2 = _interopRequireDefault(_resolveStyles);
 
@@ -1024,10 +635,10 @@ module.exports =
 	  return RadiumEnhancer;
 	}
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 11 */
+/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1103,7 +714,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 12 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -1130,37 +741,37 @@ module.exports =
 	  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
 	};
 
-	var _appendImportantToEachValue = __webpack_require__(13);
+	var _appendImportantToEachValue = __webpack_require__(7);
 
 	var _appendImportantToEachValue2 = _interopRequireDefault(_appendImportantToEachValue);
 
-	var _cssRuleSetToString = __webpack_require__(16);
+	var _cssRuleSetToString = __webpack_require__(10);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
-	var _getState = __webpack_require__(51);
+	var _getState = __webpack_require__(45);
 
 	var _getState2 = _interopRequireDefault(_getState);
 
-	var _getStateKey = __webpack_require__(52);
+	var _getStateKey = __webpack_require__(46);
 
 	var _getStateKey2 = _interopRequireDefault(_getStateKey);
 
-	var _hash = __webpack_require__(53);
+	var _hash = __webpack_require__(47);
 
 	var _hash2 = _interopRequireDefault(_hash);
 
-	var _mergeStyles = __webpack_require__(54);
+	var _mergeStyles = __webpack_require__(48);
 
-	var _plugins = __webpack_require__(55);
+	var _plugins = __webpack_require__(49);
 
 	var _plugins2 = _interopRequireDefault(_plugins);
 
-	var _exenv = __webpack_require__(65);
+	var _exenv = __webpack_require__(59);
 
 	var _exenv2 = _interopRequireDefault(_exenv);
 
-	var _react = __webpack_require__(7);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
@@ -1478,10 +1089,10 @@ module.exports =
 
 	exports.default = resolveStyles;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 13 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1491,11 +1102,11 @@ module.exports =
 	});
 	exports.default = appendImportantToEachValue;
 
-	var _appendPxIfNeeded = __webpack_require__(14);
+	var _appendPxIfNeeded = __webpack_require__(8);
 
 	var _appendPxIfNeeded2 = _interopRequireDefault(_appendPxIfNeeded);
 
-	var _mapObject = __webpack_require__(15);
+	var _mapObject = __webpack_require__(9);
 
 	var _mapObject2 = _interopRequireDefault(_mapObject);
 
@@ -1511,7 +1122,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 14 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1564,7 +1175,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 15 */
+/* 9 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1582,7 +1193,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 16 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1592,19 +1203,19 @@ module.exports =
 	});
 	exports.default = cssRuleSetToString;
 
-	var _appendPxIfNeeded = __webpack_require__(14);
+	var _appendPxIfNeeded = __webpack_require__(8);
 
 	var _appendPxIfNeeded2 = _interopRequireDefault(_appendPxIfNeeded);
 
-	var _camelCasePropsToDashCase = __webpack_require__(17);
+	var _camelCasePropsToDashCase = __webpack_require__(11);
 
 	var _camelCasePropsToDashCase2 = _interopRequireDefault(_camelCasePropsToDashCase);
 
-	var _mapObject = __webpack_require__(15);
+	var _mapObject = __webpack_require__(9);
 
 	var _mapObject2 = _interopRequireDefault(_mapObject);
 
-	var _prefixer = __webpack_require__(18);
+	var _prefixer = __webpack_require__(12);
 
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
@@ -1633,7 +1244,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 17 */
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1672,7 +1283,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 18 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {'use strict';
@@ -1697,7 +1308,7 @@ module.exports =
 	exports.getPrefixedKeyframes = getPrefixedKeyframes;
 	exports.getPrefixedStyle = getPrefixedStyle;
 
-	var _inlineStylePrefixer = __webpack_require__(19);
+	var _inlineStylePrefixer = __webpack_require__(13);
 
 	var _inlineStylePrefixer2 = _interopRequireDefault(_inlineStylePrefixer);
 
@@ -1761,10 +1372,10 @@ module.exports =
 	  var prefixedStyle = prefixer.prefix(styleWithFallbacks);
 	  return prefixedStyle;
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(9)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(3)))
 
 /***/ },
-/* 19 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1793,61 +1404,61 @@ module.exports =
 	  }
 	}
 
-	var _inlineStylePrefixAll = __webpack_require__(20);
+	var _inlineStylePrefixAll = __webpack_require__(14);
 
 	var _inlineStylePrefixAll2 = _interopRequireDefault(_inlineStylePrefixAll);
 
-	var _utilsGetBrowserInformation = __webpack_require__(35);
+	var _utilsGetBrowserInformation = __webpack_require__(29);
 
 	var _utilsGetBrowserInformation2 = _interopRequireDefault(_utilsGetBrowserInformation);
 
-	var _utilsGetPrefixedKeyframes = __webpack_require__(37);
+	var _utilsGetPrefixedKeyframes = __webpack_require__(31);
 
 	var _utilsGetPrefixedKeyframes2 = _interopRequireDefault(_utilsGetPrefixedKeyframes);
 
-	var _utilsCapitalizeString = __webpack_require__(38);
+	var _utilsCapitalizeString = __webpack_require__(32);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsAssign = __webpack_require__(39);
+	var _utilsAssign = __webpack_require__(33);
 
 	var _utilsAssign2 = _interopRequireDefault(_utilsAssign);
 
-	var _prefixProps = __webpack_require__(40);
+	var _prefixProps = __webpack_require__(34);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _pluginsCalc = __webpack_require__(41);
+	var _pluginsCalc = __webpack_require__(35);
 
 	var _pluginsCalc2 = _interopRequireDefault(_pluginsCalc);
 
-	var _pluginsCursor = __webpack_require__(43);
+	var _pluginsCursor = __webpack_require__(37);
 
 	var _pluginsCursor2 = _interopRequireDefault(_pluginsCursor);
 
-	var _pluginsFlex = __webpack_require__(44);
+	var _pluginsFlex = __webpack_require__(38);
 
 	var _pluginsFlex2 = _interopRequireDefault(_pluginsFlex);
 
-	var _pluginsSizing = __webpack_require__(45);
+	var _pluginsSizing = __webpack_require__(39);
 
 	var _pluginsSizing2 = _interopRequireDefault(_pluginsSizing);
 
-	var _pluginsGradient = __webpack_require__(46);
+	var _pluginsGradient = __webpack_require__(40);
 
 	var _pluginsGradient2 = _interopRequireDefault(_pluginsGradient);
 
-	var _pluginsTransition = __webpack_require__(47);
+	var _pluginsTransition = __webpack_require__(41);
 
 	var _pluginsTransition2 = _interopRequireDefault(_pluginsTransition);
 
 	// special flexbox specifications
 
-	var _pluginsFlexboxIE = __webpack_require__(49);
+	var _pluginsFlexboxIE = __webpack_require__(43);
 
 	var _pluginsFlexboxIE2 = _interopRequireDefault(_pluginsFlexboxIE);
 
-	var _pluginsFlexboxOld = __webpack_require__(50);
+	var _pluginsFlexboxOld = __webpack_require__(44);
 
 	var _pluginsFlexboxOld2 = _interopRequireDefault(_pluginsFlexboxOld);
 
@@ -1981,7 +1592,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 20 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1995,49 +1606,49 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _prefixProps = __webpack_require__(21);
+	var _prefixProps = __webpack_require__(15);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _utilsCapitalizeString = __webpack_require__(22);
+	var _utilsCapitalizeString = __webpack_require__(16);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsAssign = __webpack_require__(23);
+	var _utilsAssign = __webpack_require__(17);
 
 	var _utilsAssign2 = _interopRequireDefault(_utilsAssign);
 
-	var _pluginsCalc = __webpack_require__(24);
+	var _pluginsCalc = __webpack_require__(18);
 
 	var _pluginsCalc2 = _interopRequireDefault(_pluginsCalc);
 
-	var _pluginsCursor = __webpack_require__(28);
+	var _pluginsCursor = __webpack_require__(22);
 
 	var _pluginsCursor2 = _interopRequireDefault(_pluginsCursor);
 
-	var _pluginsFlex = __webpack_require__(29);
+	var _pluginsFlex = __webpack_require__(23);
 
 	var _pluginsFlex2 = _interopRequireDefault(_pluginsFlex);
 
-	var _pluginsSizing = __webpack_require__(30);
+	var _pluginsSizing = __webpack_require__(24);
 
 	var _pluginsSizing2 = _interopRequireDefault(_pluginsSizing);
 
-	var _pluginsGradient = __webpack_require__(31);
+	var _pluginsGradient = __webpack_require__(25);
 
 	var _pluginsGradient2 = _interopRequireDefault(_pluginsGradient);
 
-	var _pluginsTransition = __webpack_require__(32);
+	var _pluginsTransition = __webpack_require__(26);
 
 	var _pluginsTransition2 = _interopRequireDefault(_pluginsTransition);
 
 	// special flexbox specifications
 
-	var _pluginsFlexboxIE = __webpack_require__(33);
+	var _pluginsFlexboxIE = __webpack_require__(27);
 
 	var _pluginsFlexboxIE2 = _interopRequireDefault(_pluginsFlexboxIE);
 
-	var _pluginsFlexboxOld = __webpack_require__(34);
+	var _pluginsFlexboxOld = __webpack_require__(28);
 
 	var _pluginsFlexboxOld2 = _interopRequireDefault(_pluginsFlexboxOld);
 
@@ -2077,7 +1688,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 21 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2089,7 +1700,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 22 */
+/* 16 */
 /***/ function(module, exports) {
 
 	// helper to capitalize strings
@@ -2106,7 +1717,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 23 */
+/* 17 */
 /***/ function(module, exports) {
 
 	// leight polyfill for Object.assign
@@ -2127,7 +1738,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 24 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2141,11 +1752,11 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsJoinPrefixedRules = __webpack_require__(25);
+	var _utilsJoinPrefixedRules = __webpack_require__(19);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
-	var _utilsIsPrefixedValue = __webpack_require__(27);
+	var _utilsIsPrefixedValue = __webpack_require__(21);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
@@ -2162,7 +1773,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 25 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2183,7 +1794,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _camelToDashCase = __webpack_require__(26);
+	var _camelToDashCase = __webpack_require__(20);
 
 	var _camelToDashCase2 = _interopRequireDefault(_camelToDashCase);
 
@@ -2203,7 +1814,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 26 */
+/* 20 */
 /***/ function(module, exports) {
 
 	/**
@@ -2225,7 +1836,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 27 */
+/* 21 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2243,7 +1854,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 28 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2257,7 +1868,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsJoinPrefixedRules = __webpack_require__(25);
+	var _utilsJoinPrefixedRules = __webpack_require__(19);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
@@ -2277,7 +1888,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 29 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2291,7 +1902,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(26);
+	var _utilsCamelToDashCase = __webpack_require__(20);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -2308,7 +1919,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 30 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2322,7 +1933,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsJoinPrefixedRules = __webpack_require__(25);
+	var _utilsJoinPrefixedRules = __webpack_require__(19);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
@@ -2352,7 +1963,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 31 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2366,11 +1977,11 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsJoinPrefixedRules = __webpack_require__(25);
+	var _utilsJoinPrefixedRules = __webpack_require__(19);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
-	var _utilsIsPrefixedValue = __webpack_require__(27);
+	var _utilsIsPrefixedValue = __webpack_require__(21);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
@@ -2387,7 +1998,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 32 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2409,19 +2020,19 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(26);
+	var _utilsCamelToDashCase = __webpack_require__(20);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
-	var _utilsCapitalizeString = __webpack_require__(22);
+	var _utilsCapitalizeString = __webpack_require__(16);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsIsPrefixedValue = __webpack_require__(27);
+	var _utilsIsPrefixedValue = __webpack_require__(21);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
-	var _prefixProps = __webpack_require__(21);
+	var _prefixProps = __webpack_require__(15);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
@@ -2482,7 +2093,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 33 */
+/* 27 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2526,7 +2137,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 34 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2548,7 +2159,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(26);
+	var _utilsCamelToDashCase = __webpack_require__(20);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -2582,7 +2193,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 35 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2595,7 +2206,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _bowser = __webpack_require__(36);
+	var _bowser = __webpack_require__(30);
 
 	var _bowser2 = _interopRequireDefault(_bowser);
 
@@ -2682,7 +2293,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 36 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -3181,7 +2792,7 @@ module.exports =
 	});
 
 /***/ },
-/* 37 */
+/* 31 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3206,9 +2817,9 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 38 */
-22,
-/* 39 */
+/* 32 */
+16,
+/* 33 */
 /***/ function(module, exports) {
 
 	// leight polyfill for Object.assign
@@ -3230,7 +2841,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 40 */
+/* 34 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3242,7 +2853,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 41 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3264,7 +2875,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(42);
+	var _utilsCamelToDashCase = __webpack_require__(36);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3285,9 +2896,9 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 42 */
-26,
-/* 43 */
+/* 36 */
+20,
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3301,7 +2912,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(42);
+	var _utilsCamelToDashCase = __webpack_require__(36);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3331,7 +2942,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 44 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3345,7 +2956,7 @@ module.exports =
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(42);
+	var _utilsCamelToDashCase = __webpack_require__(36);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3373,7 +2984,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 45 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3395,7 +3006,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(42);
+	var _utilsCamelToDashCase = __webpack_require__(36);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3432,7 +3043,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 46 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3454,7 +3065,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(42);
+	var _utilsCamelToDashCase = __webpack_require__(36);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3477,7 +3088,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 47 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3501,15 +3112,15 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(42);
+	var _utilsCamelToDashCase = __webpack_require__(36);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
-	var _utilsCapitalizeString = __webpack_require__(38);
+	var _utilsCapitalizeString = __webpack_require__(32);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsUnprefixProperty = __webpack_require__(48);
+	var _utilsUnprefixProperty = __webpack_require__(42);
 
 	var _utilsUnprefixProperty2 = _interopRequireDefault(_utilsUnprefixProperty);
 
@@ -3553,7 +3164,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 48 */
+/* 42 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3570,7 +3181,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 49 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3592,7 +3203,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(42);
+	var _utilsCamelToDashCase = __webpack_require__(36);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3648,7 +3259,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 50 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3670,7 +3281,7 @@ module.exports =
 	  }return obj;
 	}
 
-	var _utilsCamelToDashCase = __webpack_require__(42);
+	var _utilsCamelToDashCase = __webpack_require__(36);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -3732,7 +3343,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 51 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3741,7 +3352,7 @@ module.exports =
 	  value: true
 	});
 
-	var _getStateKey = __webpack_require__(52);
+	var _getStateKey = __webpack_require__(46);
 
 	var _getStateKey2 = _interopRequireDefault(_getStateKey);
 
@@ -3759,7 +3370,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 52 */
+/* 46 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3776,7 +3387,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 53 */
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3807,7 +3418,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 54 */
+/* 48 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3877,7 +3488,7 @@ module.exports =
 	}
 
 /***/ },
-/* 55 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3886,35 +3497,35 @@ module.exports =
 	  value: true
 	});
 
-	var _checkPropsPlugin = __webpack_require__(56);
+	var _checkPropsPlugin = __webpack_require__(50);
 
 	var _checkPropsPlugin2 = _interopRequireDefault(_checkPropsPlugin);
 
-	var _keyframesPlugin = __webpack_require__(57);
+	var _keyframesPlugin = __webpack_require__(51);
 
 	var _keyframesPlugin2 = _interopRequireDefault(_keyframesPlugin);
 
-	var _mergeStyleArrayPlugin = __webpack_require__(58);
+	var _mergeStyleArrayPlugin = __webpack_require__(52);
 
 	var _mergeStyleArrayPlugin2 = _interopRequireDefault(_mergeStyleArrayPlugin);
 
-	var _prefixPlugin = __webpack_require__(59);
+	var _prefixPlugin = __webpack_require__(53);
 
 	var _prefixPlugin2 = _interopRequireDefault(_prefixPlugin);
 
-	var _removeNestedStylesPlugin = __webpack_require__(60);
+	var _removeNestedStylesPlugin = __webpack_require__(54);
 
 	var _removeNestedStylesPlugin2 = _interopRequireDefault(_removeNestedStylesPlugin);
 
-	var _resolveInteractionStylesPlugin = __webpack_require__(61);
+	var _resolveInteractionStylesPlugin = __webpack_require__(55);
 
 	var _resolveInteractionStylesPlugin2 = _interopRequireDefault(_resolveInteractionStylesPlugin);
 
-	var _resolveMediaQueriesPlugin = __webpack_require__(63);
+	var _resolveMediaQueriesPlugin = __webpack_require__(57);
 
 	var _resolveMediaQueriesPlugin2 = _interopRequireDefault(_resolveMediaQueriesPlugin);
 
-	var _visitedPlugin = __webpack_require__(64);
+	var _visitedPlugin = __webpack_require__(58);
 
 	var _visitedPlugin2 = _interopRequireDefault(_visitedPlugin);
 
@@ -3937,7 +3548,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 56 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -4015,10 +3626,10 @@ module.exports =
 
 	exports.default = _checkProps;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 57 */
+/* 51 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4055,7 +3666,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 58 */
+/* 52 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4078,7 +3689,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 59 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4088,7 +3699,7 @@ module.exports =
 	});
 	exports.default = prefixPlugin;
 
-	var _prefixer = __webpack_require__(18);
+	var _prefixer = __webpack_require__(12);
 
 	function prefixPlugin(_ref // eslint-disable-line no-shadow
 	) {
@@ -4101,7 +3712,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 60 */
+/* 54 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4129,7 +3740,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 61 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4138,7 +3749,7 @@ module.exports =
 	  value: true
 	});
 
-	var _mouseUpListener = __webpack_require__(62);
+	var _mouseUpListener = __webpack_require__(56);
 
 	var _mouseUpListener2 = _interopRequireDefault(_mouseUpListener);
 
@@ -4263,7 +3874,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 62 */
+/* 56 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4311,7 +3922,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 63 */
+/* 57 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4499,7 +4110,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 64 */
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4544,7 +4155,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 65 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -4575,7 +4186,7 @@ module.exports =
 
 		};
 
-		if ("function" === 'function' && _typeof(__webpack_require__(66)) === 'object' && __webpack_require__(66)) {
+		if ("function" === 'function' && _typeof(__webpack_require__(60)) === 'object' && __webpack_require__(60)) {
 			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 				return ExecutionEnvironment;
 			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -4587,7 +4198,7 @@ module.exports =
 	})();
 
 /***/ },
-/* 66 */
+/* 60 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -4595,7 +4206,7 @@ module.exports =
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 67 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4612,11 +4223,11 @@ module.exports =
 	  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
 	};
 
-	var _cssRuleSetToString = __webpack_require__(16);
+	var _cssRuleSetToString = __webpack_require__(10);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
-	var _react = __webpack_require__(7);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
@@ -4700,7 +4311,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 68 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4711,19 +4322,19 @@ module.exports =
 	  value: true
 	});
 
-	var _react = __webpack_require__(7);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _enhancer = __webpack_require__(10);
+	var _enhancer = __webpack_require__(4);
 
 	var _enhancer2 = _interopRequireDefault(_enhancer);
 
-	var _styleKeeper = __webpack_require__(11);
+	var _styleKeeper = __webpack_require__(5);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
-	var _styleSheet = __webpack_require__(69);
+	var _styleSheet = __webpack_require__(63);
 
 	var _styleSheet2 = _interopRequireDefault(_styleSheet);
 
@@ -4810,7 +4421,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 69 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4824,11 +4435,11 @@ module.exports =
 
 	var _class, _temp;
 
-	var _react = __webpack_require__(7);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _styleKeeper = __webpack_require__(11);
+	var _styleKeeper = __webpack_require__(5);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
@@ -4905,7 +4516,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 70 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4915,15 +4526,15 @@ module.exports =
 	});
 	exports.default = keyframes;
 
-	var _cssRuleSetToString = __webpack_require__(16);
+	var _cssRuleSetToString = __webpack_require__(10);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
-	var _hash = __webpack_require__(53);
+	var _hash = __webpack_require__(47);
 
 	var _hash2 = _interopRequireDefault(_hash);
 
-	var _prefixer = __webpack_require__(18);
+	var _prefixer = __webpack_require__(12);
 
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
@@ -4946,7 +4557,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 71 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4959,47 +4570,47 @@ module.exports =
 
 	exports.default = SelectPage;
 
-	var _react = __webpack_require__(7);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _radium = __webpack_require__(8);
+	var _radium = __webpack_require__(2);
 
 	var _radium2 = _interopRequireDefault(_radium);
 
-	var _style = __webpack_require__(72);
+	var _style = __webpack_require__(66);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _iconIos = __webpack_require__(73);
+	var _iconIos = __webpack_require__(67);
 
 	var _iconIos2 = _interopRequireDefault(_iconIos);
 
-	var _iconAndroid = __webpack_require__(74);
+	var _iconAndroid = __webpack_require__(68);
 
 	var _iconAndroid2 = _interopRequireDefault(_iconAndroid);
 
-	var _iconWeb = __webpack_require__(75);
+	var _iconWeb = __webpack_require__(69);
 
 	var _iconWeb2 = _interopRequireDefault(_iconWeb);
 
-	var _iconNew = __webpack_require__(76);
+	var _iconNew = __webpack_require__(70);
 
 	var _iconNew2 = _interopRequireDefault(_iconNew);
 
-	var _iconApp = __webpack_require__(77);
+	var _iconApp = __webpack_require__(71);
 
 	var _iconApp2 = _interopRequireDefault(_iconApp);
 
-	var _iconTick = __webpack_require__(78);
+	var _iconTick = __webpack_require__(72);
 
 	var _iconTick2 = _interopRequireDefault(_iconTick);
 
-	var _SelectPlatform = __webpack_require__(79);
+	var _SelectPlatform = __webpack_require__(73);
 
 	var _SelectPlatform2 = _interopRequireDefault(_SelectPlatform);
 
-	var _PlatformOption = __webpack_require__(80);
+	var _PlatformOption = __webpack_require__(74);
 
 	var _PlatformOption2 = _interopRequireDefault(_PlatformOption);
 
@@ -5051,7 +4662,7 @@ module.exports =
 	};
 
 /***/ },
-/* 72 */
+/* 66 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5121,46 +4732,46 @@ module.exports =
 	};
 
 /***/ },
-/* 73 */
+/* 67 */
 /***/ function(module, exports) {
 
 	module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg viewBox=\"0 0 35 44\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->\n    <title>icon-ios</title>\n    <desc>Created with Sketch.</desc>\n    <defs></defs>\n    <g id=\"Dev-portal-1.0\" stroke=\"none\" stroke-width=\"1\" fill-rule=\"evenodd\">\n        <g id=\"Get-Started---Step-1\" transform=\"translate(-322.000000, -238.000000)\">\n            <g id=\"icon-ios\" transform=\"translate(322.000000, 238.000000)\">\n                <path d=\"M25.9414293,11.111893 C22.4033859,10.8432884 19.3979511,13.1072419 17.724038,13.1072419 C16.0120815,13.1072419 13.425125,11.1886372 10.6479511,11.2270093 C6.99577717,11.2653814 3.64795109,13.3758465 1.78382065,16.6758465 C-1.9824837,23.3142186 0.832733696,33.1374744 4.52295109,38.5095674 C6.31099457,41.1188698 8.47947283,44.111893 11.2946902,43.9967767 C13.9957772,43.8816605 15.0609946,42.2316605 18.3327337,42.2316605 C21.6044728,42.2316605 22.5555598,43.9967767 25.4088207,43.9584047 C28.3381685,43.9200326 30.2022989,41.2723581 31.9903424,38.6246837 C34.0446902,35.5932884 34.9196902,32.6386372 34.9577337,32.4851488 C34.8816467,32.4467767 29.251212,30.2595674 29.2131685,23.7363116 C29.175125,18.2491023 33.6642554,15.6398 33.8544728,15.4863116 C31.2675163,11.6107302 27.3109946,11.1886372 25.9414293,11.111893\" id=\"Fill-1\"></path>\n                <path d=\"M23.5208375,7.46098571 C24.9833375,5.57527143 25.9958375,2.98241429 25.7333375,0.389557143 C23.5958375,0.468128571 21.0083375,1.88241429 19.5083375,3.76812857 C18.1583375,5.41812857 16.9208375,8.08955714 17.2583375,10.6431286 C19.6208375,10.8002714 22.0583375,9.3467 23.5208375,7.46098571\" id=\"Fill-4\"></path>\n            </g>\n        </g>\n    </g>\n</svg>\n"
 
 /***/ },
-/* 74 */
+/* 68 */
 /***/ function(module, exports) {
 
 	module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg viewBox=\"0 0 42 51\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->\n    <title>icon-android</title>\n    <desc>Created with Sketch.</desc>\n    <defs></defs>\n    <g id=\"Dev-portal-1.0\" stroke=\"none\" stroke-width=\"1\" fill-rule=\"evenodd\">\n        <g id=\"Get-Started---Step-1\" transform=\"translate(-319.000000, -325.000000)\">\n            <g id=\"icon-android\" transform=\"translate(319.000000, 325.000000)\">\n                <path d=\"M39,18 L39,18 C37.3431,18 36,19.3733996 36,21.0676784 L36,31.9323216 C36,33.6266004 37.3431,35 39,35 C40.6569,35 42,33.6266004 42,31.9323216 L42,21.0676784 C42,19.3733996 40.6569,18 39,18\" id=\"Fill-1\"></path>\n                <path d=\"M3,18 L3,18 C1.3431,18 0,19.3733996 0,21.0676784 L0,31.9323216 C0,33.6266004 1.3431,35 3,35 C4.6569,35 6,33.6266004 6,31.9323216 L6,21.0676784 C6,19.3733996 4.6569,18 3,18\" id=\"Fill-3\"></path>\n                <path d=\"M7,17 L7,37.3399558 C7,39.1637969 8.46126374,40.6423841 10.2637363,40.6423841 L11.8956044,40.6423841 L11.8956044,47.397351 C11.8956044,49.387064 13.4896429,51 15.456044,51 C17.4224451,51 19.0164835,49.387064 19.0164835,47.397351 L19.0164835,40.6423841 L21.9835165,40.6423841 L21.9835165,47.397351 C21.9835165,49.387064 23.5775549,51 25.543956,51 C27.5103571,51 29.1043956,49.387064 29.1043956,47.397351 L29.1043956,40.6423841 L30.7362637,40.6423841 C32.5387363,40.6423841 34,39.1637969 34,37.3399558 L34,17 L7,17 Z\" id=\"Fill-5\"></path>\n                <path d=\"M26.7471767,11.0232855 C26.0766464,11.0232855 25.5329932,10.4807161 25.5329932,9.8115224 C25.5329932,9.14218029 26.0766464,8.59975934 26.7471767,8.59975934 C27.4177069,8.59975934 27.9613601,9.14218029 27.9613601,9.8115224 C27.9613601,10.4807161 27.4177069,11.0232855 26.7471767,11.0232855 M14.2528233,11.0232855 C13.5822931,11.0232855 13.0386399,10.4807161 13.0386399,9.8115224 C13.0386399,9.14218029 13.5822931,8.59975934 14.2528233,8.59975934 C14.9233536,8.59975934 15.4670068,9.14218029 15.4670068,9.8115224 C15.4670068,10.4807161 14.9233536,11.0232855 14.2528233,11.0232855 M27.6064609,5.28407395 L29.7453752,1.43279612 C30.0041868,0.966824752 29.8355131,0.379573168 29.3684622,0.12112903 C28.9015601,-0.137166662 28.3129869,0.0311708755 28.0541753,0.497290687 L25.8612675,4.44550363 C24.2170701,3.79145143 22.4046452,3.42835301 20.5,3.42835301 C18.5953548,3.42835301 16.7829299,3.79145143 15.1387325,4.44550363 L12.9458247,0.497290687 C12.6870131,0.0311708755 12.0984399,-0.137166662 11.6315378,0.12112903 C11.1644869,0.379573168 10.9958132,0.966824752 11.2546248,1.43279612 L13.3935391,5.28407395 C9.79531407,7.33307133 7.31741607,10.8911687 7,15 L34,15 C33.6825839,10.8911687 31.2046859,7.33307133 27.6064609,5.28407395\" id=\"Fill-7\"></path>\n            </g>\n        </g>\n    </g>\n</svg>\n"
 
 /***/ },
-/* 75 */
+/* 69 */
 /***/ function(module, exports) {
 
 	module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg viewBox=\"0 0 44 44\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->\n    <title>icon-web</title>\n    <desc>Created with Sketch.</desc>\n    <defs></defs>\n    <g id=\"Dev-portal-1.0\" stroke=\"none\" stroke-width=\"1\" fill-rule=\"evenodd\">\n        <g id=\"Get-Started---Step-1\" transform=\"translate(-318.000000, -415.000000)\">\n            <g id=\"icon-web\" transform=\"translate(318.000000, 415.000000)\">\n                <path d=\"M31.0630294,39.6495 C31.3502157,39.3528235 31.6310392,39.0416961 31.9048529,38.7156863 L32.6827255,38.7156863 C32.1591471,39.0515098 31.6185294,39.3630686 31.0630294,39.6495 L31.0630294,39.6495 Z M11.7636373,38.7156863 C11.9270196,38.9102353 12.0929902,39.0992843 12.2611176,39.2833725 C11.9411471,39.1023039 11.6260294,38.9136863 11.3173824,38.7156863 L11.7636373,38.7156863 Z M4.34834314,31.0588235 L7.63637255,31.0588235 C8.27803922,33.0456176 9.13366667,34.898902 10.1879412,36.5588235 L8.53244118,36.5588235 C6.83757843,34.9899216 5.41566667,33.1302745 4.34834314,31.0588235 L4.34834314,31.0588235 Z M8.08068627,7.87254902 L9.92059804,7.87254902 C9.02183333,9.36391176 8.27771569,11.0010784 7.69989216,12.7436078 L4.45273529,12.7436078 C5.40951961,10.9372353 6.63666667,9.29543137 8.08068627,7.87254902 L8.08068627,7.87254902 Z M39.5472647,12.7436078 L35.968598,12.7436078 C35.3907745,11.0010784 34.6466569,9.36391176 33.7478922,7.87254902 L35.9194216,7.87254902 C37.3633333,9.29543137 38.5905882,10.9372353 39.5472647,12.7436078 L39.5472647,12.7436078 Z M26.3651667,36.5588235 C26.7273039,34.9110882 27.0212843,33.0562941 27.2410686,31.0588235 L33.7564118,31.0588235 C33.0217843,33.1344804 32.0434314,34.9955294 30.8766765,36.5588235 L26.3651667,36.5588235 Z M25.8167843,38.7156863 L28.9426176,38.7156863 C27.7133137,39.8465294 26.3514706,40.6940686 24.8992549,41.1938137 C25.2283922,40.5038333 25.5336961,39.6775392 25.8167843,38.7156863 L25.8167843,38.7156863 Z M17.8517059,38.7156863 C18.1347941,39.6775392 18.440098,40.5038333 18.7692353,41.1938137 C17.3170196,40.6940686 15.9551765,39.8465294 14.7259804,38.7156863 L17.8517059,38.7156863 Z M16.4274216,31.0588235 C16.6473137,33.0562941 16.9412941,34.9110882 17.3033235,36.5588235 L12.7918137,36.5588235 C11.6251667,34.9955294 10.6467059,33.1344804 9.91207843,31.0588235 L16.4274216,31.0588235 Z M8.42815686,23.0784314 L15.9631569,23.0784314 C15.986451,25.0849608 16.0748824,27.0409118 16.223598,28.9019608 L9.25790196,28.9019608 C8.79072549,27.0732647 8.50332353,25.1166667 8.42815686,23.0784314 L8.42815686,23.0784314 Z M2.18651961,23.0784314 L6.26935294,23.0784314 C6.33794118,25.0823725 6.59827451,27.0376765 7.03633333,28.9019608 L3.39576471,28.9019608 C2.71473529,27.0721863 2.29619608,25.1158039 2.18651961,23.0784314 L2.18651961,23.0784314 Z M6.26935294,20.9215686 L2.18651961,20.9215686 C2.30007843,18.8107549 2.74579412,16.7868627 3.47103922,14.9004706 L7.08389216,14.9004706 C6.6172549,16.8241765 6.34042157,18.8466667 6.26935294,20.9215686 L6.26935294,20.9215686 Z M16.2392353,14.9004706 C16.0809216,16.820402 15.9872059,18.8441863 15.9631569,20.9215686 L8.42815686,20.9215686 C8.50612745,18.8097843 8.81164706,16.7856765 9.30912745,14.9004706 L16.2392353,14.9004706 Z M17.2112255,7.87254902 C16.9027941,9.35463725 16.6476373,10.993098 16.4497451,12.7436078 L9.98314706,12.7436078 C10.6416373,10.9336765 11.4868039,9.29154902 12.4807941,7.87254902 L17.2112255,7.87254902 Z M11.4123922,5.71568627 L10.6749608,5.71568627 C11.1866765,5.35872549 11.7157549,5.02527451 12.2610098,4.71673529 C11.9709118,5.03433333 11.6879314,5.36746078 11.4123922,5.71568627 L11.4123922,5.71568627 Z M32.2562059,5.71568627 C31.8725,5.23093137 31.474451,4.77561765 31.0631373,4.35060784 C31.8492059,4.75588235 32.6042157,5.21292157 33.3251471,5.71568627 L32.2562059,5.71568627 Z M27.2187451,12.7436078 C27.0208529,10.993098 26.7656961,9.35463725 26.4572647,7.87254902 L31.1876961,7.87254902 C32.1816863,9.29154902 33.0268529,10.9336765 33.6853431,12.7436078 L27.2187451,12.7436078 Z M35.2404412,20.9215686 L27.7054412,20.9215686 C27.6812843,18.8441863 27.5876765,16.820402 27.4292549,14.9004706 L34.3594706,14.9004706 C34.8568431,16.7856765 35.1624706,18.8097843 35.2404412,20.9215686 L35.2404412,20.9215686 Z M37.3991373,23.0784314 L41.8135882,23.0784314 C41.7039118,25.1158039 41.2853725,27.0721863 40.6043431,28.9019608 L36.6321569,28.9019608 C37.0703235,27.0376765 37.330549,25.0823725 37.3991373,23.0784314 L37.3991373,23.0784314 Z M27.7054412,23.0784314 L35.2404412,23.0784314 C35.1651667,25.1166667 34.8777647,27.0732647 34.4106961,28.9019608 L27.445,28.9019608 C27.5937157,27.0409118 27.6821471,25.0849608 27.7054412,23.0784314 L27.7054412,23.0784314 Z M25.2652745,14.9004706 C25.4274706,16.8126373 25.5236667,18.8372843 25.5483627,20.9215686 L18.1201275,20.9215686 C18.1448235,18.8372843 18.2410196,16.8126373 18.4032157,14.9004706 L25.2652745,14.9004706 Z M24.251549,7.87254902 C24.5748627,9.33716667 24.842098,10.9773529 25.0487255,12.7436078 L18.6198725,12.7436078 C18.8263922,10.9773529 19.0936275,9.33716667 19.4169412,7.87254902 L24.251549,7.87254902 Z M17.728549,5.71568627 L14.276598,5.71568627 C15.62,4.36753922 17.1376765,3.36772549 18.7692353,2.80618627 C18.3918922,3.59732353 18.0457157,4.56694118 17.728549,5.71568627 L17.728549,5.71568627 Z M23.6920588,5.71568627 L19.9765392,5.71568627 C20.825049,2.94756863 21.645951,2.28746078 21.8342451,2.28746078 C22.0225392,2.28746078 22.8434412,2.94756863 23.6920588,5.71568627 L23.6920588,5.71568627 Z M25.9399412,5.71568627 C25.6228824,4.56694118 25.276598,3.59732353 24.8992549,2.80618627 C26.5308137,3.36772549 28.048598,4.36753922 29.392,5.71568627 L25.9399412,5.71568627 Z M18.3863922,28.9019608 C18.2342255,27.0483529 18.1439608,25.091 18.1201275,23.0784314 L25.5483627,23.0784314 C25.5245294,25.091 25.4343725,27.0483529 25.282098,28.9019608 L18.3863922,28.9019608 Z M21.8342451,41.7125392 C21.6561961,41.7125392 20.9122941,41.1210196 20.1143627,38.7156863 L23.5542353,38.7156863 C22.7561961,41.1210196 22.0122941,41.7125392 21.8342451,41.7125392 L21.8342451,41.7125392 Z M24.1531961,36.5588235 L19.515402,36.5588235 C19.5074216,36.5251765 19.499549,36.4930392 19.4916765,36.4589608 C19.1222059,34.8585686 18.8220784,33.0354804 18.5972255,31.0588235 L25.0713725,31.0588235 C24.8464118,33.0354804 24.5462843,34.8585686 24.1769216,36.4589608 C24.169049,36.4930392 24.1610686,36.5251765 24.1531961,36.5588235 L24.1531961,36.5588235 Z M41.8135882,20.9215686 L37.3991373,20.9215686 C37.3280686,18.8466667 37.0513431,16.8241765 36.584598,14.9004706 L40.5290686,14.9004706 C41.2543137,16.7868627 41.6999216,18.8107549 41.8135882,20.9215686 L41.8135882,20.9215686 Z M35.4675588,36.5588235 L33.4806569,36.5588235 C34.5348235,34.898902 35.3905588,33.0456176 36.0321176,31.0588235 L39.6516569,31.0588235 C38.5843333,33.1302745 37.1624216,34.9899216 35.4675588,36.5588235 L35.4675588,36.5588235 Z M44,22 C44,9.86926471 34.130951,0 22,0 C9.86915686,0 0,9.86926471 0,22 C0,28.6578039 2.97312745,34.6337157 7.66085294,38.6713627 L7.66085294,38.7156863 L7.71337255,38.7156863 C11.5600294,42.0082451 16.551549,44 22,44 C27.4485588,44 32.4399706,42.0082451 36.2867353,38.7156863 L36.3391471,38.7156863 L36.3391471,38.6713627 C41.0268725,34.6337157 44,28.6578039 44,22 L44,22 Z\" id=\"Fill-1\"></path>\n            </g>\n        </g>\n    </g>\n</svg>\n"
 
 /***/ },
-/* 76 */
+/* 70 */
 /***/ function(module, exports) {
 
 	module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg viewBox=\"0 0 36 39\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->\n    <title>icon-new</title>\n    <desc>Created with Sketch.</desc>\n    <defs></defs>\n    <g id=\"Dev-portal-1.0\" stroke=\"none\" stroke-width=\"1\" fill-rule=\"evenodd\">\n        <g id=\"Get-Started---Step-2\" transform=\"translate(-408.000000, -309.000000)\">\n            <g id=\"icon-new\" transform=\"translate(408.000000, 309.000000)\">\n                <path d=\"M16.32,1.68017459 C16.32,0.751985444 17.0697929,0 18,0 C18.9275178,0 19.68,0.755151627 19.68,1.68017459 L19.68,9.56982541 C19.68,10.4980146 18.9302071,11.25 18,11.25 C17.0724822,11.25 16.32,10.4948484 16.32,9.56982541 L16.32,1.68017459 Z\" id=\"Rectangle\"></path>\n                <path d=\"M16.32,29.4301746 C16.32,28.5019854 17.0697929,27.75 18,27.75 C18.9275178,27.75 19.68,28.5051516 19.68,29.4301746 L19.68,37.3198254 C19.68,38.2480146 18.9302071,39 18,39 C17.0724822,39 16.32,38.2448484 16.32,37.3198254 L16.32,29.4301746 Z\" id=\"Rectangle\"></path>\n                <path d=\"M32.5924215,9.13516461 C33.3962569,8.67107004 34.4223918,8.94441703 34.8874954,9.75 C35.3512543,10.5532539 35.0735149,11.5824985 34.2724215,12.04501 L27.4397835,15.9898354 C26.6359481,16.45393 25.6098131,16.180583 25.1447096,15.375 C24.6809507,14.5717461 24.9586901,13.5425015 25.7597835,13.07999 L32.5924215,9.13516461 Z\" id=\"Rectangle\"></path>\n                <path d=\"M8.56021655,23.0101646 C9.36405192,22.54607 10.3901869,22.819417 10.8552904,23.625 C11.3190493,24.4282539 11.0413099,25.4574985 10.2402165,25.92001 L3.4075785,29.8648354 C2.60374312,30.32893 1.57760817,30.055583 1.11250463,29.25 C0.648745745,28.4467461 0.926485119,27.4175015 1.7275785,26.95499 L8.56021655,23.0101646 Z\" id=\"Rectangle\"></path>\n                <path d=\"M34.2724215,26.95499 C35.0762569,27.4190846 35.3525989,28.444417 34.8874954,29.25 C34.4237365,30.0532539 33.3935149,30.3273469 32.5924215,29.8648354 L25.7597835,25.92001 C24.9559481,25.4559154 24.679606,24.430583 25.1447096,23.625 C25.6084685,22.8217461 26.6386901,22.5476531 27.4397835,23.0101646 L34.2724215,26.95499 Z\" id=\"Rectangle\"></path>\n                <path d=\"M10.2402165,13.07999 C11.0440519,13.5440846 11.320394,14.569417 10.8552904,15.375 C10.3915315,16.1782539 9.36130993,16.4523469 8.56021655,15.9898354 L1.7275785,12.04501 C0.923743124,11.5809154 0.647401084,10.555583 1.11250463,9.75 C1.57626351,8.94674606 2.60648512,8.67265314 3.4075785,9.13516461 L10.2402165,13.07999 Z\" id=\"Rectangle\"></path>\n            </g>\n        </g>\n    </g>\n</svg>\n"
 
 /***/ },
-/* 77 */
+/* 71 */
 /***/ function(module, exports) {
 
 	module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg viewBox=\"0 0 37 43\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->\n    <title>icon-app</title>\n    <desc>Created with Sketch.</desc>\n    <defs></defs>\n    <g id=\"Dev-portal-1.0\" stroke=\"none\" stroke-width=\"1\" fill-rule=\"evenodd\">\n        <g id=\"Get-Started---Step-2\" transform=\"translate(-709.000000, -307.000000)\">\n            <g id=\"icon-app\" transform=\"translate(709.000000, 307.000000)\">\n                <path d=\"M34.9395671,12.6166763 L34.438438,11.75 L34.438438,31.25 L34.9395671,30.3833237 L18.0011291,40.1333237 L18.9988709,40.1333237 L2.06043286,30.3833237 L2.56156196,31.25 L2.56156196,11.75 L2.06043286,12.6166763 L18.9988709,2.8666763 L18.0011291,2.8666763 L34.9395671,12.6166763 Z M18.5,0.846166678 L18.0011291,1.1333237 L1.06269105,10.8833237 L0.561561955,11.1717806 L0.561561955,11.75 L0.561561955,31.25 L0.561561955,31.8282194 L1.06269105,32.1166763 L18.0011291,41.8666763 L18.5,42.1538333 L18.9988709,41.8666763 L35.937309,32.1166763 L36.438438,31.8282194 L36.438438,31.25 L36.438438,11.75 L36.438438,11.1717806 L35.937309,10.8833237 L18.9988709,1.1333237 L18.5,0.846166678 Z\" id=\"Polygon\"></path>\n                <polygon id=\"Path-4\" points=\"18.1562867 22.6624835 18.663617 22.961087 19.1709006 22.6624042 36.3317845 12.5582718 35.3170359 10.8348203 18.1561521 20.9389527 19.170766 20.9388734 2.60769152 11.1902097 1.59321227 12.9138199\"></polygon>\n                <polygon id=\"Path-5\" points=\"17.8431373 39.9365638 19.8431373 39.9365638 19.8431373 22.0017989 17.8431373 22.0017989\"></polygon>\n            </g>\n        </g>\n    </g>\n</svg>\n"
 
 /***/ },
-/* 78 */
+/* 72 */
 /***/ function(module, exports) {
 
 	module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg width=\"22px\" height=\"20px\" viewBox=\"0 0 22 20\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->\n    <title>icon-tick</title>\n    <desc>Created with Sketch.</desc>\n    <defs></defs>\n    <g id=\"Dev-portal-1.0\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g id=\"Get-Started---Step-2\" transform=\"translate(-955.000000, -250.000000)\" fill=\"#007BD4\">\n            <polygon id=\"icon-tick\" points=\"962.997036 268.833477 963.81741 269.590298 964.479899 268.692022 976.897856 251.854355 975.288259 250.667259 962.870301 267.504926 964.353164 267.363471 957.05538 260.631035 955.699253 262.101041\"></polygon>\n        </g>\n    </g>\n</svg>"
 
 /***/ },
-/* 79 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(7);
+	var React = __webpack_require__(1);
 	module.exports= function (locals) {  var Style = "Style" in locals ? locals.Style : jade_globals_Style;
 	  var children = "children" in locals ? locals.children : jade_globals_children;
 	  return function() {
@@ -5206,10 +4817,10 @@ module.exports =
 	}
 
 /***/ },
-/* 80 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(7);
+	var React = __webpack_require__(1);
 	module.exports= function (locals) {  var sdk = "sdk" in locals ? locals.sdk : jade_globals_sdk;
 	  var targetSDK = "targetSDK" in locals ? locals.targetSDK : jade_globals_targetSDK;
 	  var Style = "Style" in locals ? locals.Style : jade_globals_Style;
@@ -5302,7 +4913,7 @@ module.exports =
 	}
 
 /***/ },
-/* 81 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5315,45 +4926,53 @@ module.exports =
 
 	exports.default = GuidePage;
 
-	var _react = __webpack_require__(7);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _radium = __webpack_require__(8);
+	var _radium = __webpack_require__(2);
 
 	var _radium2 = _interopRequireDefault(_radium);
 
-	__webpack_require__(82);
+	var _exenv = __webpack_require__(59);
 
-	var _style = __webpack_require__(84);
+	var _Markdown = __webpack_require__(76);
+
+	var _Markdown2 = _interopRequireDefault(_Markdown);
+
+	var _prismGhcolors = __webpack_require__(78);
+
+	var _prismGhcolors2 = _interopRequireDefault(_prismGhcolors);
+
+	var _style = __webpack_require__(79);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _iconIos = __webpack_require__(73);
+	var _iconIos = __webpack_require__(67);
 
 	var _iconIos2 = _interopRequireDefault(_iconIos);
 
-	var _iconAndroid = __webpack_require__(74);
+	var _iconAndroid = __webpack_require__(68);
 
 	var _iconAndroid2 = _interopRequireDefault(_iconAndroid);
 
-	var _iconWeb = __webpack_require__(75);
+	var _iconWeb = __webpack_require__(69);
 
 	var _iconWeb2 = _interopRequireDefault(_iconWeb);
 
-	var _iconNew = __webpack_require__(76);
+	var _iconNew = __webpack_require__(70);
 
 	var _iconNew2 = _interopRequireDefault(_iconNew);
 
-	var _iconApp = __webpack_require__(77);
+	var _iconApp = __webpack_require__(71);
 
 	var _iconApp2 = _interopRequireDefault(_iconApp);
 
-	var _TabItem = __webpack_require__(85);
+	var _TabItem = __webpack_require__(80);
 
 	var _TabItem2 = _interopRequireDefault(_TabItem);
 
-	var _GuideHeader = __webpack_require__(86);
+	var _GuideHeader = __webpack_require__(81);
 
 	var _GuideHeader2 = _interopRequireDefault(_GuideHeader);
 
@@ -5380,16 +4999,17 @@ module.exports =
 
 	  var sdkTabProps = { Style: _style2.default, Icon: Icon, current: sdk, update: setSDK };
 	  var projectTabProps = { Style: _style2.default, Icon: Icon, current: project, update: setProject };
-	  var docLink = 'https://docs.skygear.io/' + sdk + '/guide';
+	  var docLink = _exenv.canUseDOM && window.location.hostname !== 'docs.skygear.io' ? 'https://docs.skygear.io/' + sdk + '/guide' : '';
 	  return _react2.default.createElement(
 	    'div',
 	    { style: _style2.default.guidePage },
+	    _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: _Markdown2.default } }),
+	    _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: _prismGhcolors2.default } }),
 	    _react2.default.createElement(
 	      RadiumGuideHeader,
 	      {
 	        Style: _style2.default,
 	        docLink: docLink,
-	        window: window,
 	        hideSDKTabs: hideSDKTabs
 	      },
 	      _react2.default.createElement(RadiumTabItem, _extends({}, sdkTabProps, { target: 'ios', name: 'iOS' })),
@@ -5416,36 +5036,10 @@ module.exports =
 	};
 
 /***/ },
-/* 82 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(83);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./Markdown.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./Markdown.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 83 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(77)();
 	// imports
 
 
@@ -5456,7 +5050,76 @@ module.exports =
 
 
 /***/ },
-/* 84 */
+/* 77 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function () {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for (var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if (item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function (modules, mediaQuery) {
+			if (typeof modules === "string") modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for (var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if (typeof id === "number") alreadyImportedModules[id] = true;
+			}
+			for (i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if (mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if (mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+/***/ },
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(77)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/**\n * GHColors theme by Avi Aryan (http://aviaryan.in)\n * Inspired by Github syntax coloring\n */\n\ncode[class*=\"language-\"],\npre[class*=\"language-\"] {\n    color: #393A34;\n    font-family: \"Consolas\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n    direction: ltr;\n    text-align: left;\n    white-space: pre;\n    word-spacing: normal;\n    word-break: normal;\n    font-size: 0.95em;\n    line-height: 1.2em;\n\n    -moz-tab-size: 4;\n    -o-tab-size: 4;\n    tab-size: 4;\n\n    -webkit-hyphens: none;\n    -moz-hyphens: none;\n    -ms-hyphens: none;\n    hyphens: none;\n}\n\npre[class*=\"language-\"]::-moz-selection, pre[class*=\"language-\"] ::-moz-selection,\ncode[class*=\"language-\"]::-moz-selection, code[class*=\"language-\"] ::-moz-selection {\n    background: #b3d4fc;\n}\n\npre[class*=\"language-\"]::selection, pre[class*=\"language-\"] ::selection,\ncode[class*=\"language-\"]::selection, code[class*=\"language-\"] ::selection {\n    background: #b3d4fc;\n}\n\n/* Code blocks */\npre[class*=\"language-\"] {\n    padding: 1em;\n    margin: .5em 0;\n    overflow: auto;\n    border: 1px solid #dddddd;\n    background-color: white;\n}\n\n:not(pre) > code[class*=\"language-\"],\npre[class*=\"language-\"] {\n}\n\n/* Inline code */\n:not(pre) > code[class*=\"language-\"] {\n    padding: .2em;\n    padding-top: 1px; padding-bottom: 1px;\n    background: #f8f8f8;\n    border: 1px solid #dddddd;\n}\n\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n    color: #999988; font-style: italic;\n}\n\n.token.namespace {\n    opacity: .7;\n}\n\n.token.string,\n.token.attr-value {\n    color: #e3116c;\n}\n.token.punctuation,\n.token.operator {\n    color: #393A34; /* no highlight */\n}\n\n.token.entity,\n.token.url,\n.token.symbol,\n.token.number,\n.token.boolean,\n.token.variable,\n.token.constant,\n.token.property,\n.token.regex,\n.token.inserted {\n    color: #36acaa;\n}\n\n.token.atrule,\n.token.keyword,\n.token.attr-name,\n.language-autohotkey .token.selector {\n    color: #00a4db;\n}\n\n.token.function,\n.token.deleted,\n.language-autohotkey .token.tag {\n    color: #9a050f;\n}\n\n.token.tag,\n.token.selector,\n.language-autohotkey .token.keyword {\n    color: #00009f;\n}\n\n.token.important,\n.token.function,\n.token.bold {\n    font-weight: bold;\n}\n\n.token.italic {\n    font-style: italic;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 79 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5538,10 +5201,10 @@ module.exports =
 	};
 
 /***/ },
-/* 85 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(7);
+	var React = __webpack_require__(1);
 	module.exports= function (locals) {  var current = "current" in locals ? locals.current : jade_globals_current;
 	  var target = "target" in locals ? locals.target : jade_globals_target;
 	  var Style = "Style" in locals ? locals.Style : jade_globals_Style;
@@ -5573,18 +5236,17 @@ module.exports =
 	}
 
 /***/ },
-/* 86 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(7);
-	module.exports= function (locals) {  var window = "window" in locals ? locals.window : jade_globals_window;
+	var React = __webpack_require__(1);
+	module.exports= function (locals) {  var docLink = "docLink" in locals ? locals.docLink : jade_globals_docLink;
 	  var Style = "Style" in locals ? locals.Style : jade_globals_Style;
 	  var hideSDKTabs = "hideSDKTabs" in locals ? locals.hideSDKTabs : jade_globals_hideSDKTabs;
 	  var children = "children" in locals ? locals.children : jade_globals_children;
-	  var docLink = "docLink" in locals ? locals.docLink : jade_globals_docLink;
 	  return function() {
 	    var tags = [];
-	    window && "docs.skygear.io" !== window.location.hostname ? {} : Style.Hide;
+	    const HideOnDocSite = "" === docLink ? Style.Hide : {};
 	    tags.push(React.DOM.header.apply(React.DOM, [ {} ].concat(function() {
 	      var tags = [];
 	      tags.push(React.DOM.h4.apply(React.DOM, [ {
@@ -5621,7 +5283,7 @@ module.exports =
 	        } ].concat(function() {
 	          return [ children[4] ];
 	        }.call(this))), React.DOM.a.apply(React.DOM, [ {
-	          style: [ Style.docLink ],
+	          style: [ Style.docLink, HideOnDocSite ],
 	          href: docLink,
 	          target: "_blank"
 	        } ].concat(function() {
@@ -5637,37 +5299,37 @@ module.exports =
 	}
 
 /***/ },
-/* 87 */
+/* 82 */
 /***/ function(module, exports) {
 
 	module.exports = "<p><a name=\"sdk-new\"></a></p>\n<h2 id=\"for-new-project\">For New Project</h2>\n<h3 id=\"step-1-install-xcode\">Step 1: Install Xcode</h3>\n<p>Download the latest version of Xcode from the Mac App Store <a href=\"https://itunes.apple.com/en/app/xcode/id497799835?mt=12\">here</a>.</p>\n<h3 id=\"step-2-install-cocoapods\">Step 2: Install CocoaPods</h3>\n<p>CocoaPods manages library dependencies for your Xcode projects.</p>\n<p>The dependencies for your projects are specified in a single text file called a Podfile.\nCocoaPods will resolve dependencies between libraries, fetch the resulting source code, then link it together in an Xcode workspace to build your project.</p>\n<p>You can read more about CocoaPods <a href=\"https://guides.cocoapods.org/using/getting-started.html\">here</a>.</p>\n<p>Installing CocoaPods is very simple:</p>\n<ol>\n<li>Open terminal.</li>\n<li>Run this command <code>$ sudo gem install cocoapods</code>.</li>\n<li>Wait for it to complete the process. It should take a few minutes.</li>\n</ol>\n<h3 id=\"step-3-create-new-project\">Step 3: Create new project</h3>\n<ol>\n<li>Open terminal and run this command <code>pod lib create --silent --template-url=https://github.com/SkygearIO/skygear-Scaffolding-iOS.git &quot;YourProjectName&quot;</code>. Change <code>&quot;YourProjectName&quot;</code> to something you like.</li>\n<li><p>You will then be prompted a few questions, please make sure that you answer these questions correctly:</p>\n</li>\n<li><p>What is your skygear endpoint?</p>\n</li>\n<li>What is your skygear API key?</li>\n<li>What language do you want to use?</li>\n</ol>\n<h3 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h3>\n<p>Congratulations, you have your first Skygear iOS project set up! The SDK is automatically included for you. Your project will be automatically launched.</p>\n";
 
 /***/ },
-/* 88 */
+/* 83 */
 /***/ function(module, exports) {
 
 	module.exports = "<p><a name=\"sdk-existing\"></a></p>\n<h2 id=\"for-existing-project\">For existing project</h2>\n<p>The installation requires Xcode and <a href=\"https://cocoapods.org/\">CocoaPods</a>.\nIf you haven&#39;t installed them already, please head to <a href=\"#new-project\">this section</a> to read about how to create a new project with configured SDK.</p>\n<h3 id=\"step-1-install-sdk-using-cocoapods\">Step 1: Install SDK using CocoaPods</h3>\n<p>To install the Skygear iOS SDK as your iOS application dependency:</p>\n<ol>\n<li>You need to close Xcode.</li>\n<li>Open Terminal and navigate to the directory that contains your iOS\nproject by using the cd command: <code>cd ~/Path/To/Your/App</code>.\nYou can just drag the file icon to Terminal and the path will be\nautomatically typed for you.</li>\n<li>Run this command in Terminal <code>pod init</code> to create a <a href=\"https://guides.cocoapods.org/using/the-podfile.html\">Podfile</a>.</li>\n<li>Run this command in Terminal <code>open -a Xcode Podfile</code> to edit the Podfile using Xcode. You should avoid using TextEdit to edit the Podfile because it may mess up the format and confuse CocoaPods.</li>\n</ol>\n<h3 id=\"step-2-edit-the-podfile\">Step 2: Edit the Podfile</h3>\n<ol>\n<li><p>Open and edit the <code>Podfile</code> file. Your <code>Podfile</code> file should look like this:</p>\n<pre><code> use_frameworks!\n platform :ios, &#39;8.0&#39;\n\n target &#39;YourProjectName&#39; do\n     pod &#39;SKYKit&#39;\n end\n</code></pre><p> Replace <code>&#39;YourProjectName&#39;</code> with your actual project name.</p>\n<p> CocoaPods 0.36 and above introduces the <code>use_frameworks!</code> instruction, so\n the Objective-C bridging header is no longer needed if you&#39;re using Swift in\n your project.</p>\n</li>\n<li><p>Run <code>pod install</code> in your terminal.</p>\n</li>\n<li>You would see that an Xcode Workspace file is created. Open the file and go to the project.</li>\n<li>It&#39;s done! You have installed Skygear SDK in your app. If you&#39;re using Swift, just import the SDK in each Swift file to call the SDK.</li>\n</ol>\n<h3 id=\"step-3-configure-end-point-and-api-key\">Step 3: Configure end point and API key</h3>\n<p>Now, you are going to setup the server endpoint and API key for your app. Read more about <a href=\"#skycontainer\">SKYContainer</a>.</p>\n<p>In <code>AppDelegate.m</code>, include <code>SKYKit</code>:</p>\n<pre><code class=\"language-obj-c\">import <span class=\"token operator\" >&lt;</span>SKYKit<span class=\"token operator\" >/</span>SKYKit<span class=\"token punctuation\" >.</span>h<span class=\"token operator\" >></span></code></pre><p>Then add these lines in the <code>application:didFinishLaunchingWithOptions:</code> method:</p>\n<pre><code class=\"language-obj-c\">SKYContainer <span class=\"token operator\" >*</span>container <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>SKYContainer defaultContainer<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >[</span>container configAddress<span class=\"token punctuation\" >:</span><span class=\"token string\" >@\"https://your-endpoint.skygeario.com/\"</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">//Your server endpoint</span>\n<span class=\"token punctuation\" >[</span>container configureWithAPIKey<span class=\"token punctuation\" >:</span><span class=\"token string\" >@\"SKYGEAR_API_KEY\"</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">//Your Skygear API Key</span></code></pre><p>Replace <code>your-endpoint.skygeario.com</code> with your Server Endpoint and <code>SKYGEAR_API_KEY</code> with your API Key.</p>\n";
 
 /***/ },
-/* 89 */
+/* 84 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3 id=\"step-1-installing-android-studio\">Step 1: Installing Android Studio</h3>\n<p>We recommend developing Android apps with Skygear Android SDK using\n<a href=\"https://developer.android.com/studio/index.html\">Android Studio</a>.</p>\n<h3 id=\"step-2-downloading-scaffolding-project\">Step 2: Downloading scaffolding project</h3>\n<p>Download the repository on GitHub\n<a href=\"https://github.com/SkygearIO/skygear-Scaffolding-Android\">SkygearIO/skygear-Scaffolding-Android</a>.\nAfter you have done so, launch Android Studio,\nselect <strong>Open an existing Android Studio project</strong> and find the scaffolding\nproject you have just downloaded. Follow any recommendations Android Studio\nshows (such as installing the required SDKs) and then you are good to go.</p>\n<h3 id=\"step-3-configure-container\">Step 3: Configure container</h3>\n<p>Have your <code>Server EndPoint</code> and <code>API Key</code> ready, open <code>Terminal</code> (which can\nbe found at the bottom of Android Studio), and run the following:</p>\n<pre><code class=\"language-bash\">./gradlew updateAppSettings</code></pre><p>And you should see the following:</p>\n<pre><code>&gt; Building 0% &gt; :updateAppSettings\nWhat is your skygear endpoint (You can find it in portal)?\nExample: https://myapp.skygeario.com/\n&gt; https://&lt;your-app-name&gt;.skygeario.com/\n\nWhat is your skygear API key (You can find it in portal)?\nExample: dc0903fa85924776baa77df813901efc\n&gt; &lt;your-api-key&gt;\n:updateAppSettings\n\nBUILD SUCCESSFUL\n\nTotal time: 21.326 secs\n</code></pre><p>The script is just modifying <code>MyApplication.java</code> file, so you\ncan manually change the configurations as well.</p>\n<h3 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h3>\n<p>Congratulations, you have your first skygear Android project set up! You\ncan now launch your App on the emulator and it should look like the following:</p>\n<p><a href=\"https://docs.skygear.io/assets/android/android-app-preview.png\"><img src=\"https://docs.skygear.io/assets/android/android-app-preview.png\" alt=\"Screenshot: android scaffolding app preview\"></a></p>\n";
 
 /***/ },
-/* 90 */
+/* 85 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3 id=\"step-1-installing-sdk\">Step 1: Installing SDK</h3>\n<p>Make sure jcenter repository is included in <code>build.gradle</code> of your project</p>\n<pre><code class=\"language-gradle\">allprojects <span class=\"token punctuation\" >{</span>\n    repositories <span class=\"token punctuation\" >{</span>\n        <span class=\"token function\" >jcenter</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><p>Add skygear as dependency in <code>build.gradle</code> of your application</p>\n<pre><code class=\"language-gradle\">dependencies <span class=\"token punctuation\" >{</span>\n    <span class=\"token comment\" spellcheck=\"true\">// other dependencies</span>\n    compile <span class=\"token string\" >'io.skygear:skygear:+'</span>\n<span class=\"token punctuation\" >}</span></code></pre><h3 id=\"step-2-configuring-container\">Step 2: Configuring container</h3>\n<p>After you have installed the SDK, you must configure\nyour skygear container with the <code>Server EndPoint</code> and <code>API Key</code> you get on\nSkygear Developer Portal <strong>BEFORE</strong> you make any API calls.</p>\n<h4 id=\"option-1-using-skygearapplication-as-custom-application\">Option 1: Using <code>SkygearApplication</code> as custom application</h4>\n<p>Create custom class extends <code>SkygearApplication</code></p>\n<pre><code class=\"language-java\"><span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>SkygearApplication<span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >public</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >MyApplication</span> <span class=\"token keyword\" >extends</span> <span class=\"token class-name\" >SkygearApplication</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> String <span class=\"token function\" >getSkygearEndpoint</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >return</span> <span class=\"token string\" >\"https://&lt;your-app-name>.skygeario.com/\"</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> String <span class=\"token function\" >getApiKey</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >return</span> <span class=\"token string\" >\"&lt;your-api-key>\"</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><p>Update <code>AndroidManifest.xml</code></p>\n<ul>\n<li>add <code>android:name</code> attribute to <code>application</code> tag</li>\n<li>add <code>android.permission.INTERNET</code> permission</li>\n</ul>\n<pre><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>uses-permission</span> <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>name</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>android.permission.INTERNET<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>application</span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>name</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>.MyApplication<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>allowBackup</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>true<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>icon</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>@mipmap/ic_launcher<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>label</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>@string/app_name<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>supportsRtl</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>true<span class=\"token punctuation\" >\"</span></span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>theme</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>@style/AppTheme<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token comment\" spellcheck=\"true\">&lt;!-- different activities ... --></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>application</span><span class=\"token punctuation\" >></span></span></code></pre><h4 id=\"option-2-setting-up-when-your-application-starts\">Option 2: Setting up when your application starts</h4>\n<p>If you have your own custom application class, you can set up skygear\nwhen your application starts.</p>\n<pre><code class=\"language-java\"><span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>Container<span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>Configuration<span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >public</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >MyApplication</span> <span class=\"token keyword\" >extends</span> <span class=\"token class-name\" >Application</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >void</span> <span class=\"token function\" >onCreate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >super</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >onCreate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        Configuration config <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Configuration<span class=\"token punctuation\" >.</span>Builder</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >endPoint</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >\"https://&lt;your-app-name>.skygeario.com/\"</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >apiKey</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >\"&lt;your-api-key>\"</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >build</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        Container<span class=\"token punctuation\" >.</span><span class=\"token function\" >defaultContainer</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >configure</span><span class=\"token punctuation\" >(</span>config<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        <span class=\"token comment\" spellcheck=\"true\">// your code...</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><p>Also, you need to make sure your application has grant\n<code>android.permission.INTERNET</code> permission in <code>AndroidManifest.xml</code>.</p>\n<pre><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>uses-permission</span> <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>name</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>android.permission.INTERNET<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span></code></pre>";
 
 /***/ },
-/* 91 */
+/* 86 */
 /***/ function(module, exports) {
 
 	module.exports = "<p>Following the steps below will help you set up a new scaffolding project with\nSkygear JS SDK. React.js, Babel 6 and Webpack are also automatically\nincluded and configured.</p>\n<h3 id=\"step-1-installing-node-js\">Step 1: Installing Node.js</h3>\n<p>We recommend setting up the build system using <a href=\"https://nodejs.org\">Node.js</a>.\nTo install <code>node</code> and package manager <code>npm</code>, simply do:</p>\n<pre><code class=\"language-bash\"><span class=\"token comment\" spellcheck=\"true\"># for MacOS</span>\nbrew <span class=\"token function\" >install</span> node\n\n<span class=\"token comment\" spellcheck=\"true\"># for Debian/Ubuntu</span>\ncurl -sL https://deb.nodesource.com/setup_6.x <span class=\"token operator\" >|</span> <span class=\"token function\" >sudo</span> -E <span class=\"token function\" >bash</span> -\n<span class=\"token function\" >sudo</span> <span class=\"token function\" >apt-get</span> <span class=\"token function\" >install</span> -y nodejs</code></pre><p>If you are using a different operating system, please see this\n<a href=\"https://nodejs.org/en/download\">page</a> for installing Node.js.\nIf bash shell is not available on your machine (such as Windows),\nwe recommend using <a href=\"https://git-scm.com/downloads\">GitBash</a>.</p>\n<h3 id=\"step-2-installing-and-running-yeoman-generator\">Step 2: Installing and running yeoman generator</h3>\n<p>After Node.js is installed, we suggest using <a href=\"http://yeoman.io/\">Yeoman</a> to\ndynamically generate your project. Make use you have your Skygear\n<code>Server EndPoint</code> and <code>API Key</code> ready before you proceed.</p>\n<pre><code class=\"language-bash\"><span class=\"token comment\" spellcheck=\"true\"># install yeoman and skygear generator globally</span>\nnpm <span class=\"token function\" >install</span> -g yo\nnpm <span class=\"token function\" >install</span> -g generator-skygear\n\n<span class=\"token comment\" spellcheck=\"true\"># create your project folder</span>\n<span class=\"token function\" >mkdir</span> new-skygear-project\n<span class=\"token function\" >cd</span> new-skygear-project\n\n<span class=\"token comment\" spellcheck=\"true\"># generate your project</span>\nyo skygear</code></pre><h3 id=\"step-3-answering-the-questions-for-generator\">Step 3: Answering the questions for generator</h3>\n<p>You will then be prompted a few questions, please make sure that you\nanswer these questions correctly:</p>\n<ul>\n<li>What is your skygear endpoint?</li>\n<li>What is your skygear API key?</li>\n<li>Please choose your application name?</li>\n<li>Overwrite <code>&lt;some-path&gt;/&lt;some-file&gt;.js</code>? (confirm to overwrite)</li>\n</ul>\n<h3 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h3>\n<p>Congratulations, you have your first skygear web project set up!\n<a href=\"https://facebook.github.io/react/\">React.js</a>, <a href=\"https://babeljs.io/\">Babel</a>\nand <a href=\"https://webpack.github.io/\">Webpack</a> are automatically included for you.\nTo launch your first application, simply do <code>npm start</code>.</p>\n<p><a name=\"whats-next\"></a></p>\n<h2 id=\"what-s-next\">What&#39;s Next</h2>\n<p>Now you&#39;ve learned how to start developing with Skygear, check out the SDK docs to learn some of the concepts behind Skygear:</p>\n<ul>\n<li>Learn to make <a href=\"/js/guide/users\">Authentication</a></li>\n<li>Learn to CRUD <a href=\"/js/guide/record\">Records</a></li>\n<li>Learn to make <a href=\"/js/guide/query\">Queries</a></li>\n<li>Take a <a href=\"/js/guide/quick-glance\">Quick Glance</a> at SDK</li>\n</ul>\n";
 
 /***/ },
-/* 92 */
+/* 87 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3 id=\"step-1-installing-sdk\">Step 1: Installing SDK</h3>\n<h4 id=\"scenario-1-html5-project\">Scenario 1: HTML5 project</h4>\n<pre><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span> <span class=\"token attr-name\" >src</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>//code.skygear.io/js/polyfill/latest/polyfill.min.js<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" ></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span> <span class=\"token attr-name\" >src</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>//code.skygear.io/js/skygear/latest/skygear.min.js<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" ></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" > console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span>skygear<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">// it's here! </span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span></code></pre><h4 id=\"scenario-2-node-js-project\">Scenario 2: Node.js project</h4>\n<p>Skygear JS SDK can be directly used in Node.js environment. Simply install it\nvia <a href=\"https://www.npmjs.com\">npm</a> and require it in your project.</p>\n<pre><code class=\"language-bash\">npm <span class=\"token function\" >install</span> skygear --save</code></pre><p>Using <a href=\"https://babeljs.io/\">Babel</a> with ES6 syntax is recommended (but not\nrequired).</p>\n<pre><code class=\"language-javascript\"><span class=\"token keyword\" >import</span> skygear <span class=\"token keyword\" >from</span> <span class=\"token string\" >'skygear'</span><span class=\"token punctuation\" >;</span></code></pre><p>If you are using Node.js v0.12 or before, please make sure that\nyou require <a href=\"https://babeljs.io/docs/usage/polyfill/\">Babel Polyfill</a>.</p>\n<pre><code class=\"language-javascript\"><span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'babel-polyfill'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >var</span> skygear <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'skygear'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span></code></pre><h4 id=\"scenario-3-for-webpack-project\">Scenario 3: For webpack project</h4>\n<p>If you wish to use <a href=\"https://webpack.github.io/\">webpack</a> to bundle up your\nfront end JavaScript code together with Skygear JS SDK, simply modify your\nwebpack configuration file (by default <code>webpack.config.js</code>) to include the\nfollowing:</p>\n<pre><code class=\"language-javascript\">module<span class=\"token punctuation\" >.</span>exports <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token comment\" spellcheck=\"true\">/* your own configurations */</span>\n  externals<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token string\" >'react-native'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'undefined'</span><span class=\"token punctuation\" >,</span>  <span class=\"token comment\" spellcheck=\"true\">// don't include react-native</span>\n    <span class=\"token string\" >'websocket'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'undefined'</span>      <span class=\"token comment\" spellcheck=\"true\">// don't include node.js websocket</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><p>Then you can <code>require(&#39;skygear&#39;)</code> in your front end code. You are also welcomed\nto use bundler of your choice, but bear in mind that you need to &quot;exclude&quot;\nReact Native and Node.js Websocket. Also, Skygear JS SDK needs\n<a href=\"https://babeljs.io/docs/usage/polyfill/\">Babel Polyfill</a>.</p>\n<h4 id=\"scenario-4-for-react-native-project\">Scenario 4: For React Native project</h4>\n<p>The SDK works with <a href=\"https://facebook.github.io/react-native/\">React Native</a>\nwell. Simply do <code>npm install --save skygear</code> and then you can\n<code>import skygear from &#39;skygear&#39;</code> in your <code>index.ios.js</code> and <code>index.android.js</code>.</p>\n<p><a name=\"set-up-app\"></a></p>\n<h3 id=\"step-2-configuring-container\">Step 2: Configuring container</h3>\n<p>In all usage scenario after you have installed the SDK, you must configure your\nskygear container (<code>skygear</code>) with the <code>Server EndPoint</code> and <code>API Key</code> you get\non Skygear Developer Portal <strong>BEFORE</strong> you make any API calls.</p>\n<pre><code class=\"language-javascript\">skygear<span class=\"token punctuation\" >.</span><span class=\"token function\" >config</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  <span class=\"token string\" >'endPoint'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'https://&lt;your-app-name>.skygeario.com/'</span><span class=\"token punctuation\" >,</span> <span class=\"token comment\" spellcheck=\"true\">// trailing slash is required</span>\n  <span class=\"token string\" >'apiKey'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'&lt;your-api-key>'</span><span class=\"token punctuation\" >,</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >then</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n  console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'skygear container is now ready'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >(</span>error<span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n  console<span class=\"token punctuation\" >.</span><span class=\"token function\" >error</span><span class=\"token punctuation\" >(</span>error<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span></code></pre>";

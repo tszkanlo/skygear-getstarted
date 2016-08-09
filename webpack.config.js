@@ -11,7 +11,7 @@ module.exports = {
       { test: /\.svg$/, loader: 'raw' },
       { test: /\.js$/, loader: 'babel?presets[]=es2015'},
       { test: /\.jsx$/, loader: 'babel?presets[]=es2015,presets[]=react'},
-      { test: /\.css$/, loader: "style!css" },
+      { test: /\.css$/, loader: "css" },
     ]
   },
 

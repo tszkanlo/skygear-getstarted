@@ -1,5 +1,5 @@
 
-- const HideOnDocSite = ( !window || window.location.hostname === 'docs.skygear.io')? Style.Hide: {};
+- const HideOnDocSite = (docLink === '')? Style.Hide: {};
 
 header
   h4(style=[ Style.tagline ]) GET STARTED
@@ -11,4 +11,4 @@ header
   nav(style=[ Style.project.row ])
     div(style=[ Style.project.item ])= children[3]
     div(style=[ Style.project.item ])= children[4]
-    a(style=[ Style.docLink ], href=docLink, target='_blank' ) Read our Doc
+    a(style=[ Style.docLink, HideOnDocSite ], href=docLink, target='_blank' ) Read our Doc

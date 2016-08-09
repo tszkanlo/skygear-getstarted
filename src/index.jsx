@@ -1,7 +1,4 @@
 
-import './google-fonts-lato-400-700.css';
-import 'prism-themes/themes/prism-ghcolors.css';
-
 import React from 'react';
 import { StyleRoot } from 'radium';
 import SelectPage from './component/SelectPage';
@@ -51,10 +48,12 @@ export default class GetStarted extends React.Component {
   render() {
     const self = this;
     const { sdk, project, hideSDKTabs } = this.state;
+    const fontCSS = '@import url("//fonts.googleapis.com/css?family=Lato:400,700");';
     const guideContent = Page[sdk] && Page[sdk][project];
     const Template = (guideContent) ? GuidePage : SelectPage;
     return (
       <StyleRoot>
+        <style dangerouslySetInnerHTML={{ __html: fontCSS }} />
         <Template
           sdk={sdk}
           project={project}

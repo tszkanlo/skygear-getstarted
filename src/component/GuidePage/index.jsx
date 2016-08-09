@@ -1,8 +1,10 @@
 
 import React from 'react';
 import radium from 'radium';
+import { canUseDOM } from 'exenv';
 
-import './Markdown.css';
+import markdownStyle from './Markdown.css';
+import prismjsStyle from 'prism-themes/themes/prism-ghcolors.css';
 
 import Style from './style.js';
 import IconIos from '../../img/icon-ios.svg';
@@ -28,13 +30,14 @@ export default function GuidePage({
 }) {
   const sdkTabProps = { Style, Icon, current: sdk, update: setSDK };
   const projectTabProps = { Style, Icon, current: project, update: setProject };
-  const docLink = `https://docs.skygear.io/${sdk}/guide`;
+  const docLink = (canUseDOM && window.location.hostname !== 'docs.skygear.io') ? `https://docs.skygear.io/${sdk}/guide` : '';
   return (
     <div style={Style.guidePage}>
+      <style dangerouslySetInnerHTML={{ __html: markdownStyle }} />
+      <style dangerouslySetInnerHTML={{ __html: prismjsStyle }} />
       <RadiumGuideHeader
         Style={Style}
         docLink={docLink}
-        window={window}
         hideSDKTabs={hideSDKTabs}
       >
         <RadiumTabItem {...sdkTabProps} target="ios" name="iOS" />
