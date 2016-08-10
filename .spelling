@@ -14,12 +14,14 @@ AWS
 boolean
 booleans
 camelCase
+CDN
 CLI
 CloudFormation
 CocoaPods
 config
 CoreDB
 cron
+css
 czmq
 datetime
 dict
@@ -57,7 +59,7 @@ plugins
 PNS
 PNSs
 Podfile
-Polyfill
+polyfill
 PostgreSQL
 pubsub
 PyPI
@@ -65,6 +67,7 @@ quickstart
 React.js
 Redis
 S3
+scss
 SDK
 SDKs
 SQL
@@ -73,8 +76,8 @@ stdin
 stdout
 stylesheet
 stylesheets
-TextEdit
 submodule
+TextEdit
 uuid
 VirtualBox
 webpack
@@ -108,6 +111,7 @@ backend
 bundler
 metadata
 natively
+pre-commit
 programmatically
 schemas
 serializable
@@ -117,18 +121,32 @@ utils
 versioning
 whitelist
 writable
-pre-commit
 
 # short forms
+dev
 e.g.
 i.e.
 TBC
 TODO
 todo
-dev
 
 # exceptions due to symbols
 _case
 _password
 v0.12
+v0.x
 v1.5
+
+# html code block
+https
+skygeario.com
+your-api-key
+dc0903fa85924776baa77df813901efc
+updateAppSettings
+postcss
+src
+cfg
+Main.js
+base.js
+index.js
+base.js
