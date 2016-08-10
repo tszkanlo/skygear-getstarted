@@ -5022,7 +5022,12 @@ module.exports =
 
 	  var sdkTabProps = { Style: _style2.default, Icon: Icon, current: sdk, update: setSDK };
 	  var projectTabProps = { Style: _style2.default, Icon: Icon, current: project, update: setProject };
-	  var docLink = _exenv.canUseDOM && window.location.hostname !== 'docs.skygear.io' ? 'https://docs.skygear.io/' + sdk + '/guide' : '';
+	  var isDocSite = !_exenv.canUseDOM || window.location.hostname === 'docs.skygear.io' || window.location.hostname === 'docs-staging.skygear.io';
+	  var docLink = isDocSite ? '' : 'https://docs.skygear.io/' + sdk + '/guide';
+	  if (isDocSite) {
+	    _style2.default.content.padding = '0px';
+	    _style2.default.content.marginTop = '24px';
+	  }
 	  return _react2.default.createElement(
 	    'div',
 	    { style: _style2.default.guidePage },
@@ -5155,6 +5160,7 @@ module.exports =
 	    fontFamily: "'Lato', sans-serif",
 	    minWidth: '295px'
 	  },
+	  Hide: { display: 'none' },
 	  content: { padding: '24px', overflowX: 'hidden' },
 	  tagline: {
 	    margin: '20px 0px',
@@ -5189,9 +5195,9 @@ module.exports =
 	      fill: '#1A1A1A',
 	      fontSize: '18px',
 	      textAlign: 'left',
-	      margin: '9px 12px 0px 12px',
+	      margin: '9px 12px 0px 0px',
 	      '@media (max-width: 544px)': {
-	        margin: '9px 6px 0px 6px',
+	        margin: '9px 6px 0px 0px',
 	        fontSize: '16px'
 	      }
 	    },

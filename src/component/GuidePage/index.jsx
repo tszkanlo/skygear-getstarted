@@ -30,7 +30,14 @@ export default function GuidePage({
 }) {
   const sdkTabProps = { Style, Icon, current: sdk, update: setSDK };
   const projectTabProps = { Style, Icon, current: project, update: setProject };
-  const docLink = (canUseDOM && window.location.hostname !== 'docs.skygear.io') ? `https://docs.skygear.io/${sdk}/guide` : '';
+  const isDocSite = (!canUseDOM ||
+                     window.location.hostname === 'docs.skygear.io' ||
+                     window.location.hostname === 'docs-staging.skygear.io');
+  const docLink = (isDocSite) ? '' : `https://docs.skygear.io/${sdk}/guide`;
+  if (isDocSite) {
+    Style.content.padding = '0px';
+    Style.content.marginTop = '24px';
+  }
   return (
     <div style={Style.guidePage}>
       <style dangerouslySetInnerHTML={{ __html: markdownStyle }} />

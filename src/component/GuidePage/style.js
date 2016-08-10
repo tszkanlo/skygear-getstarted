@@ -4,6 +4,7 @@ export default {
     fontFamily: "'Lato', sans-serif",
     minWidth: '295px',
   },
+  Hide: { display: 'none' },
   content: { padding: '24px', overflowX: 'hidden' },
   tagline: {
     margin: '20px 0px',
@@ -38,9 +39,9 @@ export default {
       fill: '#1A1A1A',
       fontSize: '18px',
       textAlign: 'left',
-      margin: '9px 12px 0px 12px',
+      margin: '9px 12px 0px 0px',
       '@media (max-width: 544px)': {
-        margin: '9px 6px 0px 6px',
+        margin: '9px 6px 0px 0px',
         fontSize: '16px',
       },
     },
