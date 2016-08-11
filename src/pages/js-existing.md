@@ -3,13 +3,13 @@ To add the Skygear JS SDK to your existing project, you need to:
  1. install (and import) the SDK
  2. configure the Skygear server endpoint and API key for the SDK
 
-### Step 1: Installing the SDK
+## Step 1: Installing the SDK
 
 The JS SDK can be easily integrated with your existing project using several
 ways: as HTML5 project, Node.js project, webpack project or React Native
 project.
 
-#### HTML5 project
+### HTML5 project
 
 The Skygear JS SDK can be included as a minified external script through CDN,
 like the following:
@@ -28,7 +28,7 @@ global scope.
 The polyfill, which should be placed before the `skygear.min.js`, is used to
 implant HTML5 functionality in browsers that don't natively support them.
 
-#### Node.js project
+### Node.js project
 
 Skygear JS SDK can be directly used in Node.js environment. Simply install it
 via [npm](https://www.npmjs.com) and use it in your project.
@@ -54,7 +54,7 @@ require('babel-polyfill');
 import skygear from 'skygear';
 ```
 
-#### Webpack project
+### Webpack project
 
 If you are using [webpack](https://webpack.github.io/) to bundle your modules,
 you need to configure it correctly to make Skygear work in the web environment.
@@ -72,7 +72,7 @@ module.exports = {
 }
 ```
 
-#### React Native project
+### React Native project
 
 The SDK works well with
 [React Native](https://facebook.github.io/react-native/).
@@ -90,7 +90,7 @@ import skygear from 'skygear'
 ```
 
 <a name="set-up-app"></a>
-### Step 2: Configuring the Skygear server endpoint and API key
+## Step 2: Configuring the Skygear server endpoint and API key
 
 Before you make any API calls using the JS SDK, you must configure your skygear
 container, `skygear`, with your Skygear server endpoint and API key you get from
