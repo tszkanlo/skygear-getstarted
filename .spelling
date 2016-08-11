@@ -33,6 +33,7 @@ filename
 GCM
 GitBash
 GitHub
+Gradle
 homebrew
 hostname
 HTML5
@@ -40,7 +41,7 @@ http
 iOS
 IP
 JavaScript
-jcenter
+JCenter
 JIT
 JS
 JSON
@@ -53,6 +54,7 @@ Node.js.
 NoSQL
 npm
 Objective-C
+onCreate
 Parse.com
 PEM
 plugin
