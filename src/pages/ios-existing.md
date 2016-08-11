@@ -1,60 +1,92 @@
+To add the Skygear iOS SDK to your existing project, you need to:
 
-<a name="sdk-existing"></a>
-## For existing project
+ 1. install the SDK through CocoaPods
+ 2. configure the Skygear server endpoint and API key for the SDK
 
-The installation requires Xcode and [CocoaPods](https://cocoapods.org/).
-If you haven't installed them already, please head to [this section](#new-project) to read about how to create a new project with configured SDK.
+## Prerequisite
 
-### Step 1: Install SDK using CocoaPods
+The installation requires
+[Xcode](https://developer.apple.com/xcode/) and
+[CocoaPods](https://cocoapods.org/). You can visit their websites to download
+the latest versions.
 
-To install the Skygear iOS SDK as your iOS application dependency:
+## Step 1: Installing the SDK (SKYKit) using CocoaPods
 
-1. You need to close Xcode.
-2. Open Terminal and navigate to the directory that contains your iOS
-   project by using the cd command: `cd ~/Path/To/Your/App`.
-   You can just drag the file icon to Terminal and the path will be
-   automatically typed for you.
-3. Run this command in Terminal `pod init` to create a [Podfile](https://guides.cocoapods.org/using/the-podfile.html).
-4. Run this command in Terminal `open -a Xcode Podfile` to edit the Podfile using Xcode. You should avoid using TextEdit to edit the Podfile because it may mess up the format and confuse CocoaPods.
+### Creating the Podfile
 
-### Step 2: Edit the Podfile
+If you have already created the [Podfile](https://guides.cocoapods.org/using/the-podfile.html)
+before, you can skip this section and move ahead to add SKYKit to the `Podfile`
+as explained in the next section.
 
-1. Open and edit the `Podfile` file. Your `Podfile` file should look like this:
+To create the `Podfile`, you need to open the Terminal and navigate to the
+directory that contains your iOS project using the cd command:
+`cd ~/Path/To/Your/App`.
+You can also set the path by dragging the folder icon to Terminal.
 
-	```
-	use_frameworks!
-	platform :ios, '8.0'
-	
-	target 'YourProjectName' do
-	    pod 'SKYKit'
-	end
-	```
-	Replace `'YourProjectName'` with your actual project name.
+And then you can create the `Podfile` using:
 
-	CocoaPods 0.36 and above introduces the `use_frameworks!` instruction, so
-	the Objective-C bridging header is no longer needed if you're using Swift in
-	your project.
-
-2. Run `pod install` in your terminal.
-3. You would see that an Xcode Workspace file is created. Open the file and go to the project.
-4. It's done! You have installed Skygear SDK in your app. If you're using Swift, just import the SDK in each Swift file to call the SDK.
-
-### Step 3: Configure end point and API key
-
-Now, you are going to setup the server endpoint and API key for your app. Read more about [SKYContainer](#skycontainer).
-
-In `AppDelegate.m`, include `SKYKit`:
-
-```obj-c
-import <SKYKit/SKYKit.h>
+``` bash
+pod init
 ```
 
-Then add these lines in the `application:didFinishLaunchingWithOptions:` method:
+### Adding SKYKit to the Podfile
 
-```obj-c
-SKYContainer *container = [SKYContainer defaultContainer];
-[container configAddress:@"https://your-endpoint.skygeario.com/"]; //Your server endpoint
-[container configureWithAPIKey:@"SKYGEAR_API_KEY"]; //Your Skygear API Key
+You can issue the following command in the Terminal to open the `Podfile` in Xcode.
+
+```
+open -a Xcode Podfile
 ```
 
-Replace `your-endpoint.skygeario.com` with your Server Endpoint and `SKYGEAR_API_KEY` with your API Key.
+Note: You should avoid using TextEdit to edit the Podfile because it may mess up the format and confuse CocoaPods.
+
+You need to add the line `pod 'SKYKit'` to the file as in the example below. You need to replace `YourProjectName` with your actual project name.
+
+```
+use_frameworks!
+platform :ios, '8.0'
+
+target 'YourProjectName' do
+    pod 'SKYKit'
+end
+```
+
+CocoaPods 0.36 or higher introduces the `use_frameworks!` instruction, so the
+[Objective-C bridging header](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html)
+is no longer necessary if you're using Swift in your project.
+
+### Installing SKYKit
+
+After adding SKYKit to the `Podfile`, you can install the Skygear Android SDK
+by:
+
+``` bash
+pod install
+```
+
+When the installation is complete, you can use the Xcode workspace
+`YourProjectName.xcworkspace` to start developing with the SDK.
+
+If you are using Swift, you can import the SDK in each file to use it.
+
+## Step 2: Configuring Skygear server endpoint and API key
+
+Before you make any API calls using the JS SDK, you must configure your skygear
+container, `SKYContainer`, with your Skygear server endpoint and API key you get
+from the [Skygear Portal](https://portal.skygear.io/app/info).
+
+The configuration is done in the file `AppDelegate.m`:
+
+- Import the SDK as `SKYKit`
+
+  ```obj-c
+  import <SKYKit/SKYKit.h>
+  ```
+
+- Add these lines in the `application:didFinishLaunchingWithOptions:` method.
+Fill in your server endpoint and API key correspondingly.
+
+  ```obj-c
+  SKYContainer *container = [SKYContainer defaultContainer];
+  [container configAddress:@"https://your-endpoint.skygeario.com/"]; //Your server endpoint
+  [container configureWithAPIKey:@"SKYGEAR_API_KEY"]; //Your Skygear API Key
+  ```
