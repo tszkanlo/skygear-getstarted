@@ -28,8 +28,6 @@
   .Markdown ol, .Markdown ul {
     padding-left: 20px;
     list-style-position: outside; }
-    .Markdown ol p, .Markdown ul p {
-      display: inline-block; }
   .Markdown code {
     box-sizing: border-box;
     padding: .25rem .375rem 0 .375rem;
