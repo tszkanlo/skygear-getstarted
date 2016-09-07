@@ -47,22 +47,25 @@ export default class GetStarted extends React.Component {
 
   render() {
     const self = this;
+    const { className } = this.props;
     const { sdk, project, hideSDKTabs } = this.state;
     const fontCSS = '@import url("//fonts.googleapis.com/css?family=Lato:400,700");';
     const guideContent = Page[sdk] && Page[sdk][project];
     const Template = (guideContent) ? GuidePage : SelectPage;
     return (
-      <StyleRoot>
-        <style dangerouslySetInnerHTML={{ __html: fontCSS }} />
-        <Template
-          sdk={sdk}
-          project={project}
-          hideSDKTabs={hideSDKTabs}
-          guideContent={guideContent}
-          setSDK={(targetSDK) => self.setState({ sdk: targetSDK })}
-          setProject={(targetProject) => self.setState({ project: targetProject })}
-        />
-      </StyleRoot>
+      <div {...{ className }}>
+        <StyleRoot>
+          <style dangerouslySetInnerHTML={{ __html: fontCSS }} />
+          <Template
+            sdk={sdk}
+            project={project}
+            hideSDKTabs={hideSDKTabs}
+            guideContent={guideContent}
+            setSDK={(targetSDK) => self.setState({ sdk: targetSDK })}
+            setProject={(targetProject) => self.setState({ project: targetProject })}
+          />
+        </StyleRoot>
+      </div>
     );
   }
 }
@@ -71,4 +74,5 @@ GetStarted.propTypes = {
   sdk: React.PropTypes.string,
   project: React.PropTypes.string,
   hideSDKTabs: React.PropTypes.bool,
+  className: React.PropTypes.string,
 };

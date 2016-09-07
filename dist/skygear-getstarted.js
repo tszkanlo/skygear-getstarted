@@ -169,6 +169,7 @@ module.exports =
 	    key: 'render',
 	    value: function render() {
 	      var self = this;
+	      var className = this.props.className;
 	      var _state = this.state;
 	      var sdk = _state.sdk;
 	      var project = _state.project;
@@ -178,21 +179,25 @@ module.exports =
 	      var guideContent = Page[sdk] && Page[sdk][project];
 	      var Template = guideContent ? _GuidePage2.default : _SelectPage2.default;
 	      return _react2.default.createElement(
-	        _radium.StyleRoot,
-	        null,
-	        _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: fontCSS } }),
-	        _react2.default.createElement(Template, {
-	          sdk: sdk,
-	          project: project,
-	          hideSDKTabs: hideSDKTabs,
-	          guideContent: guideContent,
-	          setSDK: function setSDK(targetSDK) {
-	            return self.setState({ sdk: targetSDK });
-	          },
-	          setProject: function setProject(targetProject) {
-	            return self.setState({ project: targetProject });
-	          }
-	        })
+	        'div',
+	        { className: className },
+	        _react2.default.createElement(
+	          _radium.StyleRoot,
+	          null,
+	          _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: fontCSS } }),
+	          _react2.default.createElement(Template, {
+	            sdk: sdk,
+	            project: project,
+	            hideSDKTabs: hideSDKTabs,
+	            guideContent: guideContent,
+	            setSDK: function setSDK(targetSDK) {
+	              return self.setState({ sdk: targetSDK });
+	            },
+	            setProject: function setProject(targetProject) {
+	              return self.setState({ project: targetProject });
+	            }
+	          })
+	        )
 	      );
 	    }
 	  }]);
@@ -206,7 +211,8 @@ module.exports =
 	GetStarted.propTypes = {
 	  sdk: _react2.default.PropTypes.string,
 	  project: _react2.default.PropTypes.string,
-	  hideSDKTabs: _react2.default.PropTypes.bool
+	  hideSDKTabs: _react2.default.PropTypes.bool,
+	  className: _react2.default.PropTypes.string
 	};
 
 /***/ },
