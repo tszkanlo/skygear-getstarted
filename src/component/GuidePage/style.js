@@ -23,6 +23,8 @@ export default {
   project: {
     row: {
       width: '100%',
+      padding: '0 24px',
+      boxSizing: 'border-box',
       position: 'relative',
       '@media (max-width: 544px)': {
         marginBottom: '78px',

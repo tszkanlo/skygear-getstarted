@@ -34,6 +34,7 @@ GCM
 GitBash
 GitHub
 Gradle
+gradle
 homebrew
 hostname
 HTML5
@@ -135,7 +136,9 @@ TODO
 todo
 
 # exceptions due to symbols
+_
 _case
+_Note
 _password
 v0.12
 v0.x
