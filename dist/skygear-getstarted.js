@@ -90,27 +90,27 @@ module.exports =
 
 	var _GuidePage2 = _interopRequireDefault(_GuidePage);
 
-	var _iosNew = __webpack_require__(82);
+	var _iosNew = __webpack_require__(81);
 
 	var _iosNew2 = _interopRequireDefault(_iosNew);
 
-	var _iosExisting = __webpack_require__(83);
+	var _iosExisting = __webpack_require__(82);
 
 	var _iosExisting2 = _interopRequireDefault(_iosExisting);
 
-	var _androidNew = __webpack_require__(84);
+	var _androidNew = __webpack_require__(83);
 
 	var _androidNew2 = _interopRequireDefault(_androidNew);
 
-	var _androidExisting = __webpack_require__(85);
+	var _androidExisting = __webpack_require__(84);
 
 	var _androidExisting2 = _interopRequireDefault(_androidExisting);
 
-	var _jsNew = __webpack_require__(86);
+	var _jsNew = __webpack_require__(85);
 
 	var _jsNew2 = _interopRequireDefault(_jsNew);
 
-	var _jsExisting = __webpack_require__(87);
+	var _jsExisting = __webpack_require__(86);
 
 	var _jsExisting2 = _interopRequireDefault(_jsExisting);
 
@@ -4928,10 +4928,6 @@ module.exports =
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = GuidePage;
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -4978,10 +4974,6 @@ module.exports =
 
 	var _TabItem2 = _interopRequireDefault(_TabItem);
 
-	var _GuideHeader = __webpack_require__(81);
-
-	var _GuideHeader2 = _interopRequireDefault(_GuideHeader);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Icon = {
@@ -4993,7 +4985,6 @@ module.exports =
 	};
 
 	var RadiumTabItem = (0, _radium2.default)(_TabItem2.default);
-	var RadiumGuideHeader = (0, _radium2.default)(_GuideHeader2.default);
 
 	function GuidePage(_ref) {
 	  var sdk = _ref.sdk;
@@ -5003,31 +4994,112 @@ module.exports =
 	  var setSDK = _ref.setSDK;
 	  var setProject = _ref.setProject;
 
-	  var sdkTabProps = { Style: _style2.default, Icon: Icon, current: sdk, update: setSDK };
-	  var projectTabProps = { Style: _style2.default, Icon: Icon, current: project, update: setProject };
-	  var isDocSite = !_exenv.canUseDOM || window.location.hostname === 'docs.skygear.io' || window.location.hostname === 'docs-staging.skygear.io';
-	  var docLink = isDocSite ? '' : 'https://docs.skygear.io/' + sdk + '/guide';
-	  if (isDocSite) {
-	    _style2.default.content.padding = '0px';
-	    _style2.default.content.marginTop = '24px';
+	  var docLinkShoudShow = _exenv.canUseDOM && window.location.hostname !== 'localhost' && window.location.hostname !== 'docs.skygear.io' && window.location.hostname !== 'docs-staging.skygear.io';
+
+	  var heading = void 0;
+	  var sdkTabs = void 0;
+	  if (!hideSDKTabs) {
+	    heading = _react2.default.createElement(
+	      'h4',
+	      { style: [_style2.default.tagline] },
+	      'GET STARTED'
+	    );
+	    sdkTabs = _react2.default.createElement(
+	      'nav',
+	      { style: [_style2.default.platform.row] },
+	      _react2.default.createElement(
+	        'div',
+	        { style: [_style2.default.platform.item] },
+	        _react2.default.createElement(RadiumTabItem, {
+	          Style: _style2.default,
+	          Icon: Icon,
+	          current: sdk,
+	          update: setSDK,
+	          target: 'ios',
+	          name: 'iOS'
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: [_style2.default.platform.item] },
+	        _react2.default.createElement(RadiumTabItem, {
+	          Style: _style2.default,
+	          Icon: Icon,
+	          current: sdk,
+	          update: setSDK,
+	          target: 'android',
+	          name: 'Android'
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: [_style2.default.platform.item] },
+	        _react2.default.createElement(RadiumTabItem, {
+	          Style: _style2.default,
+	          Icon: Icon,
+	          current: sdk,
+	          update: setSDK,
+	          target: 'js',
+	          name: 'Web'
+	        })
+	      )
+	    );
 	  }
+
+	  var docLink = void 0;
+	  if (docLinkShoudShow) {
+	    docLink = _react2.default.createElement(
+	      'a',
+	      {
+	        style: [_style2.default.project.docLink],
+	        href: 'https://docs.skygear.io/' + sdk + '/guide',
+	        target: '_blank'
+	      },
+	      'Read our Doc'
+	    );
+	  }
+
 	  return _react2.default.createElement(
 	    'div',
 	    { style: _style2.default.guidePage },
 	    _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: _Markdown2.default } }),
 	    _react2.default.createElement('style', { dangerouslySetInnerHTML: { __html: _prismGhcolors2.default } }),
 	    _react2.default.createElement(
-	      RadiumGuideHeader,
-	      {
-	        Style: _style2.default,
-	        docLink: docLink,
-	        hideSDKTabs: hideSDKTabs
-	      },
-	      _react2.default.createElement(RadiumTabItem, _extends({}, sdkTabProps, { target: 'ios', name: 'iOS' })),
-	      _react2.default.createElement(RadiumTabItem, _extends({}, sdkTabProps, { target: 'android', name: 'Android' })),
-	      _react2.default.createElement(RadiumTabItem, _extends({}, sdkTabProps, { target: 'js', name: 'Web' })),
-	      _react2.default.createElement(RadiumTabItem, _extends({}, projectTabProps, { target: 'new', name: 'New App' })),
-	      _react2.default.createElement(RadiumTabItem, _extends({}, projectTabProps, { target: 'existing', name: 'Existing App' }))
+	      'header',
+	      null,
+	      heading,
+	      sdkTabs,
+	      _react2.default.createElement(
+	        'nav',
+	        {
+	          style: [_style2.default.project.row, docLinkShoudShow && _style2.default.project.rowIncludeDocLink]
+	        },
+	        _react2.default.createElement(
+	          'div',
+	          { style: [_style2.default.project.item] },
+	          _react2.default.createElement(RadiumTabItem, {
+	            Style: _style2.default,
+	            Icon: Icon,
+	            current: project,
+	            update: setProject,
+	            target: 'new',
+	            name: 'New App'
+	          })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { style: [_style2.default.project.item] },
+	          _react2.default.createElement(RadiumTabItem, {
+	            Style: _style2.default,
+	            Icon: Icon,
+	            current: project,
+	            update: setProject,
+	            target: 'existing',
+	            name: 'Existing App'
+	          })
+	        ),
+	        docLink
+	      )
 	    ),
 	    _react2.default.createElement('article', {
 	      style: _style2.default.content,
@@ -5045,6 +5117,8 @@ module.exports =
 	  setProject: _react2.default.PropTypes.func.isRequired,
 	  hideSDKTabs: _react2.default.PropTypes.bool
 	};
+
+	exports.default = (0, _radium2.default)(GuidePage);
 
 /***/ },
 /* 76 */
@@ -5164,12 +5238,30 @@ module.exports =
 	      width: '100%',
 	      padding: '0 24px',
 	      boxSizing: 'border-box',
-	      position: 'relative',
+	      position: 'relative'
+	    },
+	    rowIncludeDocLink: {
 	      '@media (max-width: 544px)': {
-	        marginBottom: '78px'
+	        marginBottom: 78
 	      }
 	    },
-	    item: { display: 'inline-block' }
+	    item: { display: 'inline-block' },
+	    docLink: {
+	      position: 'absolute',
+	      top: '19px',
+	      right: '41px',
+	      padding: '14px 42px',
+	      color: '#FFF',
+	      background: '#007BD4',
+	      borderRadius: '5px',
+	      fontSize: '16px',
+	      textDecoration: 'none',
+	      textAlign: 'center',
+	      '@media (max-width: 544px)': {
+	        top: '78px',
+	        left: '41px'
+	      }
+	    }
 	  },
 	  tab: {
 	    item: {
@@ -5195,22 +5287,6 @@ module.exports =
 	      width: '21px'
 	    },
 	    name: { margin: '9px 9px 16px 33px' }
-	  },
-	  docLink: {
-	    padding: '14px 42px',
-	    fontSize: '16px',
-	    color: '#FFF',
-	    background: '#007BD4',
-	    borderRadius: '5px',
-	    position: 'absolute',
-	    top: '19px',
-	    right: '41px',
-	    textDecoration: 'none',
-	    textAlign: 'center',
-	    '@media (max-width: 544px)': {
-	      top: '78px',
-	      left: '41px'
-	    }
 	  }
 	};
 
@@ -5251,101 +5327,36 @@ module.exports =
 
 /***/ },
 /* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	module.exports= function (locals) {  var docLink = "docLink" in locals ? locals.docLink : jade_globals_docLink;
-	  var Style = "Style" in locals ? locals.Style : jade_globals_Style;
-	  var hideSDKTabs = "hideSDKTabs" in locals ? locals.hideSDKTabs : jade_globals_hideSDKTabs;
-	  var children = "children" in locals ? locals.children : jade_globals_children;
-	  return function() {
-	    var tags = [];
-	    const HideOnDocSite = "" === docLink ? Style.Hide : {};
-	    tags.push(React.DOM.header.apply(React.DOM, [ {} ].concat(function() {
-	      var tags = [];
-	      if (!hideSDKTabs) {
-	        tags.push(React.DOM.h4.apply(React.DOM, [ {
-	          style: [ Style.tagline ]
-	        } ].concat(function() {
-	          return [ "GET STARTED" ];
-	        }.call(this))));
-	        tags.push(React.DOM.nav.apply(React.DOM, [ {
-	          style: [ Style.platform.row ]
-	        } ].concat(function() {
-	          return [ React.DOM.div.apply(React.DOM, [ {
-	            style: [ Style.platform.item ]
-	          } ].concat(function() {
-	            return [ children[0] ];
-	          }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	            style: [ Style.platform.item ]
-	          } ].concat(function() {
-	            return [ children[1] ];
-	          }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	            style: [ Style.platform.item ]
-	          } ].concat(function() {
-	            return [ children[2] ];
-	          }.call(this))) ];
-	        }.call(this))));
-	      }
-	      tags.push(React.DOM.nav.apply(React.DOM, [ {
-	        style: [ Style.project.row ]
-	      } ].concat(function() {
-	        return [ React.DOM.div.apply(React.DOM, [ {
-	          style: [ Style.project.item ]
-	        } ].concat(function() {
-	          return [ children[3] ];
-	        }.call(this))), React.DOM.div.apply(React.DOM, [ {
-	          style: [ Style.project.item ]
-	        } ].concat(function() {
-	          return [ children[4] ];
-	        }.call(this))), React.DOM.a.apply(React.DOM, [ {
-	          style: [ Style.docLink, HideOnDocSite ],
-	          href: docLink,
-	          target: "_blank"
-	        } ].concat(function() {
-	          return [ "Read our Doc" ];
-	        }.call(this))) ];
-	      }.call(this))));
-	      return tags;
-	    }.call(this))));
-	    if (1 === tags.length) return tags.pop();
-	    tags.unshift({});
-	    return React.DOM.div.apply(React.DOM, tags);
-	  }.call(this);
-	}
-
-/***/ },
-/* 82 */
 /***/ function(module, exports) {
 
 	module.exports = "<p>If you want to create a new iOS app that uses Skygear, you can follow this\nguide to scaffold a new one with the Skygear iOS SDK installed. After creating\nthe scaffolding app, you will have an iOS app configured with your Skygear\nserver endpoint and API key, with basic authentication functions for a user\nto sign up, log in and log out, implemented using the iOS SDK.</p>\n<h2 id=\"prerequisite\">Prerequisite</h2>\n<h3 id=\"xcode\">Xcode</h3>\n<p><a href=\"https://developer.apple.com/xcode/\">Xcode</a> is an IDE for developing iOS apps.\nYou can download the\n<a href=\"https://itunes.apple.com/en/app/xcode/id497799835?mt=12\">latest version of Xcode</a>\nfrom the Mac App Store.</p>\n<h3 id=\"cocoapods\">CocoaPods</h3>\n<p><a href=\"https://cocoapods.org/\">CocoaPods</a> manages the library dependencies for your\nXcode projects.</p>\n<p>You can install CocoaPods by opening the terminal and run the command below.\nIt may take a few minutes to complete.</p>\n<pre><code class=\"language-bash\"><span class=\"token function\" >sudo</span> gem <span class=\"token function\" >install</span> cocoapods</code></pre><h2 id=\"creating-a-new-ios-app-project\">Creating a new iOS app project</h2>\n<ol>\n<li>Before creating the iOS app project, you need to make sure the Specs Repo is up-to-date:<pre><code class=\"language-bash\">pod repo update</code></pre></li>\n<li>You can then create the scaffolding project by <code>pod lib create</code> using the\nSkygear scaffolding template. You should change <code>YourProjectName</code> to your\npreferred one in the command below:<pre><code class=\"language-bash\">pod lib create --silent --template-url<span class=\"token operator\" >=</span>https://github.com/SkygearIO/skygear-Scaffolding-iOS.git <span class=\"token string\" >\"YourProjectName\"</span></code></pre></li>\n<li><p>You will be prompted with a few questions for setting up the project:</p>\n<ul>\n<li><h4 id=\"skygear-server-endpoint-and-api-key\">Skygear server endpoint and API key</h4>\n<p>You can obtain the Skygear endpoint and API key from the\n<a href=\"https://portal.skygear.io/app/info\">Skygear Portal</a>.</p>\n<pre><code class=\"language-bash\">What is your skygear endpoint (You can find it in portal)?\nExample: https://myapp.skygeario.com\n&gt; <span class=\"token keyword\">https://myapp.skygeario.com</span><br/>\nWhat is your skygear API key (You can find it in portal)?\nExample: dc0903fa85924776baa77df813901efc\n&gt; <span class=\"token keyword\">&lt;your-api-key&gt;</span></code></pre>\n</li>\n<li><h4 id=\"programming-language\">Programming language</h4>\n<p>You can choose between using Swift or Objective-C.</p>\n<pre><code class=\"language-bash\">What language do you want to use?? [ Swift / ObjC ]\n&gt; <span class=\"token keyword\">ObjC</span></code></pre>\n</li>\n<li><h4 id=\"class-prefix-only-applicable-for-using-objective-c-\">Class prefix (only applicable for using Objective-C)</h4>\n<p>You need to specify a 3-letter\n<a href=\"https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html\">class prefix</a>\nfor your code if you are using Objective-C.</p>\n<pre><code class=\"language-bash\">What is your class prefix?\n&gt; <span class=\"token keyword\">YPN</span></code></pre>\n\n\n</li>\n</ul>\n</li>\n</ol>\n<h2 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h2>\n<p>Congratulations, you have your first Skygear iOS project set up! The iOS SDK\nhas been installed; and the container <code>SKYContainer</code> has been configured with\nyour server endpoint and API key. You can run the app using the emulator, which\nshould show the following screen:</p>\n<p><a href=\"https://docs.skygear.io/assets/ios/ios-app-preview.png\"><img src=\"https://docs.skygear.io/assets/ios/ios-app-preview.png\" alt=\"Screenshot: iOS SDK scaffolding app\"></a></p>\n";
 
 /***/ },
-/* 83 */
+/* 82 */
 /***/ function(module, exports) {
 
 	module.exports = "<p>To add the Skygear iOS SDK to your existing project, you need to:</p>\n<ol>\n<li>install the SDK through CocoaPods</li>\n<li>configure the Skygear server endpoint and API key for the SDK</li>\n</ol>\n<h2 id=\"prerequisite\">Prerequisite</h2>\n<p>The installation requires\n<a href=\"https://developer.apple.com/xcode/\">Xcode</a> and\n<a href=\"https://cocoapods.org/\">CocoaPods</a>. You can visit their websites to download\nthe latest versions.</p>\n<h2 id=\"step-1-installing-the-sdk-skykit-using-cocoapods\">Step 1: Installing the SDK (SKYKit) using CocoaPods</h2>\n<h3 id=\"creating-the-podfile\">Creating the Podfile</h3>\n<p>If you have already created the <a href=\"https://guides.cocoapods.org/using/the-podfile.html\">Podfile</a>\nbefore, you can skip this section and move ahead to add SKYKit to the <code>Podfile</code>\nas explained in the next section.</p>\n<p>To create the <code>Podfile</code>, you need to open the Terminal and navigate to the\ndirectory that contains your iOS project using the cd command:\n<code>cd ~/Path/To/Your/App</code>.\nYou can also set the path by dragging the folder icon to Terminal.</p>\n<p>And then you can create the <code>Podfile</code> using:</p>\n<pre><code class=\"language-bash\">pod init</code></pre><h3 id=\"adding-skykit-to-the-podfile\">Adding SKYKit to the Podfile</h3>\n<p>You can issue the following command in the Terminal to open the <code>Podfile</code> in Xcode.</p>\n<pre><code>open -a Xcode Podfile\n</code></pre><p>Note: You should avoid using TextEdit to edit the Podfile because it may mess up the format and confuse CocoaPods.</p>\n<p>You need to add the line <code>pod &#39;SKYKit&#39;</code> to the file as in the example below. You need to replace <code>YourProjectName</code> with your actual project name.</p>\n<pre><code>use_frameworks!\nplatform :ios, &#39;8.0&#39;\n\ntarget &#39;YourProjectName&#39; do\n    pod &#39;SKYKit&#39;\nend\n</code></pre><p>CocoaPods 0.36 or higher introduces the <code>use_frameworks!</code> instruction, so the\n<a href=\"https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html\">Objective-C bridging header</a>\nis no longer necessary if you&#39;re using Swift in your project.</p>\n<h3 id=\"installing-skykit\">Installing SKYKit</h3>\n<p>After adding SKYKit to the <code>Podfile</code>, you can install the Skygear Android SDK\nby:</p>\n<pre><code class=\"language-bash\">pod <span class=\"token function\" >install</span></code></pre><p>When the installation is complete, you can use the Xcode workspace\n<code>YourProjectName.xcworkspace</code> to start developing with the SDK.</p>\n<p>If you are using Swift, you can import the SDK in each file to use it.</p>\n<h2 id=\"step-2-configuring-skygear-server-endpoint-and-api-key\">Step 2: Configuring Skygear server endpoint and API key</h2>\n<p>Before you make any API calls using the JS SDK, you must configure your skygear\ncontainer, <code>SKYContainer</code>, with your Skygear server endpoint and API key you get\nfrom the <a href=\"https://portal.skygear.io/app/info\">Skygear Portal</a>.</p>\n<p>The configuration is done in the file <code>AppDelegate.m</code>:</p>\n<ul>\n<li><p>Import the SDK as <code>SKYKit</code></p>\n<pre><code class=\"language-obj-c\">import <span class=\"token operator\" >&lt;</span>SKYKit<span class=\"token operator\" >/</span>SKYKit<span class=\"token punctuation\" >.</span>h<span class=\"token operator\" >></span></code></pre></li>\n<li><p>Add these lines in the <code>application:didFinishLaunchingWithOptions:</code> method.\nFill in your server endpoint and API key correspondingly.</p>\n<pre><code class=\"language-obj-c\">SKYContainer <span class=\"token operator\" >*</span>container <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>SKYContainer defaultContainer<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >[</span>container configAddress<span class=\"token punctuation\" >:</span><span class=\"token string\" >@\"https://your-endpoint.skygeario.com/\"</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">//Your server endpoint</span>\n<span class=\"token punctuation\" >[</span>container configureWithAPIKey<span class=\"token punctuation\" >:</span><span class=\"token string\" >@\"SKYGEAR_API_KEY\"</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">//Your Skygear API Key</span></code></pre></li>\n</ul>\n";
 
 /***/ },
-/* 84 */
+/* 83 */
 /***/ function(module, exports) {
 
 	module.exports = "<p>If you want to create a new Android app that uses Skygear, you can follow this\nguide to scaffold a new one with the Skygear Android SDK installed. After\ncreating the scaffolding app, you will have an Android app configured with your\nSkygear server endpoint and API key, with basic authentication functions for a\nuser to sign up, log in and log out, implemented using the Android SDK.</p>\n<p>To create the new Android app with the Android SDK, you need to:</p>\n<ol>\n<li>download the scaffolding Android Studio project</li>\n<li>configure the Skygear server endpoint and API key for the SDK</li>\n</ol>\n<h2 id=\"prerequisite\">Prerequisite</h2>\n<h3 id=\"android-studio\">Android Studio</h3>\n<p>You will need\n<a href=\"https://developer.android.com/studio/index.html\">Android Studio</a>\nto open the Skygear scaffolding Android Studio project.</p>\n<p>After downloading Android Studio, you can launch it to complete the setup,\nwhich includes downloading Android SDK components that are required for\ndevelopment. You can find the detailed instructions from its\n<a href=\"https://developer.android.com/studio/install.html\">documentation</a>.</p>\n<h2 id=\"step-1-downloading-the-scaffolding-android-studio-project\">Step 1: Downloading the scaffolding Android Studio project</h2>\n<p>You can download the scaffolding project from GitHub:\n<a href=\"https://github.com/SkygearIO/skygear-Scaffolding-Android\">SkygearIO/skygear-Scaffolding-Android</a>.\nYou will want to rename the folder to your desired project name.\nAfter you have done so, open it in Android Studio by selecting\n<strong>Open an existing Android Studio project</strong>.</p>\n<h2 id=\"step-2-configuring-the-skygear-server-endpoint-and-the-api-key\">Step 2: Configuring the Skygear server endpoint and the API key</h2>\n<p>To enable the Android SDK to communicate with your Skygear server, you need to\nconfigure the server endpoint and the API key.\nThe scaffolding project comes with a Gradle wrapper task <code>updateAppSettings</code>\nwhich can set the configurations for you. To run the task:</p>\n<ul>\n<li>Open the Terminal inside Android Studio</li>\n<li><p>Run the following command:</p>\n<pre><code>./gradlew updateAppSettings\n</code></pre><p>You will be prompted for entering the Skygear server endpoint and the API key,\nwhich can be obtained from the\n<a href=\"https://portal.skygear.io/app/info\">Skygear Portal</a>.</p>\n<pre><code class=\"language-bash\">What is your skygear endpoint (You can find it in portal)?\nExample: https://myapp.skygeario.com/\n&gt; <span class=\"token keyword\">https://&lt;your-app-name&gt;.skygeario.com/</span><br/>\nWhat is your skygear API key (You can find it in portal)?\nExample: dc0903fa85924776baa77df813901efc\n&gt; <span class=\"token keyword\">&lt;your-api-key&gt;</span></code></pre>\n\n</li>\n</ul>\n<p>The configurations are stored in the file <code>MyApplication.java</code>, so\nyou can also choose to manually modify the settings there.</p>\n<h3 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h3>\n<p>Congratulations, you have your first Skygear Android project set up! The\nAndroid SDK has been installed and is configured with your server endpoint and\nAPI key. You can now launch your App on the emulator, which should look like the\nfollowing:</p>\n<p><a href=\"https://docs.skygear.io/assets/android/android-app-preview.png\"><img src=\"https://docs.skygear.io/assets/android/android-app-preview.png\" alt=\"Screenshot: android scaffolding app preview\"></a></p>\n";
 
 /***/ },
-/* 85 */
+/* 84 */
 /***/ function(module, exports) {
 
 	module.exports = "<p>To add the Skygear Android SDK to your existing project, you need to:</p>\n<ol>\n<li>install the SDK by adding Skygear as a dependency</li>\n<li>configure the Skygear server endpoint and API key for the SDK</li>\n<li>update the app manifest</li>\n</ol>\n<h2 id=\"step-1-installing-sdk\">Step 1: Installing SDK</h2>\n<ul>\n<li><p>First, you need to make sure the JCenter Maven repository is included in the\nfile <code>build.gradle</code> of your project (NOT the <code>build.gradle</code> of the module).</p>\n<pre><code class=\"language-gradle\">allprojects <span class=\"token punctuation\" >{</span>\n    repositories <span class=\"token punctuation\" >{</span>\n        <span class=\"token function\" >jcenter</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre></li>\n<li><p>Next, you need to add Skygear as a dependency by including\n<code>io.skygear:skygear+</code> in the dependency list in the file <code>build.gradle</code>\nof your module (NOT the <code>build.gradle</code> of the project).</p>\n</li>\n</ul>\n<pre><code class=\"language-gradle\">dependencies <span class=\"token punctuation\" >{</span>\n    <span class=\"token comment\" spellcheck=\"true\">// other dependencies</span>\n    compile <span class=\"token string\" >'io.skygear:skygear:+'</span>\n<span class=\"token punctuation\" >}</span></code></pre><ul>\n<li>You will be hinted for a project sync since you have updated the gradle file.\nAfter syncing, the Android SDK has been installed successfully.</li>\n</ul>\n<h2 id=\"step-2-configuring-the-skygear-server-endpoint-and-the-api-key\">Step 2: Configuring the Skygear server endpoint and the API key</h2>\n<p>To enable the Android SDK to communicate with your Skygear server, you need to\nconfigure the server endpoint and the API key, which you can obtain from the\n<a href=\"https://portal.skygear.io/app/info\">Skygear Portal</a>.</p>\n<p>There are two methods you can configure your SDK.</p>\n<h3 id=\"method-1-a-custom-application-that-extends-skygearapplication-\">Method 1: A custom application that extends <code>SkygearApplication</code></h3>\n<p>By making your application extend <code>SkygearApplication</code>, you can simply\noverride the two methods <code>getSkygearEndpoint</code> and <code>getApiKey</code>. The\n<code>SkygearApplication</code> will then configure the SDK for you.</p>\n<p>Assuming your custom application is defined in the file <code>MyApplication.java</code>:</p>\n<pre><code class=\"language-java\"><span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>SkygearApplication<span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >public</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >MyApplication</span> <span class=\"token keyword\" >extends</span> <span class=\"token class-name\" >SkygearApplication</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> String <span class=\"token function\" >getSkygearEndpoint</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >return</span> <span class=\"token string\" >\"https://&lt;your-app-name>.skygeario.com/\"</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> String <span class=\"token function\" >getApiKey</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >return</span> <span class=\"token string\" >\"&lt;your-api-key>\"</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><h3 id=\"method-2-building-the-config-when-the-application-starts\">Method 2: Building the config when the application starts</h3>\n<p>If you have your own custom application class, you can configure the container\nwith your Skygear server endpoint and the API key in <code>onCreate</code> of the\n<code>Application</code>. An example is shown below:</p>\n<pre><code class=\"language-java\"><span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>Container<span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> io<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>skygear<span class=\"token punctuation\" >.</span>Configuration<span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >public</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >MyApplication</span> <span class=\"token keyword\" >extends</span> <span class=\"token class-name\" >Application</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token annotation punctuation\" >@Override</span>\n    <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >void</span> <span class=\"token function\" >onCreate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >super</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >onCreate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        Configuration config <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Configuration<span class=\"token punctuation\" >.</span>Builder</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >endPoint</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >\"https://&lt;your-app-name>.skygeario.com/\"</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >apiKey</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >\"&lt;your-api-key>\"</span><span class=\"token punctuation\" >)</span>\n                <span class=\"token punctuation\" >.</span><span class=\"token function\" >build</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        Container<span class=\"token punctuation\" >.</span><span class=\"token function\" >defaultContainer</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >configure</span><span class=\"token punctuation\" >(</span>config<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><h2 id=\"step-3-updating-the-app-manifest\">Step 3: Updating the App Manifest</h2>\n<p>For the Android SDK to work, you also need to make sure these two things are\nset in the <code>AndroidManifest.xml</code>:</p>\n<ol>\n<li>You need to include the <code>android.permission.INTERNET</code> permission.\nThis is for allowing the SDK to communicate with the Skygear server.</li>\n<li>You need to specify the class used as the <code>Application</code> subclass through the\n<code>android:name</code> attribute of the <code>application</code> tag. <em>Note: you may not\nneed to do this if you have an existing application defined.</em></li>\n</ol>\n<p>The updated <code>AndroidManifest.xml</code> should contain the following:</p>\n<pre><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>uses-permission</span> <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>name</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>android.permission.INTERNET<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>application</span>\n    <span class=\"token attr-name\" ><span class=\"token namespace\" >android:</span>name</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>.MyApplication<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>application</span><span class=\"token punctuation\" >></span></span></code></pre>";
 
 /***/ },
-/* 86 */
+/* 85 */
 /***/ function(module, exports) {
 
 	module.exports = "<p>If you want to create a new web app that uses Skygear, you can use the Skygear\ngenerator to scaffold a new one with\n<a href=\"https://facebook.github.io/react/\">React.js</a>, <a href=\"https://babeljs.io/\">Babel 6</a>,\n<a href=\"https://webpack.github.io/\">webpack</a> and Skygear. After creating the\nscaffolding app, you will have a web app configured with your Skygear server\nendpoint and API key, with basic authentication functions for a user to sign up,\nlog in and log out, implemented using the JS SDK.</p>\n<h2 id=\"prerequisite\">Prerequisite</h2>\n<p>You will need <a href=\"https://nodejs.org\">Node.js</a> for running the scaffolding\ngenerator. You can install it by the following:</p>\n<pre><code class=\"language-bash\"><span class=\"token comment\" spellcheck=\"true\"># for MacOS</span>\nbrew <span class=\"token function\" >install</span> node\n\n<span class=\"token comment\" spellcheck=\"true\"># for Debian/Ubuntu</span>\ncurl -sL https://deb.nodesource.com/setup_6.x <span class=\"token operator\" >|</span> <span class=\"token function\" >sudo</span> -E <span class=\"token function\" >bash</span> -\n<span class=\"token function\" >sudo</span> <span class=\"token function\" >apt-get</span> <span class=\"token function\" >install</span> -y nodejs</code></pre><p>If you are using a different operating system, please visit\n<a href=\"https://nodejs.org/en/download\">Node.js downloads</a> for instructions.\nIf the bash shell is not available on your machine (such as Windows),\nwe recommend using <a href=\"https://git-scm.com/downloads\">GitBash</a>.</p>\n<h2 id=\"installing-and-running-the-scaffolding-generator\">Installing and running the scaffolding generator</h2>\n<p>After Node.js is installed, you can proceed with installing and running the\n<a href=\"https://github.com/SkygearIO/generator-skygear\">yeoman Skygear scaffolding generator</a>.</p>\n<pre><code class=\"language-bash\"><span class=\"token comment\" spellcheck=\"true\"># install yeoman and skygear generator globally</span>\nnpm <span class=\"token function\" >install</span> -g yo\nnpm <span class=\"token function\" >install</span> -g generator-skygear\n\n<span class=\"token comment\" spellcheck=\"true\"># create your project folder</span>\n<span class=\"token function\" >mkdir</span> new-skygear-project\n<span class=\"token function\" >cd</span> new-skygear-project\n\n<span class=\"token comment\" spellcheck=\"true\"># generate your project</span>\nyo skygear</code></pre><p>The generator will ask you a few questions to help you configure your app and\nSkygear automatically.</p>\n<h3 id=\"1-skygear-server-endpoint-and-api-key\">1. Skygear server endpoint and API key</h3>\n<p>You can obtain the Skygear endpoint and API key from the\n<a href=\"https://portal.skygear.io/app/info\">Skygear Portal</a>. Make sure you include\nthe trailing slash in your endpoint.</p>\n<pre><code class=\"language-bash\">? What is your skygear endpoint? (You can find it in portal) <span class=\"token keyword\">https://&lt;your-app-name&gt;.skygeario.com/</span>\n? What is your skygear API key (You can find it in portal) <span class=\"token keyword\">&lt;your-api-key&gt;</span></code></pre>\n\n<h3 id=\"2-app-configuration\">2. App configuration</h3>\n<p>These are the configurations for setting up the React.js and webpack\nenvironment.</p>\n<pre><code class=\"language-bash\">? Please choose your application name <span class=\"token keyword\">&lt;your-app-name&gt;</span>\n? Which style language do you want to use? <span class=\"token keyword\">css/sass/scss/less/stylus</span>\n? Enable postcss? <span class=\"token keyword\">yes/no</span></code></pre>\n\n<h3 id=\"3-overwriting-files-for-skygear-configuration\">3. Overwriting files for Skygear configuration</h3>\n<p>The Skygear scaffolding generator needs to rewrite several files to configure\nSkygear for you. You need to confirm the overwriting operations to proceed.</p>\n<pre><code class=\"language-bash\">? Overwrite src/components/Main.js? <span class=\"token keyword\">y</span>\n? Overwrite src/config/base.js? <span class=\"token keyword\">y</span>\n? Overwrite src/index.js? <span class=\"token keyword\">y</span>\n? Overwrite cfg/base.js? <span class=\"token keyword\">y</span></code></pre>\n\n\n<h2 id=\"we-re-done-woo-hoo-\">We&#39;re done, Woo-hoo!</h2>\n<p>Congratulations, you have your first skygear web project set up!\nReact.js, Babel 6 and Webpack have been set up for you; the Skygear container\nhas also been configured with your server endpoint and API key.\nTo launch your web app, simply do <code>npm start</code> and you should see the following\nin your browser.</p>\n<p><a href=\"https://docs.skygear.io/assets/js/js-app-preview.png\"><img src=\"https://docs.skygear.io/assets/js/js-app-preview.png\" alt=\"Screenshot: js scaffolding app preview\"></a></p>\n";
 
 /***/ },
-/* 87 */
+/* 86 */
 /***/ function(module, exports) {
 
 	module.exports = "<p>To add the Skygear JS SDK to your existing project, you need to:</p>\n<ol>\n<li>install (and import) the SDK</li>\n<li>configure the Skygear server endpoint and API key for the SDK</li>\n</ol>\n<h2 id=\"step-1-installing-the-sdk\">Step 1: Installing the SDK</h2>\n<p>The JS SDK can be easily integrated with your existing project using several\nways: as HTML5 project, Node.js project, webpack project or React Native\nproject.</p>\n<h3 id=\"html5-project\">HTML5 project</h3>\n<p>The Skygear JS SDK can be included as a minified external script through CDN,\nlike the following:</p>\n<pre><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span> <span class=\"token attr-name\" >src</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>//code.skygear.io/js/polyfill/latest/polyfill.min.js<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" ></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span> <span class=\"token attr-name\" >src</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>//code.skygear.io/js/skygear/latest/skygear.min.js<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" ></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>script</span><span class=\"token punctuation\" >></span></span><span class=\"token script language-javascript\" >\n  console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span>skygear<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">// the skygear container</span>\n</span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>script</span><span class=\"token punctuation\" >></span></span></code></pre><p>In this way, you will have the Skygear container object as <code>skygear</code> in the\nglobal scope.</p>\n<p>The polyfill, which should be placed before the <code>skygear.min.js</code>, is used to\nimplant HTML5 functionality in browsers that don&#39;t natively support them.</p>\n<h3 id=\"node-js-project\">Node.js project</h3>\n<p>Skygear JS SDK can be directly used in Node.js environment. Simply install it\nvia <a href=\"https://www.npmjs.com\">npm</a> and use it in your project.</p>\n<pre><code class=\"language-bash\">npm <span class=\"token function\" >install</span> skygear --save</code></pre><pre><code class=\"language-javascript\"><span class=\"token keyword\" >import</span> skygear <span class=\"token keyword\" >from</span> <span class=\"token string\" >'skygear'</span><span class=\"token punctuation\" >;</span></code></pre><p>If you are using Node.js v0.x, you need to include\n<a href=\"https://babeljs.io/docs/usage/polyfill/\">Babel Polyfill</a> before importing the\nSkygear SDK.</p>\n<pre><code class=\"language-bash\">npm <span class=\"token function\" >install</span> babel-polyfill --save-dev</code></pre><pre><code class=\"language-javascript\"><span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'babel-polyfill'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> skygear <span class=\"token keyword\" >from</span> <span class=\"token string\" >'skygear'</span><span class=\"token punctuation\" >;</span></code></pre><h3 id=\"webpack-project\">Webpack project</h3>\n<p>If you are using <a href=\"https://webpack.github.io/\">webpack</a> to bundle your modules,\nyou need to configure it correctly to make Skygear work in the web environment.</p>\n<p>In your webpack configuration file (by default <code>webpack.config.js</code>), add the\nfollowing lines in the externals, like the followings:</p>\n<pre><code class=\"language-javascript\">module<span class=\"token punctuation\" >.</span>exports <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token comment\" spellcheck=\"true\">/* your own configurations */</span>\n  externals<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token string\" >'react-native'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'undefined'</span><span class=\"token punctuation\" >,</span>  <span class=\"token comment\" spellcheck=\"true\">// don't include react-native</span>\n    <span class=\"token string\" >'websocket'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'undefined'</span>      <span class=\"token comment\" spellcheck=\"true\">// don't include node.js websocket</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span></code></pre><h3 id=\"react-native-project\">React Native project</h3>\n<p>The SDK works well with\n<a href=\"https://facebook.github.io/react-native/\">React Native</a>.\nWith an existing React Native project, simply do</p>\n<pre><code class=\"language-bash\">npm <span class=\"token function\" >install</span> --save skygear</code></pre><p>and then you can import the SDK in your <code>index.ios.js</code> and <code>index.android.js</code>\nby:</p>\n<pre><code class=\"language-javascript\"><span class=\"token keyword\" >import</span> skygear <span class=\"token keyword\" >from</span> <span class=\"token string\" >'skygear'</span></code></pre><p><a name=\"set-up-app\"></a></p>\n<h2 id=\"step-2-configuring-the-skygear-server-endpoint-and-api-key\">Step 2: Configuring the Skygear server endpoint and API key</h2>\n<p>Before you make any API calls using the JS SDK, you must configure your skygear\ncontainer, <code>skygear</code>, with your Skygear server endpoint and API key you get from\nthe <a href=\"https://portal.skygear.io/app/info\">Skygear Portal</a>.</p>\n<pre><code class=\"language-javascript\">skygear<span class=\"token punctuation\" >.</span><span class=\"token function\" >config</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  <span class=\"token string\" >'endPoint'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'https://&lt;your-app-name>.skygeario.com/'</span><span class=\"token punctuation\" >,</span> <span class=\"token comment\" spellcheck=\"true\">// trailing slash is required</span>\n  <span class=\"token string\" >'apiKey'</span><span class=\"token punctuation\" >:</span> <span class=\"token string\" >'&lt;your-api-key>'</span><span class=\"token punctuation\" >,</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >then</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n  console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'skygear container is now ready for making API calls.'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >(</span>error<span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n  console<span class=\"token punctuation\" >.</span><span class=\"token function\" >error</span><span class=\"token punctuation\" >(</span>error<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span></code></pre>";

@@ -26,11 +26,29 @@ export default {
       padding: '0 24px',
       boxSizing: 'border-box',
       position: 'relative',
+    },
+    rowIncludeDocLink: {
       '@media (max-width: 544px)': {
-        marginBottom: '78px',
+        marginBottom: 78,
       },
     },
     item: { display: 'inline-block' },
+    docLink: {
+      position: 'absolute',
+      top: '19px',
+      right: '41px',
+      padding: '14px 42px',
+      color: '#FFF',
+      background: '#007BD4',
+      borderRadius: '5px',
+      fontSize: '16px',
+      textDecoration: 'none',
+      textAlign: 'center',
+      '@media (max-width: 544px)': {
+        top: '78px',
+        left: '41px',
+      },
+    },
   },
   tab: {
     item: {
@@ -56,21 +74,5 @@ export default {
       width: '21px',
     },
     name: { margin: '9px 9px 16px 33px' },
-  },
-  docLink: {
-    padding: '14px 42px',
-    fontSize: '16px',
-    color: '#FFF',
-    background: '#007BD4',
-    borderRadius: '5px',
-    position: 'absolute',
-    top: '19px',
-    right: '41px',
-    textDecoration: 'none',
-    textAlign: 'center',
-    '@media (max-width: 544px)': {
-      top: '78px',
-      left: '41px',
-    },
   },
 };

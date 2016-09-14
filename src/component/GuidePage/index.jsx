@@ -21,38 +21,105 @@ const Icon = {
 };
 
 import TabItem from './TabItem.jade';
-import GuideHeader from './GuideHeader.jade';
 const RadiumTabItem = radium(TabItem);
-const RadiumGuideHeader = radium(GuideHeader);
 
-export default function GuidePage({
+function GuidePage({
   sdk, project, hideSDKTabs, guideContent, setSDK, setProject,
 }) {
-  const sdkTabProps = { Style, Icon, current: sdk, update: setSDK };
-  const projectTabProps = { Style, Icon, current: project, update: setProject };
-  const isDocSite = (!canUseDOM ||
-                     window.location.hostname === 'docs.skygear.io' ||
-                     window.location.hostname === 'docs-staging.skygear.io');
-  const docLink = (isDocSite) ? '' : `https://docs.skygear.io/${sdk}/guide`;
-  if (isDocSite) {
-    Style.content.padding = '0px';
-    Style.content.marginTop = '24px';
+  const docLinkShoudShow = canUseDOM &&
+                           window.location.hostname !== 'localhost' &&
+                           window.location.hostname !== 'docs.skygear.io' &&
+                           window.location.hostname !== 'docs-staging.skygear.io';
+
+  let heading;
+  let sdkTabs;
+  if (!hideSDKTabs) {
+    heading = <h4 style={[Style.tagline]}>GET STARTED</h4>;
+    sdkTabs = (
+      <nav style={[Style.platform.row]}>
+        <div style={[Style.platform.item]}>
+          <RadiumTabItem
+            Style={Style}
+            Icon={Icon}
+            current={sdk}
+            update={setSDK}
+            target="ios"
+            name="iOS"
+          />
+        </div>
+        <div style={[Style.platform.item]}>
+          <RadiumTabItem
+            Style={Style}
+            Icon={Icon}
+            current={sdk}
+            update={setSDK}
+            target="android"
+            name="Android"
+          />
+        </div>
+        <div style={[Style.platform.item]}>
+          <RadiumTabItem
+            Style={Style}
+            Icon={Icon}
+            current={sdk}
+            update={setSDK}
+            target="js"
+            name="Web"
+          />
+        </div>
+      </nav>
+    );
   }
+
+  let docLink;
+  if (docLinkShoudShow) {
+    docLink = (
+      <a
+        style={[Style.project.docLink]}
+        href={`https://docs.skygear.io/${sdk}/guide`}
+        target="_blank"
+      >
+        Read our Doc
+      </a>
+    );
+  }
+
   return (
     <div style={Style.guidePage}>
       <style dangerouslySetInnerHTML={{ __html: markdownStyle }} />
       <style dangerouslySetInnerHTML={{ __html: prismjsStyle }} />
-      <RadiumGuideHeader
-        Style={Style}
-        docLink={docLink}
-        hideSDKTabs={hideSDKTabs}
-      >
-        <RadiumTabItem {...sdkTabProps} target="ios" name="iOS" />
-        <RadiumTabItem {...sdkTabProps} target="android" name="Android" />
-        <RadiumTabItem {...sdkTabProps} target="js" name="Web" />
-        <RadiumTabItem {...projectTabProps} target="new" name="New App" />
-        <RadiumTabItem {...projectTabProps} target="existing" name="Existing App" />
-      </RadiumGuideHeader>
+      <header>
+        {heading}
+        {sdkTabs}
+        <nav
+          style={[
+            Style.project.row,
+            docLinkShoudShow && Style.project.rowIncludeDocLink,
+          ]}
+        >
+          <div style={[Style.project.item]}>
+            <RadiumTabItem
+              Style={Style}
+              Icon={Icon}
+              current={project}
+              update={setProject}
+              target="new"
+              name="New App"
+            />
+          </div>
+          <div style={[Style.project.item]}>
+            <RadiumTabItem
+              Style={Style}
+              Icon={Icon}
+              current={project}
+              update={setProject}
+              target="existing"
+              name="Existing App"
+            />
+          </div>
+          {docLink}
+        </nav>
+      </header>
       <article
         style={Style.content}
         className="Markdown"
@@ -70,3 +137,5 @@ GuidePage.propTypes = {
   setProject: React.PropTypes.func.isRequired,
   hideSDKTabs: React.PropTypes.bool,
 };
+
+export default radium(GuidePage);
