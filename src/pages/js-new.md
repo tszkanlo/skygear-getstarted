@@ -9,7 +9,9 @@ log in and log out, implemented using the JS SDK.
 ## Prerequisite
 
 You will need [Node.js](https://nodejs.org) for running the scaffolding
-generator. You can install it by the following:
+generator. Our supported versions are `node6+` and `npm3+`.
+
+You can install it by the following:
 
 ``` bash
 # for MacOS
@@ -77,10 +79,15 @@ Skygear for you. You need to confirm the overwriting operations to proceed.
 
 ## We're done, Woo-hoo!
 
+To launch your web app, run
+
+``` bash
+npm start
+```
+
 Congratulations, you have your first skygear web project set up!
 React.js, Babel 6 and Webpack have been set up for you; the Skygear container
 has also been configured with your server endpoint and API key.
-To launch your web app, simply do `npm start` and you should see the following
-in your browser.
+You should see the following in your browser by following the link at shell.
 
 [![Screenshot: js scaffolding app preview](https://docs.skygear.io/assets/js/js-app-preview.png)](https://docs.skygear.io/assets/js/js-app-preview.png)
