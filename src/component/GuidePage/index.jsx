@@ -104,7 +104,7 @@ function GuidePage({
               current={project}
               update={setProject}
               target="new"
-              name="New App"
+              name="New App from Template"
             />
           </div>
           <div style={[Style.project.item]}>
@@ -114,7 +114,7 @@ function GuidePage({
               current={project}
               update={setProject}
               target="existing"
-              name="Existing App"
+              name="Start from Scratch"
             />
           </div>
           {docLink}

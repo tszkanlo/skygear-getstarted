@@ -17,12 +17,12 @@ section(style=[ Style.platform.item, highlightWhenActive ], onClick=setSDK(targe
     div(style=[ Style.project.column ])
       div(style=[ Style.project.item ], onClick=setProject('new'))
         span(style=[ Style.project.icon ], dangerouslySetInnerHTML={__html:Icon.new})
-        h3(style=[ Style.project.title ]) New App
-        p(style=[ Style.project.desc ]) Building a new app from scratch
+        h3(style=[ Style.project.title ]) New App from Template
+        p(style=[ Style.project.desc ]) Start with a scaffold project
 
     // project: existing
     div(style=[ Style.project.column ])
       div(style=[ Style.project.item ], onClick=setProject('existing'))
         span(style=[ Style.project.icon ], dangerouslySetInnerHTML={__html:Icon.app})
-        h3(style=[ Style.project.title ]) Exisiting App
-        p(style=[ Style.project.desc ]) Integrate Skygear into exisitng app
+        h3(style=[ Style.project.title ]) Start from Scratch
+        p(style=[ Style.project.desc ]) Integrate Skygear into an existing project
