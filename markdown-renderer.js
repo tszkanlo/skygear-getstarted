@@ -9,6 +9,7 @@ require('prismjs/components/prism-ini');
 require('prismjs/components/prism-java');
 require('prismjs/components/prism-objectivec');
 require('prismjs/components/prism-python');
+require('prismjs/components/prism-swift');
 
 var Syntaxes = {
   'bash': Prism.languages.bash,
@@ -27,6 +28,7 @@ var Syntaxes = {
   'objective-c': Prism.languages.objectivec,
   'python': Prism.languages.python,
   'shell': Prism.languages.bash,
+  'swift': Prism.languages.swift
 };
 
 function escape(html, encode) {

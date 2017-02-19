@@ -74,7 +74,9 @@ Before you make any API calls using the JS SDK, you must configure your skygear
 container, `SKYContainer`, with your Skygear server endpoint and API key you get
 from the [Skygear Portal](https://portal.skygear.io/app/info).
 
-The configuration is done in the file `AppDelegate.m`:
+The configuration is done in the file `AppDelegate.m` in Objective-C or `AppDelegate.swift` in Swift:
+
+For Objective-C:
 
 - Import the SDK as `SKYKit`
 
@@ -89,4 +91,21 @@ Fill in your server endpoint and API key correspondingly.
   SKYContainer *container = [SKYContainer defaultContainer];
   [container configAddress:@"https://your-endpoint.skygeario.com/"]; //Your server endpoint
   [container configureWithAPIKey:@"SKYGEAR_API_KEY"]; //Your Skygear API Key
+  ```
+  
+For Swift:
+
+- Import the SDK as `SKYKit`
+
+  ```swift
+  import SKYKit
+  ```
+  
+- Add these lines in the `application(_:didFinishLaunchingWithOptions:)` method.
+Fill in your server endpoint and API key correspondingly.
+
+  ```swift
+  let container = SKYContainer.default()
+  container?.configAddress("https://your-endpoint.skygeario.com/") // Your server endpoint
+  container?.configure(withAPIKey: "SKYGEAR_API_KEY") // Your Skygear API Key
   ```
